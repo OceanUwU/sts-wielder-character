@@ -1,10 +1,22 @@
 {
+  "${ModID}:AbstractWielderCard": {
+    "NAME": "",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": [
+      "{!${ModID}:h!|1=|2= twice.|@= !${ModID}:h! times}",
+      "${ModID}:Hit",
+      "${ModID}:Hit ALL",
+      "${ModID}:Hit a random enemy",
+      "{!${ModID}:g!|1=|2= twice.|@= !${ModID}:g! times}",
+      "${ModID}:Guard"
+    ]
+  },
   "${ModID}:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "!HIT!.{!Upgrades!|>0= NL Gain !M! Vigor.}"
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block."
+    "DESCRIPTION": "!GUARD!.{!Upgrades!|>0= NL Gain !M! ${ModID}:Aegis.}"
   }
 }

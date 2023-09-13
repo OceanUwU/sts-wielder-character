@@ -1,10 +1,23 @@
 [
   {
-    "PROPER_NAME": "TODO",
+    "PROPER_NAME": "Hit",
     "NAMES": [
-      "todo",
-      "todos"
+      "hit"
     ],
-    "DESCRIPTION": "TODO: Make your own epic keywords"
+    "DESCRIPTION": "Use your weapon."
+  },
+  {
+    "PROPER_NAME": "Guard",
+    "NAMES": [
+      "guard"
+    ],
+    "DESCRIPTION": "Use your shield."
+  },
+  {
+    "PROPER_NAME": "Aegis",
+    "NAMES": [
+      "aegis"
+    ],
+    "DESCRIPTION": "Increases the #yBlock of your next #yGuard."
   }
 ]

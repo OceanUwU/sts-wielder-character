@@ -1,0 +1,18 @@
+{
+    "${ModID}:Cutlass": {
+        "NAME": "Cutlass",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage. NL Dequip: Deal #b",
+            " damage to a random enemy."
+        ]
+    },
+    "${ModID}:Buckler": {
+        "NAME": "Buckler",
+        "DESCRIPTION": [
+            "#yGuard: Gain #b",
+            " #yBlock. NL Dequip: Gain #b",
+            " #yBlock."
+        ]
+    }
+}

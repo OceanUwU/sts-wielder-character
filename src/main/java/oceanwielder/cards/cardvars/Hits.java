@@ -1,47 +1,48 @@
 package oceanwielder.cards.cardvars;
 
-import static oceanwielder.WielderMod.makeID;
-
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import oceanwielder.cards.AbstractWielderCard;
 
-public class SecondDamage extends DynamicVariable {
+import static oceanwielder.WielderMod.makeID;
+
+public class Hits extends DynamicVariable {
     @Override
     public String key() {
-        return makeID("sd");
+        return makeID("h");
     }
 
     @Override
     public boolean isModified(AbstractCard card) {
         if (card instanceof AbstractWielderCard)
-            return ((AbstractWielderCard) card).isSecondDamageModified;
+            return ((AbstractWielderCard) card).isHitsModified;
         return false;
-    }
-
-    public void setIsModified(AbstractCard card, boolean v) {
-        if (card instanceof AbstractWielderCard)
-            ((AbstractWielderCard) card).isSecondDamageModified = v;
     }
 
     @Override
     public int value(AbstractCard card) {
         if (card instanceof AbstractWielderCard)
-            return ((AbstractWielderCard) card).secondDamage;
+            return ((AbstractWielderCard) card).hits;
         return -1;
+    }
+
+    public void setIsModified(AbstractCard card, boolean v) {
+        if (card instanceof AbstractWielderCard)
+            ((AbstractWielderCard) card).isHitsModified = v;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
         if (card instanceof AbstractWielderCard)
-            return ((AbstractWielderCard) card).baseSecondDamage;
+            return ((AbstractWielderCard) card).baseHits;
         return -1;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
         if (card instanceof AbstractWielderCard)
-            return ((AbstractWielderCard) card).upgradedSecondDamage;
+            return ((AbstractWielderCard) card).upgradedHits;
         return false;
     }
+    
 }

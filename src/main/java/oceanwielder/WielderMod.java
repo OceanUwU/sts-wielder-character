@@ -13,15 +13,20 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
+import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.StanceStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.nio.charset.StandardCharsets;
 import oceanwielder.cards.AbstractWielderCard;
-import oceanwielder.cards.cardvars.SecondDamage;
-import oceanwielder.cards.cardvars.SecondMagicNumber;
+import oceanwielder.cards.cardvars.*;
 import oceanwielder.characters.TheWielder;
 import oceanwielder.relics.AbstractWielderRelic;
+import oceanwielder.wieldables.WieldableLibrary;
+import oceanwielder.wieldables.WieldableSlot;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -30,7 +35,8 @@ public class WielderMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        PostInitializeSubscriber {
 
     public static final String modID = "oceanwielder";
 
@@ -54,6 +60,9 @@ public class WielderMod implements
     private static final String CARD_ENERGY_L = makeImagePath("1024/energy.png");
     private static final String CHARSELECT_BUTTON = makeImagePath("charSelect/charButton.png");
     private static final String CHARSELECT_PORTRAIT = makeImagePath("charSelect/charBG.png");
+
+    public static WieldableSlot weaponSlot;
+    public static WieldableSlot shieldSlot;
 
     public static Settings.GameLanguage[] SupportedLanguages = {
             Settings.GameLanguage.ENG,
@@ -132,7 +141,8 @@ public class WielderMod implements
     @Override
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new SecondMagicNumber());
-        BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new Hits());
+        BaseMod.addDynamicVariable(new Guards());
         new AutoAdd(modID)
                 .packageFilter(AbstractWielderCard.class)
                 .setDefaultSeen(true)
@@ -146,10 +156,16 @@ public class WielderMod implements
         BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + getLangString() + "/Charstrings.json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
+        //BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + getLangString() + "/Potionstrings.json");
+        //BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/UIstrings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
+        //BaseMod.loadCustomStringsFile(StanceStrings.class, modID + "Resources/localization/" + getLangString() + "/Stancestrings.json");
     }
 
     @Override
     public void receiveEditKeywords() {
+        WieldableLibrary.initialize();
+
         Gson gson = new Gson();
         String json = Gdx.files.internal(modID + "Resources/localization/" + getLangString() + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
@@ -159,5 +175,11 @@ public class WielderMod implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receivePostInitialize() {
+        weaponSlot = new WieldableSlot(WieldableLibrary.defaultWeapon);
+        shieldSlot = new WieldableSlot(WieldableLibrary.defaultShield);
     }
 }

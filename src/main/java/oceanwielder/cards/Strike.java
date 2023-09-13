@@ -1,26 +1,25 @@
 package oceanwielder.cards;
 
-import static oceanwielder.WielderMod.makeID;
-
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+
+import static oceanwielder.WielderMod.makeID;
+import static oceanwielder.util.Wiz.*;
 
 public class Strike extends AbstractWielderCard {
     public final static String ID = makeID("Strike");
 
     public Strike() {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
-        baseDamage = 6;
+        setHits(1);
+        setMagic(2);
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.NONE);
-    }
-
-    public void upp() {
-        upgradeDamage(3);
+        hit(m);
+        if (upgraded) applyToSelf(new VigorPower(p, magicNumber));
     }
 }

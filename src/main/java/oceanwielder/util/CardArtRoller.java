@@ -1,6 +1,5 @@
 package oceanwielder.util;
 
-import basemod.BaseMod;
 import basemod.patches.whatmod.WhatMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;

@@ -1,30 +1,28 @@
 package oceanwielder.cards;
 
-import static oceanwielder.WielderMod.makeImagePath;
-import static oceanwielder.WielderMod.modID;
-import static oceanwielder.util.Wiz.atb;
-import static oceanwielder.util.Wiz.att;
-
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import oceanwielder.actions.GuardAction;
+import oceanwielder.actions.HitAction;
 import oceanwielder.characters.TheWielder;
 import oceanwielder.util.CardArtRoller;
 
-public abstract class AbstractWielderCard extends CustomCard {
+import static oceanwielder.WielderMod.makeID;
+import static oceanwielder.WielderMod.makeImagePath;
+import static oceanwielder.WielderMod.modID;
+import static oceanwielder.util.Wiz.*;
 
+
+public abstract class AbstractWielderCard extends CustomCard {
+    protected static String[] sharedStrings = null;
     protected final CardStrings cardStrings;
 
     public int secondMagic;
@@ -32,10 +30,19 @@ public abstract class AbstractWielderCard extends CustomCard {
     public boolean upgradedSecondMagic;
     public boolean isSecondMagicModified;
 
-    public int secondDamage;
-    public int baseSecondDamage;
-    public boolean upgradedSecondDamage;
-    public boolean isSecondDamageModified;
+    public int hits;
+    public int baseHits;
+    public boolean upgradedHits;
+    public boolean isHitsModified;
+
+    public int guards;
+    public int baseGuards;
+    public boolean upgradedGuards;
+    public boolean isGuardsModified;
+
+    private int magicUpgrade, secondMagicUpgrade, hitsUpgrade, guardsUpgrade, baseCost, costUpgrade;
+    public boolean usesHits, usesGuards;
+    public boolean showWeaponDequipValue, showShieldDequipValue;
 
     private boolean needsArtRefresh = false;
 
@@ -46,18 +53,33 @@ public abstract class AbstractWielderCard extends CustomCard {
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
         super(cardID, "", getCardTextureString(cardID.replace(modID + ":", ""), type),
                 cost, "", type, color, rarity, target);
+        baseCost = cost;
+        if (sharedStrings == null)
+            sharedStrings = CardCrawlGame.languagePack.getCardStrings(makeID("AbstractWielderCard")).EXTENDED_DESCRIPTION;
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
-        rawDescription = cardStrings.DESCRIPTION;
+        rawDescription = "";
         name = originalName = cardStrings.NAME;
         initializeTitle();
         initializeDescription();
 
         if (textureImg.contains("ui/missing.png")) {
-            if (CardLibrary.cards != null && !CardLibrary.cards.isEmpty()) {
+            if (CardLibrary.cards != null && !CardLibrary.cards.isEmpty())
                 CardArtRoller.computeCard(this);
-            } else
+            else
                 needsArtRefresh = true;
         }
+    }
+
+    @Override
+    public void initializeDescription() {
+        if (cardStrings != null) {
+            rawDescription = ("{@@}" + cardStrings.DESCRIPTION)
+                .replace("!HIT!", sharedStrings[1] + sharedStrings[0])
+                .replace("!HITALL!", sharedStrings[2] + sharedStrings[0])
+                .replace("!HITRANDOM!", sharedStrings[3] + sharedStrings[0])
+                .replace("!GUARD!", sharedStrings[5] + sharedStrings[4]);
+        }
+        super.initializeDescription();
     }
 
     @Override
@@ -90,50 +112,14 @@ public abstract class AbstractWielderCard extends CustomCard {
         return textureString;
     }
 
-    @Override
-    public void applyPowers() {
-        if (baseSecondDamage > -1) {
-            secondDamage = baseSecondDamage;
-
-            int tmp = baseDamage;
-            baseDamage = baseSecondDamage;
-
-            super.applyPowers();
-
-            secondDamage = damage;
-            baseDamage = tmp;
-
-            super.applyPowers();
-
-            isSecondDamageModified = (secondDamage != baseSecondDamage);
-        } else super.applyPowers();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {
-        if (baseSecondDamage > -1) {
-            secondDamage = baseSecondDamage;
-
-            int tmp = baseDamage;
-            baseDamage = baseSecondDamage;
-
-            super.calculateCardDamage(mo);
-
-            secondDamage = damage;
-            baseDamage = tmp;
-
-            super.calculateCardDamage(mo);
-
-            isSecondDamageModified = (secondDamage != baseSecondDamage);
-        } else super.calculateCardDamage(mo);
-    }
-
     public void resetAttributes() {
         super.resetAttributes();
         secondMagic = baseSecondMagic;
         isSecondMagicModified = false;
-        secondDamage = baseSecondDamage;
-        isSecondDamageModified = false;
+        hits = baseHits;
+        isHitsModified = false;
+        guards = baseGuards;
+        isGuardsModified = false;
     }
 
     public void displayUpgrades() {
@@ -142,9 +128,13 @@ public abstract class AbstractWielderCard extends CustomCard {
             secondMagic = baseSecondMagic;
             isSecondMagicModified = true;
         }
-        if (upgradedSecondDamage) {
-            secondDamage = baseSecondDamage;
-            isSecondDamageModified = true;
+        if (upgradedHits) {
+            hits = baseHits;
+            isHitsModified = true;
+        }
+        if (upgradedGuards) {
+            guards = baseGuards;
+            isGuardsModified = true;
         }
     }
 
@@ -154,56 +144,133 @@ public abstract class AbstractWielderCard extends CustomCard {
         upgradedSecondMagic = true;
     }
 
-    protected void upgradeSecondDamage(int amount) {
-        baseSecondDamage += amount;
-        secondDamage = baseSecondDamage;
-        upgradedSecondDamage = true;
+    protected void upgradeHits(int amount) {
+        baseHits += amount;
+        hits = baseHits;
+        upgradedHits = true;
+        if (baseHits > 0) {
+            usesHits = true;
+            baseDamage = 0;
+        }
     }
 
-    protected void uDesc() {
-        rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-        initializeDescription();
+    protected void upgradeGuards(int amount) {
+        baseGuards += amount;
+        guards = baseGuards;
+        upgradedGuards = true;
+        if (baseGuards > 0) {
+            usesGuards = true;
+            baseBlock = 0;
+        }
+    }
+
+    protected void setMagic(int amount) {
+        baseMagicNumber = magicNumber = amount;
+    }
+    
+    protected void setMagic(int amount, int upgrade) {
+        setMagic(amount);
+        magicUpgrade = upgrade;
+    }
+
+    protected void setSecondMagic(int amount) {
+        baseSecondMagic = secondMagic = amount;
+    }
+    
+    protected void setSecondMagic(int amount, int upgrade) {
+        setSecondMagic(amount);
+        secondMagicUpgrade = upgrade;
+    }
+
+    protected void setHits(int amount) {
+        baseHits = hits = amount;
+        if (baseHits > 0) {
+            usesHits = true;
+            baseDamage = 0;
+        }
+    }
+    
+    protected void setHits(int amount, int upgrade) {
+        setHits(amount);
+        hitsUpgrade = upgrade;
+    }
+
+    protected void setGuards(int amount) {
+        baseGuards = guards = amount;
+        if (baseGuards > 0) {
+            usesGuards = true;
+            baseBlock = 0;
+        }
+    }
+    
+    protected void setGuards(int amount, int upgrade) {
+        setGuards(amount);
+        guardsUpgrade = upgrade;
+    }
+
+    protected void setCostUpgrade(int upgrade) {
+        costUpgrade = upgrade;
     }
 
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            if (magicUpgrade != 0)
+                upgradeMagicNumber(magicUpgrade);
+            if (secondMagicUpgrade != 0)
+                upgradeSecondMagic(secondMagicUpgrade);
+            if (hitsUpgrade != 0)
+                upgradeHits(hitsUpgrade);
+            if (guardsUpgrade != 0)
+                upgradeGuards(guardsUpgrade);
+            if (costUpgrade != 0)
+                upgradeBaseCost(baseCost + costUpgrade);
             upp();
         }
     }
 
-    public abstract void upp();
+    public void upp() {};
 
     public void update() {
         super.update();
-        if (needsArtRefresh) {
+        if (needsArtRefresh)
             CardArtRoller.computeCard(this);
-        }
     }
 
-    // These shortcuts are specifically for cards. All other shortcuts that aren't specifically for cards can go in Wiz.
-    protected void dmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+    private AbstractGameAction hitAction(AbstractMonster m) {
+        return new HitAction(m, hits);
     }
 
-    protected void dmgTop(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        att(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+    protected void hit(AbstractMonster m) {
+        atb(hitAction(m));
+    }
+    
+    protected void hitTop(AbstractMonster m) {
+        att(hitAction(m));
     }
 
-    protected void allDmg(AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
+    private AbstractGameAction hitAllAction() {
+        return null;
     }
 
-    protected void allDmgTop(AbstractGameAction.AttackEffect fx) {
-        att(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
+    protected void hitAll() {
+        atb(hitAllAction());
     }
 
-    protected void altDmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAction(m, new DamageInfo(AbstractDungeon.player, secondDamage, damageTypeForTurn), fx));
+    protected void hitAllTop() {
+        att(hitAllAction());
     }
 
-    protected void blck() {
-        atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
+    private AbstractGameAction guardAction() {
+        return new GuardAction(guards);
+    }
+
+    protected void guard() {
+        atb(guardAction());
+    }
+
+    protected void guardTop() {
+        att(guardAction());
     }
 
     public String cardArtCopy() {
@@ -212,17 +279,5 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     public CardArtRoller.ReskinInfo reskinInfo(String ID) {
         return null;
-    }
-
-    protected void upMagic(int x) {
-        upgradeMagicNumber(x);
-    }
-
-    protected void upSecondMagic(int x) {
-        upgradeSecondMagic(x);
-    }
-
-    protected void upSecondDamage(int x) {
-        upgradeSecondDamage(x);
     }
 }
