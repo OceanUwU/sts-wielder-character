@@ -20,7 +20,6 @@ public class ThrowingStar extends AbstractWeapon {
 
     public ThrowingStar() {
         super(ID, 7, -1, 2);
-        shouldPopOut = false;
     }
 
     public void use(AbstractMonster m) {
@@ -31,6 +30,7 @@ public class ThrowingStar extends AbstractWeapon {
     public void dequipEffect() {
         forAllMonstersLivingBackwards(mo -> applyToEnemyTop(mo, new VulnerablePower(mo, dequipPower, false)));
         vfxTop(new ThrowThrowingStarEffect(this, Settings.WIDTH + hb.width, hb.cY, 0.5f));
+        shouldPopOut = false;
     }
 
     @Override
@@ -75,6 +75,7 @@ public class ThrowingStar extends AbstractWeapon {
         }
 
         public void render(SpriteBatch sb) {
+            sb.setColor(color);
             sb.draw(star.texture, x - CENTRE, y - CENTRE, CENTRE, CENTRE, SIZE, SIZE, scale, scale, rotation);
         }
 

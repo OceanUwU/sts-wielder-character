@@ -57,7 +57,8 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     protected void dmg(AbstractMonster mo, AbstractGameAction.AttackEffect fx) {
         calculateDamage(mo);
-        att(new DamageAction(mo, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), fx, true));
+        for (int i = 0; i < primaryTimes; i++)
+            att(new DamageAction(mo, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), fx, true));
     }
 
     protected void dmg(AbstractMonster mo) {
@@ -75,6 +76,6 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     @Override
     public void updateAnimation() {
         super.updateAnimation();
-        angle = (float)Math.sin(vfxTimer * Math.PI / TWIST_TIME) * TWIST_ANGLE;
+        angle = (float)Math.sin(vfxTimer * Math.PI / TWIST_TIME) * TWIST_ANGLE + angleOffset;
     }
 }

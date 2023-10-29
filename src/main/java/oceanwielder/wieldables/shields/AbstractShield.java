@@ -43,7 +43,8 @@ public abstract class AbstractShield extends AbstractWieldable {
 
     protected void blck() {
         applyPowers();
-        att(new GainBlockAction(adp(), primary, true));
+        for (int i = 0; i < primaryTimes; i++)
+            att(new GainBlockAction(adp(), primary, true));
     }
 
     @Override

@@ -35,7 +35,7 @@ public abstract class AbstractWieldable {
     private static final float yAcceleration = -1000f;
     public static final float DEFAULT_FONT_SCALE = 0.7f;
     public static final int DEQUIP_USE_TIMES = 2;
-    protected TextureRegion texture;
+    public TextureRegion texture;
     public String id;
     public String name;
     public String description;
@@ -43,7 +43,7 @@ public abstract class AbstractWieldable {
     public float cY = 0.0f;
     public float fontScale = 0.01f;
     public Hitbox hb;
-    public float angle;
+    public float angle, angleOffset;
     public float animX, animY, previewOffsetY;
     public float targetAlpha = 1f;
     public float animScale = 1f;
