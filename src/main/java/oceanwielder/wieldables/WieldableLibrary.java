@@ -13,11 +13,12 @@ public class WieldableLibrary {
     public static AbstractShield defaultShield;
 
     public static void initialize() {
-        defaultWeapon = new Cutlass();
-        add(defaultWeapon);
+        add(new Cutlass());
+        add(new ThrowingStar());
+        defaultWeapon = weapons.get(Cutlass.ID);
 
-        defaultShield = new Buckler();
-        add(defaultShield);
+        add(new Buckler());
+        defaultShield = shields.get(Buckler.ID);
     };
 
     public static AbstractWieldable get(String id) {
@@ -26,9 +27,9 @@ public class WieldableLibrary {
 
     public static AbstractWieldable getRandomWieldable(AbstractWieldable exclude) {
         while (true) {
-            AbstractWieldable tool = ((AbstractWieldable)wieldables.values().toArray()[AbstractDungeon.cardRandomRng.random(wieldables.size() - 1)]);
-            if (exclude == null || tool.getClass() != exclude.getClass())
-                return tool.makeCopy();
+            AbstractWieldable wieldable = ((AbstractWieldable)wieldables.values().toArray()[AbstractDungeon.cardRandomRng.random(wieldables.size() - 1)]);
+            if (exclude == null || wieldable.getClass() != exclude.getClass())
+                return wieldable.makeCopy();
         }
     }
 

@@ -5,7 +5,7 @@
     "EXTENDED_DESCRIPTION": [
       "{!${ModID}:h!|1=|2= twice.|@= !${ModID}:h! times}",
       "${ModID}:Hit",
-      "${ModID}:Hit ALL",
+      "${ModID}:Hit ALL enemies",
       "${ModID}:Hit a random enemy",
       "{!${ModID}:g!|1=|2= twice.|@= !${ModID}:g! times}",
       "${ModID}:Guard"
@@ -13,10 +13,22 @@
   },
   "${ModID}:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "!HIT!.{!Upgrades!|>0= NL Gain !M! Vigor.}"
+    "DESCRIPTION": "!HIT!.{!M!|>0= NL Gain !M! Vigor.}"
   },
   "${ModID}:Defend": {
     "NAME": "Defend",
-    "DESCRIPTION": "!GUARD!.{!Upgrades!|>0= NL Gain !M! ${ModID}:Aegis.}"
+    "DESCRIPTION": "!GUARD!.{!M!|>0= NL Gain !M! ${ModID}:Aegis.}"
+  },
+  "${ModID}:Cleave2": {
+    "NAME": "Cleave 2",
+    "DESCRIPTION": "!HITALL!."
+  },
+  "${ModID}:Wax": {
+    "NAME": "Wax",
+    "DESCRIPTION": "!GUARD!. NL {!Upgrades!|>0=Upgrade and }${ModID}:Stamp your hand."
+  },
+  "${ModID}:SpinnySlicer": {
+    "NAME": "Spinny Slicer",
+    "DESCRIPTION": "${ModID}:Wield ${ModID}:Throwing_Star."
   }
 }

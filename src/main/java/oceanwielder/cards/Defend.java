@@ -13,12 +13,13 @@ public class Defend extends AbstractWielderCard {
     public Defend() {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         setGuards(1);
-        setMagic(2);
+        setMagic(0, +2);
         tags.add(CardTags.STARTER_DEFEND);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         guard();
-        if (upgraded) applyToSelf(new AegisPower(p, magicNumber));
+        if (magicNumber > 0)
+            applyToSelf(new AegisPower(p, magicNumber));
     }
 }

@@ -37,9 +37,11 @@ public class WieldablesPatches {
     @SpirePatch(clz=AbstractPlayer.class, method="update")
     public static class UpdateAnimationPatch {
         public static void Postfix() {
-            if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.EVENT && WielderMod.weaponSlot.shouldRender) {
-                WielderMod.weaponSlot.updateAnimation();
-                WielderMod.shieldSlot.updateAnimation();
+            if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.EVENT) {
+                if (WielderMod.weaponSlot.shouldRender)
+                    WielderMod.weaponSlot.updateAnimation();
+                if (WielderMod.shieldSlot.shouldRender)
+                    WielderMod.shieldSlot.updateAnimation();
             }
         }
     }
@@ -56,15 +58,15 @@ public class WieldablesPatches {
         if (p.hoveredCard instanceof AbstractWielderCard) {
             AbstractWielderCard c = (AbstractWielderCard)p.hoveredCard;
             if (c.usesGuards || c.usesHits) {
-                if (c.usesGuards)
-                    WielderMod.shieldSlot.wieldable.fontScale *= 1.5f;
-                if (c.usesHits)
-                    WielderMod.weaponSlot.wieldable.fontScale *= 1.5f;
+                if (c.usesGuards) {
+                    WielderMod.shieldSlot.shouldRender = true;
+                    WielderMod.shieldSlot.wieldable.fontScale = 1.5f;
+                }
             }
-            if (c.showWeaponDequipValue)
-                WielderMod.weaponSlot.wieldable.showDequipValue();
-            if (c.showShieldDequipValue)
-                WielderMod.shieldSlot.wieldable.showDequipValue();
+            if (c.weapon != null)
+                WielderMod.weaponSlot.preview(c.weapon);
+            if (c.shield != null)
+                WielderMod.shieldSlot.preview(c.shield);
         }
     }
 
@@ -75,14 +77,36 @@ public class WieldablesPatches {
             onSelectCard(p);
         }
 
+        private static boolean hoveredMonsterLastFrame = false;
+
         public static void Prefix(AbstractPlayer p) {
             WielderMod.weaponSlot.wieldable.applyPowers();
             WielderMod.shieldSlot.wieldable.applyPowers();
             if ((p.isDraggingCard || p.inSingleTargetMode) && p.isHoveringDropZone && p.hoveredCard instanceof AbstractWielderCard && ((AbstractWielderCard)p.hoveredCard).usesHits) {
                 AbstractMonster hoveredMonster = ReflectionHacks.getPrivate(p, AbstractPlayer.class, "hoveredMonster");
-                if (p.hoveredCard.target == AbstractCard.CardTarget.ENEMY && p.inSingleTargetMode && hoveredMonster != null)
+                if ((p.hoveredCard.target == AbstractCard.CardTarget.ENEMY || p.hoveredCard.target == AbstractCard.CardTarget.SELF_AND_ENEMY) && p.inSingleTargetMode && hoveredMonster != null) {
+                    WielderMod.weaponSlot.shouldRender = true;
+                    if (!hoveredMonsterLastFrame)
+                        WielderMod.weaponSlot.wieldable.fontScale = 1.5f;
                     ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(hoveredMonster);
-            }
+                    hoveredMonsterLastFrame = true;
+                } else if (p.hoveredCard.target == AbstractCard.CardTarget.ALL_ENEMY || p.hoveredCard.target == AbstractCard.CardTarget.ALL) {
+                    WielderMod.weaponSlot.shouldRender = true;
+                    AbstractMonster theMonster = null;
+                    for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters)
+                        if (!m.isDying && m.currentHealth > 0)
+                            theMonster = m;
+                    if (theMonster != null) {
+                        if (!hoveredMonsterLastFrame)
+                            WielderMod.weaponSlot.wieldable.fontScale = 1.5f;
+                        ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(hoveredMonster);
+                        hoveredMonsterLastFrame = true;
+                    } else
+                        hoveredMonsterLastFrame = false;
+                } else
+                    hoveredMonsterLastFrame = false;
+            } else
+                hoveredMonsterLastFrame = false;
         }
     }
 
@@ -99,8 +123,8 @@ public class WieldablesPatches {
         public static void Prefix(AbstractPlayer p) {
             WielderMod.weaponSlot.wieldable.applyPowers();
             WielderMod.shieldSlot.wieldable.applyPowers();
-            WielderMod.weaponSlot.wieldable.hideDequipValue();
-            WielderMod.shieldSlot.wieldable.hideDequipValue();
+            WielderMod.weaponSlot.stopPreviewing();
+            WielderMod.shieldSlot.stopPreviewing();
         }
     }
 

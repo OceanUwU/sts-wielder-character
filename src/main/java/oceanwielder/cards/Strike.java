@@ -13,13 +13,14 @@ public class Strike extends AbstractWielderCard {
     public Strike() {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         setHits(1);
-        setMagic(2);
+        setMagic(0, +2);
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        if (upgraded) applyToSelf(new VigorPower(p, magicNumber));
+        if (magicNumber > 0)
+            applyToSelf(new VigorPower(p, magicNumber));
     }
 }

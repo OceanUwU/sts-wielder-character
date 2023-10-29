@@ -3,23 +3,22 @@ package oceanwielder.cards;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.actions.GuardAction;
 import oceanwielder.actions.HitAction;
+import oceanwielder.actions.HitAllAction;
+import oceanwielder.actions.WieldAction;
 import oceanwielder.characters.TheWielder;
-import oceanwielder.util.CardArtRoller;
+import oceanwielder.wieldables.AbstractWieldable;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.WielderMod.makeImagePath;
 import static oceanwielder.WielderMod.modID;
 import static oceanwielder.util.Wiz.*;
-
 
 public abstract class AbstractWielderCard extends CustomCard {
     protected static String[] sharedStrings = null;
@@ -43,8 +42,8 @@ public abstract class AbstractWielderCard extends CustomCard {
     private int magicUpgrade, secondMagicUpgrade, hitsUpgrade, guardsUpgrade, baseCost, costUpgrade;
     public boolean usesHits, usesGuards;
     public boolean showWeaponDequipValue, showShieldDequipValue;
-
-    private boolean needsArtRefresh = false;
+    public AbstractWieldable weapon;
+    public AbstractWieldable shield;
 
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
@@ -61,13 +60,6 @@ public abstract class AbstractWielderCard extends CustomCard {
         name = originalName = cardStrings.NAME;
         initializeTitle();
         initializeDescription();
-
-        if (textureImg.contains("ui/missing.png")) {
-            if (CardLibrary.cards != null && !CardLibrary.cards.isEmpty())
-                CardArtRoller.computeCard(this);
-            else
-                needsArtRefresh = true;
-        }
     }
 
     @Override
@@ -82,33 +74,21 @@ public abstract class AbstractWielderCard extends CustomCard {
         super.initializeDescription();
     }
 
-    @Override
-    protected Texture getPortraitImage() {
-        if (textureImg.contains("ui/missing.png")) {
-            return CardArtRoller.getPortraitTexture(this);
-        } else {
-            return super.getPortraitImage();
-        }
-    }
-
     public static String getCardTextureString(final String cardName, final AbstractCard.CardType cardType) {
-        String textureString;
-
-        switch (cardType) {
-            case ATTACK:
-            case POWER:
-            case SKILL:
-                textureString = makeImagePath("cards/" + cardName + ".png");
-                break;
-            default:
-                textureString = makeImagePath("ui/missing.png");
-                break;
-        }
-
+        String textureString = makeImagePath("cards/" + cardName + ".png");
         FileHandle h = Gdx.files.internal(textureString);
-        if (!h.exists()) {
-            textureString = makeImagePath("ui/missing.png");
-        }
+        if (!h.exists())
+            switch (cardType) {
+                case ATTACK:
+                    textureString = makeImagePath("cards/betaattack.png");
+                    break;
+                case POWER:
+                    textureString = makeImagePath("cards/betapower.png");
+                    break;
+                default:
+                    textureString = makeImagePath("cards/betaskill.png");
+                    break;
+            }
         return textureString;
     }
 
@@ -231,12 +211,6 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     public void upp() {};
 
-    public void update() {
-        super.update();
-        if (needsArtRefresh)
-            CardArtRoller.computeCard(this);
-    }
-
     private AbstractGameAction hitAction(AbstractMonster m) {
         return new HitAction(m, hits);
     }
@@ -250,7 +224,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction hitAllAction() {
-        return null;
+        return new HitAllAction(hits);
     }
 
     protected void hitAll() {
@@ -273,11 +247,11 @@ public abstract class AbstractWielderCard extends CustomCard {
         att(guardAction());
     }
 
-    public String cardArtCopy() {
-        return null;
+    protected void wield(AbstractWieldable wieldable) {
+        att(new WieldAction(wieldable));
     }
 
-    public CardArtRoller.ReskinInfo reskinInfo(String ID) {
+    public String cardArtCopy() {
         return null;
     }
 }

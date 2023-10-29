@@ -2,6 +2,7 @@ package oceanwielder.wieldables.weapons;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
@@ -11,31 +12,35 @@ import oceanwielder.wieldables.AbstractWieldable;
 import static oceanwielder.util.Wiz.*;
 
 public abstract class AbstractWeapon extends AbstractWieldable {
+    public static final float X_OFFSET = 240f;
+    public static final float Y_OFFSET = 120f;
+    private static final float TWIST_ANGLE = 6f;
+    private static final float TWIST_TIME = 3f;
     private static AbstractCard sim;
 
     public AbstractWeapon(String id, int basePrimary, int baseSecondary, int baseDequipPower) {
-        super(id, basePrimary, baseSecondary, baseDequipPower, 240f, 120f);
+        super(id, basePrimary, baseSecondary, baseDequipPower, X_OFFSET, Y_OFFSET);
     }
 
     @Override
     public void applyPowers() {
-        if (sim == null) {
-            sim = new Strike_Red();
-            sim.tags.clear();
-        }
         super.applyPowers();
-        sim.baseDamage = basePrimary;
+        getSim().baseDamage = basePrimary;
         sim.applyPowers();
         primary = Math.max(sim.damage, 0);
         updateDescription();
     }
 
-    public void calculateDamage(AbstractMonster mo) {
+    private AbstractCard getSim() {
         if (sim == null) {
             sim = new Strike_Red();
             sim.tags.clear();
         }
-        sim.baseDamage = basePrimary;
+        return sim;
+    }
+
+    public void calculateDamage(AbstractMonster mo) {
+        getSim().baseDamage = basePrimary;
         sim.calculateCardDamage(mo);
         primary = sim.damage;
     }
@@ -45,6 +50,11 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         dmg(mo);
     }
 
+    @Override
+    public void useOnAll() {
+        dmgAll();
+    }
+
     protected void dmg(AbstractMonster mo, AbstractGameAction.AttackEffect fx) {
         calculateDamage(mo);
         att(new DamageAction(mo, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), fx, true));
@@ -52,5 +62,19 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     protected void dmg(AbstractMonster mo) {
         dmg(mo, AbstractGameAction.AttackEffect.NONE);
+    }
+
+    protected void dmgAll(AbstractGameAction.AttackEffect fx) {
+        att(new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, fx));
+    }
+
+    protected void dmgAll() {
+        dmgAll(AbstractGameAction.AttackEffect.NONE);
+    }
+
+    @Override
+    public void updateAnimation() {
+        super.updateAnimation();
+        angle = (float)Math.sin(vfxTimer * Math.PI / TWIST_TIME) * TWIST_ANGLE;
     }
 }

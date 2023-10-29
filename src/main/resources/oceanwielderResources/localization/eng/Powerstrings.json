@@ -1,9 +1,17 @@
 {
   "${ModID}:AegisPower": {
-    "NAME": "Example 2",
+    "NAME": "Aegis",
     "DESCRIPTIONS": [
       "The #yBlock of your next #yGuard is increased by #b",
       "."
+    ]
+  },
+  "${ModID}:MoxiePower": {
+    "NAME": "Moxie",
+    "DESCRIPTIONS": [
+      "You have #b",
+      " #yMoxie. When this reaches #b",
+      ", gain [E] ."
     ]
   }
 }

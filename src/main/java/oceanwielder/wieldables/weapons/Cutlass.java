@@ -8,7 +8,7 @@ import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
 
 public class Cutlass extends AbstractWeapon {
-    private static String ID = makeID("Cutlass");
+    public static String ID = makeID("Cutlass");
 
     public Cutlass() {
         super(ID, 6, -1, 8);

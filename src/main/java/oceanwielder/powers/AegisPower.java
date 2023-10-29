@@ -18,11 +18,12 @@ public class AegisPower extends AbstractWielderPower {
     }
     
     public void updateDescription() {
-        description = powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[2];
+        description = powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[1];
     }
   
     public float modifyBlock(float blockAmount) {
-        if ((blockAmount += this.amount) < 0f) return 0f;
+        if ((blockAmount += amount) < 0f)
+            return 0f;
         return blockAmount;
     }
   

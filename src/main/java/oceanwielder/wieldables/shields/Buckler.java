@@ -6,7 +6,7 @@ import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
 
 public class Buckler extends AbstractShield {
-    private static String ID = makeID("Buckler");
+    public static String ID = makeID("Buckler");
 
     public Buckler() {
         super(ID, 5, -1, 7);

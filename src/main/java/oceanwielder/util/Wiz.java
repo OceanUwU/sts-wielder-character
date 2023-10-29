@@ -134,6 +134,14 @@ public class Wiz {
         atb(new VFXAction(gameEffect, duration));
     }
 
+    public static void vfxTop(AbstractGameEffect gameEffect) {
+        att(new VFXAction(gameEffect));
+    }
+
+    public static void vfxTop(AbstractGameEffect gameEffect, float duration) {
+        att(new VFXAction(gameEffect, duration));
+    }
+
     public static void tfx(AbstractGameEffect gameEffect) {
         atb(new TimedVFXAction(gameEffect));
     }
@@ -198,5 +206,22 @@ public class Wiz {
         AbstractPower found = check.getPower(ID);
         if (found != null) return found.amount;
         return 0;
+    }
+
+    public static AbstractGameAction actionify(Runnable todo) {
+        return new AbstractGameAction() {
+            public void update() {
+                isDone = true;
+                todo.run();
+            }
+        };
+    }
+
+    public static void actB(Runnable todo) {
+        atb(actionify(todo));
+    }
+
+    public static void actT(Runnable todo) {
+        att(actionify(todo));
     }
 }

@@ -19,5 +19,35 @@
       "aegis"
     ],
     "DESCRIPTION": "Increases the #yBlock of your next #yGuard."
+  },
+  {
+    "PROPER_NAME": "Stamp",
+    "NAMES": [
+      "stamp",
+      "stamped"
+    ],
+    "DESCRIPTION": "Playing stamped cards grants #yMoxie. When you reach #b5 #yMoxie, gain [E] ."
+  },
+  {
+    "PROPER_NAME": "Tix",
+    "NAMES": [
+      "tix"
+    ],
+    "DESCRIPTION": "May be spent at any point in combat to draw cards."
+  },
+  {
+    "PROPER_NAME": "Wield",
+    "NAMES": [
+      "wield"
+    ],
+    "DESCRIPTION": "Trigger the Dequip effect of your current weapon or shield, then replace it with a new one."
+  },
+  {
+    "PROPER_NAME": "Throwing Star",
+    "NAMES": [
+      "throwing star",
+      "throwing_star"
+    ],
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Apply #b!D! #yVulnerable to ALL enemies."
   }
 ]

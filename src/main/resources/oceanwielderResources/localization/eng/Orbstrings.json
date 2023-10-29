@@ -7,6 +7,17 @@
             " damage to a random enemy."
         ]
     },
+    "${ModID}:ThrowingStar": {
+        "NAME": "Throwing Star",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage. NL Dequip: Apply #b",
+            " #yVulnerable to ALL enemies."
+        ]
+    },
+
+
+
     "${ModID}:Buckler": {
         "NAME": "Buckler",
         "DESCRIPTION": [

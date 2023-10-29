@@ -25,6 +25,7 @@ import oceanwielder.cards.AbstractWielderCard;
 import oceanwielder.cards.cardvars.*;
 import oceanwielder.characters.TheWielder;
 import oceanwielder.relics.AbstractWielderRelic;
+import oceanwielder.wieldables.AbstractWieldable;
 import oceanwielder.wieldables.WieldableLibrary;
 import oceanwielder.wieldables.WieldableSlot;
 
@@ -172,6 +173,16 @@ public class WielderMod implements
 
         if (keywords != null) {
             for (Keyword keyword : keywords) {
+                if (keyword.DESCRIPTION.contains("!P!")) {
+                    AbstractWieldable wieldable = WieldableLibrary.get(makeID(keyword.PROPER_NAME.replaceAll(" ", "")));
+                    keyword.DESCRIPTION = keyword.DESCRIPTION
+                        .replace("!P!", Integer.toString(wieldable.primary))
+                        .replace("!S!", Integer.toString(wieldable.secondary))
+                        .replace("!D!", Integer.toString(wieldable.dequipPower))
+                        .replace("!PT!", Integer.toString(wieldable.primaryTimes))
+                        .replace("!DT!", Integer.toString(wieldable.secondaryTimes))
+                        .replace("!DT!", Integer.toString(wieldable.dequipTimes));
+                }
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }

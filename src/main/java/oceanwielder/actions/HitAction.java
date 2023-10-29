@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.WielderMod;
 
 public class HitAction extends AbstractGameAction {
-    private int hits;
     private AbstractMonster target;
 
     public HitAction(AbstractMonster m, int hits) {
         target = m;
-        this.hits = hits;
+        amount = hits;
     }
 
     public HitAction(AbstractMonster m) {
@@ -19,8 +18,7 @@ public class HitAction extends AbstractGameAction {
 
     public void update() {
         isDone = true;
-        WielderMod.weaponSlot.wieldable.fontScale *= 2f;
-        for (int i = 0; i < hits; i++)
+        for (int i = 0; i < amount; i++)
             WielderMod.weaponSlot.wieldable.use(target);
     }
 }
