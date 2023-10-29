@@ -1,0 +1,8 @@
+{
+    "${ModID}:TixTip": {
+        "TEXT": [
+            "Tix",
+            "Click to spend Tix to draw cards."
+        ]
+    }
+}

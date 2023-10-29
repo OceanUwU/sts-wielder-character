@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import oceanwielder.actions.GainTixAction;
 import oceanwielder.actions.TimedVFXAction;
 
 public class Wiz {
@@ -223,5 +224,13 @@ public class Wiz {
 
     public static void actT(Runnable todo) {
         att(actionify(todo));
+    }
+
+    public static void getTix(int amount) {
+        atb(new GainTixAction(amount));
+    }
+
+    public static void getTixTop(int amount) {
+        att(new GainTixAction(amount));
     }
 }
