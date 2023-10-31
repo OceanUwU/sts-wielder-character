@@ -15,6 +15,7 @@ public class WieldableLibrary {
     public static void initialize() {
         add(new Cutlass());
         add(new ThrowingStar());
+        add(new Emeici());
         defaultWeapon = weapons.get(Cutlass.ID);
 
         add(new Buckler());

@@ -22,6 +22,10 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         super(id, basePrimary, baseSecondary, baseDequipPower, X_OFFSET, Y_OFFSET);
     }
 
+    public AbstractWeapon(String id, int basePrimary, int baseDequipPower) {
+        this(id, basePrimary, -1, baseDequipPower);
+    }
+
     @Override
     public void applyPowers() {
         super.applyPowers();

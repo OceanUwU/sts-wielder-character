@@ -34,5 +34,9 @@
   "${ModID}:Swindle": {
     "NAME": "Swindle",
     "DESCRIPTION": "!HIT!. NL Gain !M! ${ModID}:Tix."
+  },
+  "${ModID}:SpinnySticks": {
+    "NAME": "Spinny Sticks",
+    "DESCRIPTION": "${ModID}:Wield ${ModID}:Emeici.{!M!|>0= NL Gain !M! temporary Strength.}"
   }
 }

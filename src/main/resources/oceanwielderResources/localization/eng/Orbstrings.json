@@ -15,6 +15,14 @@
             " #yVulnerable to ALL enemies."
         ]
     },
+    "${ModID}:Emeici": {
+        "NAME": "Emeici",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage twice. NL Dequip: Gain #b",
+            " #yStrength."
+        ]
+    },
 
 
 

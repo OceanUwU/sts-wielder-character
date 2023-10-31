@@ -176,12 +176,9 @@ public class WielderMod implements
                 if (keyword.DESCRIPTION.contains("!P!")) {
                     AbstractWieldable wieldable = WieldableLibrary.get(makeID(keyword.PROPER_NAME.replaceAll(" ", "")));
                     keyword.DESCRIPTION = keyword.DESCRIPTION
-                        .replace("!P!", Integer.toString(wieldable.primary))
-                        .replace("!S!", Integer.toString(wieldable.secondary))
-                        .replace("!D!", Integer.toString(wieldable.dequipPower))
-                        .replace("!PT!", Integer.toString(wieldable.primaryTimes))
-                        .replace("!DT!", Integer.toString(wieldable.secondaryTimes))
-                        .replace("!DT!", Integer.toString(wieldable.dequipTimes));
+                        .replace("!P!", Integer.toString(wieldable.primary) + (wieldable.primaryTimes == 1 ? "" : "x"+wieldable.primaryTimes))
+                        .replace("!S!", Integer.toString(wieldable.secondary) + (wieldable.secondaryTimes == 1 ? "" : "x"+wieldable.secondaryTimes))
+                        .replace("!D!", Integer.toString(wieldable.dequipPower) + (wieldable.dequipTimes == 1 ? "" : "x"+wieldable.dequipTimes));
                 }
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }

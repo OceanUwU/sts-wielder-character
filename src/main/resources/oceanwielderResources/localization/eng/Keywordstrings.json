@@ -43,11 +43,32 @@
     "DESCRIPTION": "Trigger the Dequip effect of your current weapon or shield, then replace it with a new one."
   },
   {
+    "PROPER_NAME": "Cutlass",
+    "NAMES": [
+      "cutlass"
+    ],
+    "DESCRIPTION": "The default weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Deal #b!D! damage to a random enemy.."
+  },
+  {
+    "PROPER_NAME": "Buckler",
+    "NAMES": [
+      "buckler"
+    ],
+    "DESCRIPTION": "The default shield. NL #yGuard: Gain #b!P! block. NL Dequip: Gain #b!D! #yBlock."
+  },
+  {
     "PROPER_NAME": "Throwing Star",
     "NAMES": [
       "throwing star",
       "throwing_star"
     ],
     "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Apply #b!D! #yVulnerable to ALL enemies."
+  },
+  {
+    "PROPER_NAME": "Emeici",
+    "NAMES": [
+      "emeici"
+    ],
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Gain #b!D! #yStrength."
   }
 ]

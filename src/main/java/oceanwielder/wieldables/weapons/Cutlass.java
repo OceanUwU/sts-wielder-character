@@ -18,7 +18,7 @@ public class Cutlass extends AbstractWeapon {
     public static String ID = makeID("Cutlass");
 
     public Cutlass() {
-        super(ID, 6, -1, 8);
+        super(ID, 6, 8);
     }
 
     public void use(AbstractMonster m) {

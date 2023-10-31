@@ -10,7 +10,7 @@ public class SpinnySlicer extends AbstractWielderCard {
     public final static String ID = makeID("SpinnySlicer");
 
     public SpinnySlicer() {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.NONE);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         setCostUpgrade(-1);
         weapon = new ThrowingStar();
     }

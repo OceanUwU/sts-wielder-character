@@ -32,7 +32,7 @@ public abstract class AbstractWieldable {
     private static final Color POSITIVE_COLOR = Color.CHARTREUSE.cpy();
     private static final Color NEGATIVE_COLOR = Color.SALMON.cpy();
     private static final Color DEQUIP_COLOR = Settings.BLUE_TEXT_COLOR;
-    private static final float yAcceleration = -1000f;
+    protected static final float Y_ACCELERATION = -1000f;
     public static final float DEFAULT_FONT_SCALE = 0.7f;
     public static final int DEQUIP_USE_TIMES = 2;
     public TextureRegion texture;
@@ -53,10 +53,8 @@ public abstract class AbstractWieldable {
     public boolean dequipping = false;
     public boolean dequipped = false;
     public boolean done = false;
-    public boolean shouldPopOut = true;
-    private float xVel;
-    private float yVel;
-    private float dequipSpinSpeed;
+    public boolean shouldPopOut = true, handleDequipAnimation = false;
+    protected float xVel, yVel, dequipSpinSpeed;
 
     public int basePrimary, baseSecondary, baseDequipPower, primary, secondary, dequipPower;
     public int primaryTimes = 1, secondaryTimes = 1, dequipTimes = 1;
@@ -102,10 +100,14 @@ public abstract class AbstractWieldable {
         dequipped = true;
         applyPowers();
         dequipEffect();
+        startDequipAnimation();
+    };
+
+    protected void startDequipAnimation() {
         xVel = MathUtils.random(-100f, 100f);
         yVel = -150f;
         dequipSpinSpeed = MathUtils.random(50f, 130f) * (MathUtils.random(0, 1) * 2 - 1);
-    };
+    }
 
     public void showDequipValue() {
         dequipping = true;
@@ -132,37 +134,41 @@ public abstract class AbstractWieldable {
         if (baseSecondary > -1)
             secondary = Math.max(0, secondary);
         updateDescription();
-    };
+    }
 
     public void updateDescription() {
         description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + dequipPower + strings.DESCRIPTION[2];
-    };
+    }
 
     public void update() {
         hb.update();
         if (hb.hovered)
             TipHelper.renderGenericTip(hb.x + 196f * Settings.scale, hb.y + 124f * Settings.scale, name, description);
         fontScale = MathHelper.scaleLerpSnap(fontScale, targetFontScale);
-    };
+    }
 
     public void updateAnimation() {
         vfxTimer += Gdx.graphics.getDeltaTime();
         color.a = MathHelper.fadeLerpSnap(color.a, targetAlpha);
-        if (dequipped) {
+        if (dequipped && !handleDequipAnimation) {
             cX += xVel * Gdx.graphics.getDeltaTime() * Settings.scale;
             cY += yVel * Gdx.graphics.getDeltaTime() * Settings.scale;
             if (cY < -500f)
                 done = true;
             angle += dequipSpinSpeed * Gdx.graphics.getDeltaTime();
-            yVel += yAcceleration * Gdx.graphics.getDeltaTime();
+            yVel += Y_ACCELERATION * Gdx.graphics.getDeltaTime();
         }
-    };
+    }
 
     public void render(SpriteBatch sb) {
         sb.setColor(color);
-        sb.draw(texture, cX - CENTRE + animX * Settings.scale, cY - CENTRE + (animY + previewOffsetY) * Settings.scale, CENTRE, CENTRE, SIZE, SIZE, Settings.scale * animScale, Settings.scale * animScale, angle);
+        renderHelper(sb, 0f, 0f, angle);
         hb.render(sb);
-    };
+    }
+
+    protected void renderHelper(SpriteBatch sb, float xOffset, float yOffset, float rotation) {
+        sb.draw(texture, cX - CENTRE + (animX + xOffset) * Settings.scale, cY - CENTRE + (animY + previewOffsetY + yOffset) * Settings.scale, CENTRE, CENTRE, SIZE, SIZE, Settings.scale * animScale, Settings.scale * animScale, rotation);
+    }
 
     private Color getDynvarColor(int base, int amount) {
         if (amount > base) return POSITIVE_COLOR;

@@ -9,7 +9,7 @@ public class Buckler extends AbstractShield {
     public static String ID = makeID("Buckler");
 
     public Buckler() {
-        super(ID, 5, -1, 7);
+        super(ID, 5, 7);
     }
 
     public void dequipEffect() {

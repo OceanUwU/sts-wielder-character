@@ -19,7 +19,7 @@ public class ThrowingStar extends AbstractWeapon {
     public static String ID = makeID("ThrowingStar");
 
     public ThrowingStar() {
-        super(ID, 7, -1, 2);
+        super(ID, 7, 2);
     }
 
     public void use(AbstractMonster m) {
