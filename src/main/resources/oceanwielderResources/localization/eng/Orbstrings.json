@@ -23,6 +23,15 @@
             " #yStrength."
         ]
     },
+    "${ModID}:Hammer": {
+        "NAME": "Hammer",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage and increase dequip damage by ",
+            ". NL Dequip: Deal #b",
+            " damage to ALL enemies."
+        ]
+    },
 
 
 
@@ -32,6 +41,23 @@
             "#yGuard: Gain #b",
             " #yBlock. NL Dequip: Gain #b",
             " #yBlock."
+        ]
+    },
+    "${ModID}:Hologram": {
+        "NAME": "Hologram",
+        "DESCRIPTION": [
+            "#yGuard: Gain #b",
+            " #yBlock. Gain #b",
+            " #yBlock next turn. NL Dequip: Gain #b",
+            " #yTix."
+        ]
+    },
+    "${ModID}:Heater": {
+        "NAME": "Heater",
+        "DESCRIPTION": [
+            "#yGuard: Gain #b",
+            " #yBlock twice. NL Dequip: Gain #b",
+            " #yDexterity."
         ]
     }
 }

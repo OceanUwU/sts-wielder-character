@@ -61,11 +61,14 @@ public class Tix {
                 actB(() -> {
                     if (adp().hand.group.size() >= BaseMod.MAX_HAND_SIZE)
                         adp().createHandIsFullDialog();
-                    else {
-                        att(new DrawCardAction(1));
-                        amt--;
-                        if (amt <= 0)
-                            targetAlpha = 0f;
+                    else if (amt > 0) {
+                        att(new DrawCardAction(1, actionify(() -> {
+                            if (DrawCardAction.drawnCards.size() > 0) {
+                                amt--;
+                                if (amt <= 0)
+                                    targetAlpha = 0f;
+                            }
+                        })));
                     }
                 });
             }

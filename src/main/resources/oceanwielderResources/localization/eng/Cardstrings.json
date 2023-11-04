@@ -38,5 +38,17 @@
   "${ModID}:SpinnySticks": {
     "NAME": "Spinny Sticks",
     "DESCRIPTION": "${ModID}:Wield ${ModID}:Emeici.{!M!|>0= NL Gain !M! temporary Strength.}"
+  },
+  "${ModID}:ExpandDefenses": {
+    "NAME": "Expand Defenses",
+    "DESCRIPTION": "${ModID}:Wield ${ModID}:Heater.{!M!|>0= NL Gain !M! temporary Dexterity.}"
+  },
+  "${ModID}:Diverge": {
+    "NAME": "Diverge",
+    "DESCRIPTION": "!GUARD!. NL ${ModID}:Wield ${ModID}:Hologram.{!M!|>0= NL Next turn, gain !M! Block.}"
+  },
+  "${ModID}:HeavenlyWrath": {
+    "NAME": "Heavenly Wrath",
+    "DESCRIPTION": "${ModID}:Hit. NL ${ModID}:Wield ${ModID}:Hammer{!M!|>0= and increase its dequip damage by !M!}."
   }
 }

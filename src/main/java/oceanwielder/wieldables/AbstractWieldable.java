@@ -73,10 +73,7 @@ public abstract class AbstractWieldable {
         dequipPower = baseDequipPower;
         updateDescription();
         color.a = 0.0f;
-        String texPath = makeImagePath("wieldables/"+id.replace(WielderMod.modID + ":", "")+".png");
-        if (!TEXTURES.containsKey(texPath))
-            TEXTURES.put(texPath, new TextureRegion(TexLoader.getTexture(texPath)));
-        texture = TEXTURES.get(texPath);
+        texture = getTexture(id);
         if (CardCrawlGame.isInARun()) {
             cX = xOffset * Settings.scale + AbstractDungeon.player.drawX;
             cY = yOffset * Settings.scale + AbstractDungeon.player.drawY + AbstractDungeon.player.hb_h / 2.0F;
@@ -84,11 +81,18 @@ public abstract class AbstractWieldable {
         }
     }
 
+    protected TextureRegion getTexture(String id) {
+        String texPath = makeImagePath("wieldables/"+id.replace(WielderMod.modID + ":", "")+".png");
+        if (!TEXTURES.containsKey(texPath))
+            TEXTURES.put(texPath, new TextureRegion(TexLoader.getTexture(texPath)));
+        return TEXTURES.get(texPath);
+    }
+
     public AbstractMonster getRandomTarget() {
         return AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
     }
 
-    public abstract void use(AbstractMonster mo);
+    public abstract void use(AbstractMonster m);
     public void useOnAll() {
         forAllMonstersLivingBackwards(mo -> use(mo));
     }
@@ -180,11 +184,15 @@ public abstract class AbstractWieldable {
         return Integer.toString(effect) + (times != 1 ? "x" + Integer.toString(times) : "");
     }
 
+    protected String secondaryText() {
+        return powerText(secondary, secondaryTimes);
+    }
+
     public void renderText(SpriteBatch sb) {
         if (primary > -1)
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, powerText(primary, primaryTimes), hb.cX + NUM_X_OFFSET, hb.cY - NUM_Y_OFFSET + previewOffsetY * Settings.scale, getDynvarColor(basePrimary, primary), fontScale);
         if (secondary > -1)
-            FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, powerText(secondary, secondaryTimes), hb.cX - NUM_X_OFFSET, hb.cY - NUM_Y_OFFSET + previewOffsetY * Settings.scale, getDynvarColor(baseSecondary, secondary), fontScale);
+            FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, secondaryText(), hb.cX - NUM_X_OFFSET, hb.cY - NUM_Y_OFFSET + previewOffsetY * Settings.scale, getDynvarColor(baseSecondary, secondary), fontScale);
         if (dequipping && dequipPower > -1)
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, powerText(dequipPower, dequipTimes), hb.cX, hb.cY + NUM_Y_OFFSET + previewOffsetY * Settings.scale, DEQUIP_COLOR, fontScale);
     }

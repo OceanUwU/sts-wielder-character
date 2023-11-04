@@ -20,10 +20,10 @@ public class ThrowingStar extends AbstractWeapon {
 
     public ThrowingStar() {
         super(ID, 7, 2);
+        attackEffect = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
     }
 
-    public void use(AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+    public void useVfx(AbstractMonster m) {
         vfxTop(new ThrowThrowingStarEffect(this, m.hb.cX, m.hb.cY, 0.2f));
     }
 

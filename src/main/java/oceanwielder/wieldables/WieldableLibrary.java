@@ -16,9 +16,12 @@ public class WieldableLibrary {
         add(new Cutlass());
         add(new ThrowingStar());
         add(new Emeici());
+        add(new Hammer());
         defaultWeapon = weapons.get(Cutlass.ID);
 
         add(new Buckler());
+        add(new Heater());
+        add(new Hologram());
         defaultShield = shields.get(Buckler.ID);
     };
 
@@ -26,16 +29,24 @@ public class WieldableLibrary {
         return wieldables.get(id);
     }
 
-    public static AbstractWieldable getRandomWieldable(AbstractWieldable exclude) {
+    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from, AbstractWieldable exclude) {
         while (true) {
-            AbstractWieldable wieldable = ((AbstractWieldable)wieldables.values().toArray()[AbstractDungeon.cardRandomRng.random(wieldables.size() - 1)]);
+            AbstractWieldable wieldable = ((AbstractWieldable)from.values().toArray()[AbstractDungeon.cardRandomRng.random(from.size() - 1)]);
             if (exclude == null || wieldable.getClass() != exclude.getClass())
                 return wieldable.makeCopy();
         }
     }
 
+    public static AbstractWieldable getRandomWieldable(HashMap<String, AbstractWieldable> from) {
+        return getRandomWieldable(from, null);
+    }
+
+    public static AbstractWieldable getRandomWieldable(AbstractWieldable exclude) {
+        return getRandomWieldable(wieldables, exclude);
+    }
+
     public static AbstractWieldable getRandomWieldable() {
-        return getRandomWieldable(null);
+        return getRandomWieldable(wieldables, null);
     }
 
     private static void add(AbstractWieldable wieldable) {

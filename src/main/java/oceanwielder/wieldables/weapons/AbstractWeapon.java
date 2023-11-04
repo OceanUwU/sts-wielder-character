@@ -18,6 +18,8 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     private static final float TWIST_TIME = 3f;
     private static AbstractCard sim;
 
+    protected AbstractGameAction.AttackEffect attackEffect = AbstractGameAction.AttackEffect.NONE;
+
     public AbstractWeapon(String id, int basePrimary, int baseSecondary, int baseDequipPower) {
         super(id, basePrimary, baseSecondary, baseDequipPower, X_OFFSET, Y_OFFSET);
     }
@@ -43,38 +45,34 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         return sim;
     }
 
-    public void calculateDamage(AbstractMonster mo) {
+    public void calculateDamage(AbstractMonster m) {
         getSim().baseDamage = basePrimary;
-        sim.calculateCardDamage(mo);
+        sim.calculateCardDamage(m);
         primary = sim.damage;
     }
 
     @Override
-    public void use(AbstractMonster mo) {
-        dmg(mo);
+    public void use(AbstractMonster m) {
+        dmg(m);
+        useVfx(m);
     }
 
     @Override
     public void useOnAll() {
         dmgAll();
+        useVfx(getEnemies().get(getEnemies().size()-1));
     }
 
-    protected void dmg(AbstractMonster mo, AbstractGameAction.AttackEffect fx) {
-        calculateDamage(mo);
+    abstract void useVfx(AbstractMonster m);
+
+    private void dmg(AbstractMonster m) {
+        calculateDamage(m);
         for (int i = 0; i < primaryTimes; i++)
-            att(new DamageAction(mo, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), fx, true));
+            att(new DamageAction(m, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), attackEffect, true));
     }
 
-    protected void dmg(AbstractMonster mo) {
-        dmg(mo, AbstractGameAction.AttackEffect.NONE);
-    }
-
-    protected void dmgAll(AbstractGameAction.AttackEffect fx) {
-        att(new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, fx));
-    }
-
-    protected void dmgAll() {
-        dmgAll(AbstractGameAction.AttackEffect.NONE);
+    private void dmgAll() {
+        att(new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, attackEffect));
     }
 
     @Override

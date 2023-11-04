@@ -40,7 +40,7 @@ public abstract class AbstractShield extends AbstractWieldable {
     }
 
     @Override
-    public void use(AbstractMonster mo) {
+    public void use(AbstractMonster m) {
         blck();
         vfxTop(new ShieldPulseEffect(this));
     }

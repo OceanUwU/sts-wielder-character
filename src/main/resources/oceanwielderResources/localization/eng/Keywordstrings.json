@@ -47,7 +47,7 @@
     "NAMES": [
       "cutlass"
     ],
-    "DESCRIPTION": "The default weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Deal #b!D! damage to a random enemy.."
+    "DESCRIPTION": "The default weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Deal #b!D! damage to a random enemy."
   },
   {
     "PROPER_NAME": "Buckler",
@@ -70,5 +70,26 @@
       "emeici"
     ],
     "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Gain #b!D! #yStrength."
+  },
+  {
+    "PROPER_NAME": "Hammer",
+    "NAMES": [
+      "hammer"
+    ],
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and increase dequip damage by #b!S!. NL Dequip: Deal #b!D! damage to ALL enemies."
+  },
+  {
+    "PROPER_NAME": "Heater",
+    "NAMES": [
+      "heater"
+    ],
+    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. NL Dequip: Gain #b!D! #yDexterity."
+  },
+  {
+    "PROPER_NAME": "Hologram",
+    "NAMES": [
+      "hologram"
+    ],
+    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. Gain #b!S! #yBlock next turn. NL Dequip: Gain #b!D! #yTix."
   }
 ]

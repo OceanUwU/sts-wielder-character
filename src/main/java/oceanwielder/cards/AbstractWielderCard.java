@@ -3,9 +3,14 @@ package oceanwielder.cards;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
+import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.actions.GuardAction;
@@ -45,6 +50,8 @@ public abstract class AbstractWielderCard extends CustomCard {
     public AbstractWieldable weapon;
     public AbstractWieldable shield;
 
+    private boolean betaTexture;
+
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
     }
@@ -52,6 +59,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
         super(cardID, "", getCardTextureString(cardID.replace(modID + ":", ""), type),
                 cost, "", type, color, rarity, target);
+        betaTexture = getCardTextureString(cardID.replace(modID + ":", ""), type).contains("beta/");
         baseCost = cost;
         if (sharedStrings == null)
             sharedStrings = CardCrawlGame.languagePack.getCardStrings(makeID("AbstractWielderCard")).EXTENDED_DESCRIPTION;
@@ -80,13 +88,13 @@ public abstract class AbstractWielderCard extends CustomCard {
         if (!h.exists())
             switch (cardType) {
                 case ATTACK:
-                    textureString = makeImagePath("cards/betaattack.png");
+                    textureString = makeImagePath("cards/beta/attack.png");
                     break;
                 case POWER:
-                    textureString = makeImagePath("cards/betapower.png");
+                    textureString = makeImagePath("cards/beta/power.png");
                     break;
                 default:
-                    textureString = makeImagePath("cards/betaskill.png");
+                    textureString = makeImagePath("cards/beta/skill.png");
                     break;
             }
         return textureString;
@@ -248,10 +256,19 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     protected void wield(AbstractWieldable wieldable) {
-        att(new WieldAction(wieldable));
+        atb(new WieldAction(wieldable));
     }
 
-    public String cardArtCopy() {
-        return null;
+    @SpireOverride
+    protected void renderPortrait(SpriteBatch sb) {
+        SpireSuper.call(sb);
+        if (betaTexture && portrait != null) {
+            int num = cardID.hashCode();
+            float r = num % 50;
+            float g = Math.round(num / 50) % 50;
+            float b = Math.round(num / Math.pow(50, 2)) % 50;
+            sb.setColor(new Color(0.5f + r / 100f, 0.5f + g / 100f, 0.5f + b / 100f, transparency));
+            sb.draw(portrait.getTexture(), current_x - 125f, current_y - 23f, 125f, 23f, 250f, 190f, drawScale * Settings.scale, drawScale * Settings.scale, angle, 0, 0, 250, 190, false, false);
+        }
     }
 }

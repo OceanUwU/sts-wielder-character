@@ -25,10 +25,10 @@ public class Emeici extends AbstractWeapon {
     public Emeici() {
         super(ID, 3, 1);
         primaryTimes = 2;
+        attackEffect = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
     }
 
-    public void use(AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+    public void useVfx(AbstractMonster m) {
         vfxTop(new SpinEmeiciEffect(this, left));
         left = !left;
     }

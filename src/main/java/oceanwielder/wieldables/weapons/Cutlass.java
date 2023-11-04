@@ -19,10 +19,10 @@ public class Cutlass extends AbstractWeapon {
 
     public Cutlass() {
         super(ID, 6, 8);
+        attackEffect = AbstractGameAction.AttackEffect.SLASH_DIAGONAL;
     }
 
-    public void use(AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+    public void useVfx(AbstractMonster m) {
         vfxTop(new SwingSwordEffect(this));
     }
 
