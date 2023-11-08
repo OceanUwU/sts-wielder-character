@@ -79,6 +79,20 @@
     "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and increase dequip damage by #b!S!. NL Dequip: Deal #b!D! damage to ALL enemies."
   },
   {
+    "PROPER_NAME": "Scythe",
+    "NAMES": [
+      "scythe"
+    ],
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and gain #b!S! #yBlock. NL Dequip: ALL enemies lose #b!D! #yStrength."
+  },
+  {
+    "PROPER_NAME": "Crossbow",
+    "NAMES": [
+      "crossbow"
+    ],
+    "DESCRIPTION": "Weapon. NL First #b!S! #yHits deal #b!P! damage. NL Further #yHits deal #b2 damage. NL Dequip: Nothing."
+  },
+  {
     "PROPER_NAME": "Heater",
     "NAMES": [
       "heater"

@@ -78,6 +78,10 @@ public abstract class AbstractWielderCard extends CustomCard {
                 .replace("!HITALL!", sharedStrings[2] + sharedStrings[0])
                 .replace("!HITRANDOM!", sharedStrings[3] + sharedStrings[0])
                 .replace("!GUARD!", sharedStrings[5] + sharedStrings[4]);
+            if (weapon != null)
+                rawDescription = rawDescription.replace("!WW!", sharedStrings[6] + weapon.id);
+            if (shield != null)
+                rawDescription = rawDescription.replace("!WS!", sharedStrings[6] + shield.id);
         }
         super.initializeDescription();
     }

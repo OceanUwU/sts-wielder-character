@@ -23,9 +23,8 @@ public class Emeici extends AbstractWeapon {
     private boolean left;
 
     public Emeici() {
-        super(ID, 3, 1);
+        super(ID, 3, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         primaryTimes = 2;
-        attackEffect = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
     }
 
     public void useVfx(AbstractMonster m) {

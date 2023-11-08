@@ -17,6 +17,8 @@ public class WieldableLibrary {
         add(new ThrowingStar());
         add(new Emeici());
         add(new Hammer());
+        add(new Scythe());
+        add(new Crossbow());
         defaultWeapon = weapons.get(Cutlass.ID);
 
         add(new Buckler());
@@ -37,7 +39,7 @@ public class WieldableLibrary {
         }
     }
 
-    public static AbstractWieldable getRandomWieldable(HashMap<String, AbstractWieldable> from) {
+    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from) {
         return getRandomWieldable(from, null);
     }
 

@@ -16,6 +16,7 @@ public class HeavenlyWrath extends AbstractWielderCard {
         setHits(1);
         setMagic(0, +4);
         weapon = new Hammer();
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

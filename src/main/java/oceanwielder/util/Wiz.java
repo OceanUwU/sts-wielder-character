@@ -1,5 +1,7 @@
 package oceanwielder.util;
 
+import static oceanwielder.WielderMod.makeID;
+
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -232,5 +234,9 @@ public class Wiz {
 
     public static void getTixTop(int amount) {
         att(new GainTixAction(amount));
+    }
+
+    public static void playAudio(WielderAudio a) {
+        CardCrawlGame.sound.play(makeID(a.name()));
     }
 }

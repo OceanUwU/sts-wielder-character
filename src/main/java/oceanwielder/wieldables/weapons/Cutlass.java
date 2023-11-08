@@ -18,12 +18,11 @@ public class Cutlass extends AbstractWeapon {
     public static String ID = makeID("Cutlass");
 
     public Cutlass() {
-        super(ID, 6, 8);
-        attackEffect = AbstractGameAction.AttackEffect.SLASH_DIAGONAL;
+        super(ID, 6, 9, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 
     public void useVfx(AbstractMonster m) {
-        vfxTop(new SwingSwordEffect(this));
+        vfxTop(new SwingWeaponEffect(this));
     }
 
     public void dequipEffect() {
@@ -33,30 +32,6 @@ public class Cutlass extends AbstractWeapon {
             shouldPopOut = false;
             vfxTop(new ChuckSwordEffect(this, target.hb.cX, target.hb.cY), 0.2f);
         }
-    }
-
-    private static class SwingSwordEffect extends AbstractGameEffect {
-        private static final float DURATION = 0.4f;
-        private static final float ROTATE = -60f;
-
-        private AbstractWeapon weapon;
-
-        public SwingSwordEffect(AbstractWeapon weapon) {
-            this.weapon = weapon;
-        }
-
-        public void update() {
-            duration += Gdx.graphics.getDeltaTime();
-            float progress = duration / DURATION;
-            if (progress >= 1f) {
-                isDone = true;
-                //weapon.angleOffset = 0f;
-            } else
-                weapon.angle += (float)Math.sin(Math.PI * progress) * ROTATE;
-        }
-
-        public void render(SpriteBatch sb) {}
-        public void dispose() {}
     }
 
     private static class ChuckSwordEffect extends AbstractGameEffect {

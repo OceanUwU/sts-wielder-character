@@ -16,11 +16,11 @@ import static oceanwielder.util.Wiz.*;
 
 public class ThrowingStar extends AbstractWeapon {
     private static final float IDLE_SPIN_SPEED = -15f;
-    public static String ID = makeID("ThrowingStar");
+    public static String ID = makeID("Throwing_Star");
 
     public ThrowingStar() {
-        super(ID, 7, 2);
-        attackEffect = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
+        super(ID, 7, 2, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        vfxCanAffectAll = true;
     }
 
     public void useVfx(AbstractMonster m) {

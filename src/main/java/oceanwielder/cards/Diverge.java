@@ -20,6 +20,7 @@ public class Diverge extends AbstractWielderCard {
         setGuards(1);
         setMagic(0, +4);
         shield = new Hologram();
+        initializeDescription();
     }
 
     public List<TooltipInfo> getCustomTooltips() {

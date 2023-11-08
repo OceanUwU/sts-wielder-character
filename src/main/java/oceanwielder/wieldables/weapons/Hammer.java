@@ -20,8 +20,7 @@ public class Hammer extends AbstractWeapon {
     public static String ID = makeID("Hammer");
 
     public Hammer() {
-        super(ID, 6, 2, 5);
-        attackEffect = AbstractGameAction.AttackEffect.BLUNT_HEAVY;
+        super(ID, 6, 2, 5, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
     public void use(AbstractMonster m) {
@@ -92,7 +91,7 @@ public class Hammer extends AbstractWeapon {
         private static final float UPPIES = 150f;
 
         private AbstractWeapon weapon;
-        private float sX = -10f, sY, startRotation;
+        private float sX = -100f, sY, startRotation;
 
         public ReturnHammerEffect(AbstractWeapon weapon, float startRotation) {
             this.weapon = weapon;
@@ -105,7 +104,7 @@ public class Hammer extends AbstractWeapon {
                 return;
             }
             for (AbstractGameEffect effect : AbstractDungeon.effectList)
-                if (effect instanceof ThrowHammerEffect && ((ThrowHammerEffect)effect).weapon == weapon) {
+                if (effect instanceof ThrowHammerEffect && ((ThrowHammerEffect)effect).weapon == weapon || effect instanceof ReturnHammerEffect && effect != this) {
                     isDone = true;
                     return;
                 }

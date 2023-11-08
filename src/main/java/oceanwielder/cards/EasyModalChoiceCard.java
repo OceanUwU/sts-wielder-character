@@ -1,11 +1,11 @@
 package oceanwielder.cards;
 
-import static oceanwielder.WielderMod.makeID;
-
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import static oceanwielder.WielderMod.makeID;
 
 @AutoAdd.Ignore
 public class EasyModalChoiceCard extends AbstractWielderCard {
@@ -13,10 +13,9 @@ public class EasyModalChoiceCard extends AbstractWielderCard {
     private String passedName;
     private String passedDesc;
 
-    public EasyModalChoiceCard(String name, String description, Runnable onUseOrChosen) {
+    public EasyModalChoiceCard(String name, Runnable onUseOrChosen) {
         super(makeID(name), -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
-        this.name = this.originalName = passedName = name;
-        this.rawDescription = passedDesc = description;
+        passedName = name;
         this.onUseOrChosen = onUseOrChosen;
         initializeTitle();
         initializeDescription();
@@ -33,21 +32,18 @@ public class EasyModalChoiceCard extends AbstractWielderCard {
     }
 
     @Override
-    public void upp() {
-
-    }
-
-    @Override
     public boolean canUpgrade() {
         return false;
     }
 
     @Override
-    public void upgrade() {
-    }
+    public void upp() {}
+
+    @Override
+    public void upgrade() {}
 
     @Override
     public AbstractCard makeCopy() {
-        return new EasyModalChoiceCard(passedName, passedDesc, onUseOrChosen);
+        return new EasyModalChoiceCard(passedName, onUseOrChosen);
     }
 }

@@ -13,6 +13,7 @@ public class SpinnySlicer extends AbstractWielderCard {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         setCostUpgrade(-1);
         weapon = new ThrowingStar();
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -25,6 +25,7 @@ import oceanwielder.cards.AbstractWielderCard;
 import oceanwielder.cards.cardvars.*;
 import oceanwielder.characters.TheWielder;
 import oceanwielder.relics.AbstractWielderRelic;
+import oceanwielder.util.WielderAudio;
 import oceanwielder.wieldables.AbstractWieldable;
 import oceanwielder.wieldables.WieldableLibrary;
 import oceanwielder.wieldables.WieldableSlot;
@@ -37,7 +38,8 @@ public class WielderMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        AddAudioSubscriber {
 
     public static final String modID = "oceanwielder";
 
@@ -174,7 +176,7 @@ public class WielderMod implements
         if (keywords != null) {
             for (Keyword keyword : keywords) {
                 if (keyword.DESCRIPTION.contains("!P!")) {
-                    AbstractWieldable wieldable = WieldableLibrary.get(makeID(keyword.PROPER_NAME.replaceAll(" ", "")));
+                    AbstractWieldable wieldable = WieldableLibrary.get(makeID(keyword.PROPER_NAME.replaceAll(" ", "_")));
                     keyword.DESCRIPTION = keyword.DESCRIPTION
                         .replace("!P!", Integer.toString(wieldable.primary) + (wieldable.primaryTimes == 1 ? "" : "x"+wieldable.primaryTimes))
                         .replace("!S!", Integer.toString(wieldable.secondary) + (wieldable.secondaryTimes == 1 ? "" : "x"+wieldable.secondaryTimes))
@@ -183,6 +185,12 @@ public class WielderMod implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receiveAddAudio() {
+        for (WielderAudio a : WielderAudio.values())
+            BaseMod.addAudio(makeID(a.name()), makePath("audio/" + a.name().toLowerCase() + ".ogg"));
     }
 
     @Override

@@ -7,7 +7,7 @@
             " damage to a random enemy."
         ]
     },
-    "${ModID}:ThrowingStar": {
+    "${ModID}:Throwing_Star": {
         "NAME": "Throwing Star",
         "DESCRIPTION": [
             "#yHit: Deal #b",
@@ -27,9 +27,29 @@
         "NAME": "Hammer",
         "DESCRIPTION": [
             "#yHit: Deal #b",
-            " damage and increase dequip damage by ",
+            " damage and increase dequip damage by #b",
             ". NL Dequip: Deal #b",
             " damage to ALL enemies."
+        ]
+    },
+    "${ModID}:Scythe": {
+        "NAME": "Scythe",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage and gain #b",
+            " #yBlock. NL Dequip: ALL enemies lose #b",
+            " #yStrength."
+        ]
+    },
+    "${ModID}:Crossbow": {
+        "NAME": "Crossbow",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage.",
+            " NL Dequip: Nothing.",
+            " After #b",
+            " more hits, damage will reduce to #b",
+            "."
         ]
     },
 

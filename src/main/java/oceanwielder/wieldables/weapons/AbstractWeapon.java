@@ -1,5 +1,7 @@
 package oceanwielder.wieldables.weapons;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -7,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import oceanwielder.wieldables.AbstractWieldable;
 
 import static oceanwielder.util.Wiz.*;
@@ -19,13 +22,15 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     private static AbstractCard sim;
 
     protected AbstractGameAction.AttackEffect attackEffect = AbstractGameAction.AttackEffect.NONE;
+    protected boolean vfxCanAffectAll = false;
 
-    public AbstractWeapon(String id, int basePrimary, int baseSecondary, int baseDequipPower) {
+    public AbstractWeapon(String id, int basePrimary, int baseSecondary, int baseDequipPower, AbstractGameAction.AttackEffect attackEffect) {
         super(id, basePrimary, baseSecondary, baseDequipPower, X_OFFSET, Y_OFFSET);
+        this.attackEffect = attackEffect;
     }
 
-    public AbstractWeapon(String id, int basePrimary, int baseDequipPower) {
-        this(id, basePrimary, -1, baseDequipPower);
+    public AbstractWeapon(String id, int basePrimary, int baseDequipPower, AbstractGameAction.AttackEffect attackEffect) {
+        this(id, basePrimary, -1, baseDequipPower, attackEffect);
     }
 
     @Override
@@ -60,7 +65,10 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     @Override
     public void useOnAll() {
         dmgAll();
-        useVfx(getEnemies().get(getEnemies().size()-1));
+        if (vfxCanAffectAll)
+            forAllMonstersLivingBackwards(mo -> useVfx(mo));
+        else
+            useVfx(getEnemies().get(getEnemies().size()-1));
     }
 
     abstract void useVfx(AbstractMonster m);
@@ -79,5 +87,29 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     public void updateAnimation() {
         super.updateAnimation();
         angle = (float)Math.sin(vfxTimer * Math.PI / TWIST_TIME) * TWIST_ANGLE + angleOffset;
+    }
+
+    protected static class SwingWeaponEffect extends AbstractGameEffect {
+        private static final float DURATION = 0.4f;
+        private static final float ROTATE = -60f;
+
+        private AbstractWeapon weapon;
+
+        public SwingWeaponEffect(AbstractWeapon weapon) {
+            this.weapon = weapon;
+        }
+
+        public void update() {
+            duration += Gdx.graphics.getDeltaTime();
+            float progress = duration / DURATION;
+            if (progress >= 1f) {
+                isDone = true;
+                //weapon.angleOffset = 0f;
+            } else
+                weapon.angle += (float)Math.sin(Math.PI * progress) * ROTATE;
+        }
+
+        public void render(SpriteBatch sb) {}
+        public void dispose() {}
     }
 }

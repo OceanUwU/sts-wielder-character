@@ -14,8 +14,9 @@ public class SpinnySticks extends AbstractWielderCard {
 
     public SpinnySticks() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        weapon = new Emeici();
         setMagic(0, +2);
+        weapon = new Emeici();
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

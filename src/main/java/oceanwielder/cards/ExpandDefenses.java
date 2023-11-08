@@ -16,6 +16,7 @@ public class ExpandDefenses extends AbstractWielderCard {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         setMagic(0, +2);
         shield = new Heater();
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
