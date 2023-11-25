@@ -170,9 +170,9 @@ public class TheWielder extends CustomPlayer {
     public static class Enums {
         @SpireEnum
         public static AbstractPlayer.PlayerClass OCEAN_WIELDER_CLASS;
-        @SpireEnum(name = "TODO_COLOR")
+        @SpireEnum(name = "OCEAN_WIELDER_COLOUR")
         public static AbstractCard.CardColor OCEAN_WIELDER_COLOUR;
-        @SpireEnum(name = "TODO_COLOR")
+        @SpireEnum(name = "OCEAN_WIELDER_COLOUR")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
