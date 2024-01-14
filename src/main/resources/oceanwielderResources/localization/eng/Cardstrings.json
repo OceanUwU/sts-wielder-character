@@ -58,7 +58,7 @@
   },
   "${ModID}:WhateverllDo": {
     "NAME": "Whatever'll Do!",
-    "DESCRIPTION": "Choose to ${ModID}:Wield a random weapon or a random shield{!Upgrades!|>0= or both}."
+    "DESCRIPTION": "Choose to ${ModID}:Wield a random weapon {!Upgrades!|>0=and/}or a random shield."
   },
   "${ModID}:WieldRandomWeapon": {
     "NAME": "Weapon",

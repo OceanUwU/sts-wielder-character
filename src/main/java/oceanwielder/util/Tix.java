@@ -31,14 +31,15 @@ public class Tix {
     private static final float NUM_OFFSET_X = 32f * Settings.scale;
     private static final float NUM_OFFSET_Y = 0f * Settings.scale;
     private static final String[] TEXT = CardCrawlGame.languagePack.getUIString(makeID("TixTip")).TEXT;
-    private static final float FONT_SCALE = 0.65f;
+    private static final float DEFAULT_FONT_SCALE = 0.65f;
+    public static float fontScale = DEFAULT_FONT_SCALE;
     private static Texture img;
     private static boolean shouldRender = false;
     public static int amt;
     private static Color color = Color.WHITE.cpy();
     private static float targetAlpha = color.a;
     private static Hitbox hb = new Hitbox(SIZE, SIZE);
-    private static float x, y;
+    public static float x, y;
 
     private static void reset() {
         amt = 0;
@@ -46,10 +47,14 @@ public class Tix {
         color.a = targetAlpha;
     }
 
-    private static void update() {
+    public static void move() {
         x = AbstractDungeon.overlayMenu.energyPanel.current_x - OFFSET;
         y = AbstractDungeon.overlayMenu.energyPanel.current_y + OFFSET;
         hb.update(x - SIZE / 2f, y - SIZE / 2f);
+    }
+
+    private static void update() {
+        move();
         if (hb.hovered) {
             TipHelper.renderGenericTip(x + 50f * Settings.scale, y, TEXT[0], TEXT[1]);
             img = HOVERED_IMG;
@@ -64,6 +69,7 @@ public class Tix {
                     else if (amt > 0) {
                         att(new DrawCardAction(1, actionify(() -> {
                             if (DrawCardAction.drawnCards.size() > 0) {
+                                fontScale *= 1.5f;
                                 amt--;
                                 if (amt <= 0)
                                     targetAlpha = 0f;
@@ -75,6 +81,7 @@ public class Tix {
         } else
             img = DEFAULT_IMG;
         color.a = MathHelper.fadeLerpSnap(color.a, targetAlpha);
+        fontScale = MathHelper.scaleLerpSnap(fontScale, DEFAULT_FONT_SCALE);
         if (color.a <= 0f)
             shouldRender = false;
     }
@@ -82,7 +89,7 @@ public class Tix {
     private static void render(SpriteBatch sb) {
         sb.setColor(color);
         sb.draw(img, x - SIZE / 2f, y - SIZE / 2f, SIZE, SIZE);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(amt), x + NUM_OFFSET_X, y + NUM_OFFSET_Y, color, FONT_SCALE);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(amt), x + NUM_OFFSET_X, y + NUM_OFFSET_Y, color, fontScale);
     }
 
     public static void gain(int amount) {
