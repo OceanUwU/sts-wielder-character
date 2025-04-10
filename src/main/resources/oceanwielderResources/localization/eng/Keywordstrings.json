@@ -127,6 +127,6 @@
     "NAMES": [
       "weight"
     ],
-    "DESCRIPTION": "If you're bearing 3 or more weight at the end of your turn, lose 6 HP and all weight."
+    "DESCRIPTION": "If you end your turn while bearing 3 or more Weight, lose 6 HP and all Weight."
   }
 ]

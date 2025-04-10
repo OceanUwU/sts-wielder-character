@@ -29,5 +29,14 @@
       " additional time.",
       " additional times."
     ]
+  },
+  "${ModID}:Weight": {
+    "NAME": "Weight",
+    "DESCRIPTIONS": [
+      "You're currently bearing #b",
+      " Weight. If you end your turn with #b",
+      " Weight or more, lose #b",
+      " HP and all Weight."
+    ]
   }
 }
