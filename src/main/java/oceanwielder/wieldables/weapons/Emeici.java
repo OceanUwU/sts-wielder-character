@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import static oceanwielder.WielderMod.makeID;
@@ -23,7 +23,7 @@ public class Emeici extends AbstractWeapon {
     private boolean left;
 
     public Emeici() {
-        super(ID, 3, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        super(ID, 3, 6, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         primaryTimes = 2;
     }
 
@@ -33,7 +33,7 @@ public class Emeici extends AbstractWeapon {
     }
 
     public void dequipEffect() {
-        applyToSelfTop(new StrengthPower(adp(), dequipPower));
+        applyToSelfTop(new VigorPower(adp(), dequipPower));
     }
 
     @Override

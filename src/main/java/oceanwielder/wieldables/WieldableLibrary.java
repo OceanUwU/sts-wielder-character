@@ -24,6 +24,7 @@ public class WieldableLibrary {
         add(new Buckler());
         add(new Heater());
         add(new Hologram());
+        add(new Kite());
         defaultShield = shields.get(Buckler.ID);
     };
 

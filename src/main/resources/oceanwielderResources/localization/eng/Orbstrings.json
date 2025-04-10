@@ -20,7 +20,7 @@
         "DESCRIPTION": [
             "#yHit: Deal #b",
             " damage twice. NL Dequip: Gain #b",
-            " #yStrength."
+            " #yVigor."
         ]
     },
     "${ModID}:Hammer": {
@@ -77,7 +77,16 @@
         "DESCRIPTION": [
             "#yGuard: Gain #b",
             " #yBlock twice. NL Dequip: Gain #b",
-            " #yDexterity."
+            " #yAegis."
+        ]
+    },
+    "${ModID}:Kite": {
+        "NAME": "Kite",
+        "DESCRIPTION": [
+            "#yGuard: Gain #b",
+            " #yBlock and #b",
+            " #yVigor. NL Dequip: Gain #b",
+            " #yStrength."
         ]
     }
 }

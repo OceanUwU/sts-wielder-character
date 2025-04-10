@@ -69,7 +69,7 @@
     "NAMES": [
       "emeici"
     ],
-    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Gain #b!D! #yStrength."
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL Dequip: Gain #b!D! #yVigor."
   },
   {
     "PROPER_NAME": "Hammer",
@@ -97,7 +97,7 @@
     "NAMES": [
       "heater"
     ],
-    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. NL Dequip: Gain #b!D! #yDexterity."
+    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. NL Dequip: Gain #b!D! #yAegis."
   },
   {
     "PROPER_NAME": "Hologram",
@@ -105,5 +105,19 @@
       "hologram"
     ],
     "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. Gain #b!S! #yBlock next turn. NL Dequip: Gain #b!D! #yTix."
+  },
+  {
+    "PROPER_NAME": "Kite",
+    "NAMES": [
+      "kite"
+    ],
+    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. Gain #b!S! #yBlock next turn. NL Dequip: Gain #b!D! #yTix."
+  },
+  {
+    "PROPER_NAME": "Weight",
+    "NAMES": [
+      "weight"
+    ],
+    "DESCRIPTION": "If you're bearing 3 or more weight at the end of your turn, lose 6 HP and all weight."
   }
 ]

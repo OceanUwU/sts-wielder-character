@@ -82,5 +82,9 @@
     "EXTENDED_DESCRIPTION": [
       "Exhaust"
     ]
+  },
+  "${ModID}:WieldKite": {
+    "NAME": "Wield Kite",
+    "DESCRIPTION": "!WS!. NL Bear !M! ${ModID}:Weight."
   }
 }
