@@ -13,4 +13,9 @@ public class UnknownWieldable extends AbstractWieldable {
 
     public void use(AbstractMonster m) {}
     public void dequipEffect() {}
+
+    @Override
+    public void updateDescription() {
+        description = "";
+    }
 }

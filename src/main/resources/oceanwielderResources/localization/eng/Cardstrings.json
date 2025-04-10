@@ -86,5 +86,13 @@
   "${ModID}:WieldKite": {
     "NAME": "Wield Kite",
     "DESCRIPTION": "!WS!. NL Bear !M! ${ModID}:Weight."
+  },
+  "${ModID}:DoubleUp": {
+    "NAME": "Double Up",
+    "DESCRIPTION": "!HIT!. NL This turn, ${ModID}:Guards grant Block !M! additional time{!M!|>1=s}.{!${ModID}:m2!|>0= NL Bear !${ModID}:m2! ${ModID}:Weight.}"
+  },
+  "${ModID}:Reverberate": {
+    "NAME": "Reverberate",
+    "DESCRIPTION": "This turn, ${ModID}:Hits deal damage !M! additional time{!M!|>1=s}. NL Bear !${ModID}:m2! ${ModID}:Weight."
   }
 }

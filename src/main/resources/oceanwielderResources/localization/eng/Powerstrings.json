@@ -13,5 +13,21 @@
       " #yMoxie. When this reaches #b",
       ", gain [E] ."
     ]
+  },
+  "${ModID}:HitUp": {
+    "NAME": "Hit Up",
+    "DESCRIPTIONS": [
+      "This turn, #yHits deal damage #b",
+      " additional time.",
+      " additional times."
+    ]
+  },
+  "${ModID}:GuardUp": {
+    "NAME": "Hit Up",
+    "DESCRIPTIONS": [
+      "This turn, #yHits deal damage #b",
+      " additional time.",
+      " additional times."
+    ]
   }
 }

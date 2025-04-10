@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import oceanwielder.powers.AegisPower;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -22,7 +22,7 @@ public class Scythe extends AbstractWeapon {
     }
 
     public void use(AbstractMonster m) {
-        att(new GainBlockAction(adp(), secondary, true));
+        applyToSelfTop(new AegisPower(adp(), secondary));
         super.use(m);
     }
 
@@ -39,7 +39,8 @@ public class Scythe extends AbstractWeapon {
 
     @Override
     public void updateDescription() {
-        description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + secondary + strings.DESCRIPTION[2] + dequipPower + strings.DESCRIPTION[3];
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + secondary + strings.DESCRIPTION[1] + dequipPower + strings.DESCRIPTION[2];
     }
 
     private static class ScytheReapEffect extends AbstractGameEffect {

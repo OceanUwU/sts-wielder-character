@@ -10,10 +10,16 @@ public class Heater extends AbstractShield {
 
     public Heater() {
         super(ID, 2, 6);
-        primaryTimes = 2;
+        basePrimaryTimes = primaryTimes = 2;
     }
 
     public void dequipEffect() {
         applyToSelfTop(new AegisPower(adp(), dequipPower));
+    }
+
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
     }
 }

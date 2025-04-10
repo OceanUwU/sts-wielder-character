@@ -57,7 +57,7 @@ public abstract class AbstractWieldable {
     protected float xVel, yVel, dequipSpinSpeed;
 
     public int basePrimary, baseSecondary, baseDequipPower, primary, secondary, dequipPower;
-    public int primaryTimes = 1, secondaryTimes = 1, dequipTimes = 1;
+    public int basePrimaryTimes = 1, baseSecondaryTimes = 1, baseDequipTimes = 1, primaryTimes = 1, secondaryTimes = 1, dequipTimes = 1;
     protected AbstractMonster target;
     protected OrbStrings strings;
 
@@ -126,6 +126,9 @@ public abstract class AbstractWieldable {
         primary = basePrimary;
         secondary = baseSecondary;
         dequipPower = baseDequipPower;
+        primaryTimes = basePrimaryTimes;
+        secondaryTimes = baseSecondaryTimes;
+        dequipTimes = baseDequipTimes;
         /*if (CardCrawlGame.isInARun() && AbstractDungeon.player.hasPower(ProficiencyPower.POWER_ID)) {
             int proficiency = AbstractDungeon.player.getPower(ProficiencyPower.POWER_ID).amount;
             if (secondary > -1)
@@ -140,9 +143,7 @@ public abstract class AbstractWieldable {
         updateDescription();
     }
 
-    public void updateDescription() {
-        description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + dequipPower + strings.DESCRIPTION[2];
-    }
+    public abstract void updateDescription();
 
     public void update() {
         hb.update();
@@ -193,7 +194,7 @@ public abstract class AbstractWieldable {
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, powerText(primary, primaryTimes), hb.cX + NUM_X_OFFSET, hb.cY - NUM_Y_OFFSET + previewOffsetY * Settings.scale, getDynvarColor(basePrimary, primary), fontScale);
         if (secondary > -1)
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, secondaryText(), hb.cX - NUM_X_OFFSET, hb.cY - NUM_Y_OFFSET + previewOffsetY * Settings.scale, getDynvarColor(baseSecondary, secondary), fontScale);
-        if (dequipping && dequipPower > -1)
+        if ((dequipping || hb.hovered) && dequipPower > -1)
             FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, powerText(dequipPower, dequipTimes), hb.cX, hb.cY + NUM_Y_OFFSET + previewOffsetY * Settings.scale, DEQUIP_COLOR, fontScale);
     }
 

@@ -1,41 +1,45 @@
 {
+    "${ModID}:Weapon": {
+        "NAME": "Weapon",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage.",
+            " damage #b",
+            " times."
+        ]
+    },
     "${ModID}:Cutlass": {
         "NAME": "Cutlass",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage. NL Dequip: Deal #b",
+            " NL Dequip: Deal #b",
             " damage to a random enemy."
         ]
     },
     "${ModID}:Throwing_Star": {
         "NAME": "Throwing Star",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage. NL Dequip: Apply #b",
+            " NL Dequip: Apply #b",
             " #yVulnerable to ALL enemies."
         ]
     },
     "${ModID}:Emeici": {
         "NAME": "Emeici",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage twice. NL Dequip: Gain #b",
+            " NL Dequip: Gain #b",
             " #yVigor."
         ]
     },
     "${ModID}:Chainsaw": {
         "NAME": "Chainsaw",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage 3 times. NL Dequip: Gain #b",
+            " NL Dequip: Gain #b",
             " #yStrength."
         ]
     },
     "${ModID}:Hammer": {
         "NAME": "Hammer",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage and increase dequip damage by #b",
+            " Increase dequip damage by #b",
             ". NL Dequip: Deal #b",
             " damage to ALL enemies."
         ]
@@ -43,17 +47,14 @@
     "${ModID}:Scythe": {
         "NAME": "Scythe",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage and gain #b",
-            " #yBlock. NL Dequip: ALL enemies lose #b",
+            " Gain #b",
+            " #yAegis. NL Dequip: ALL enemies lose #b",
             " #yStrength."
         ]
     },
     "${ModID}:Crossbow": {
         "NAME": "Crossbow",
         "DESCRIPTION": [
-            "#yHit: Deal #b",
-            " damage.",
             " NL Dequip: Nothing.",
             " After #b",
             " more hits, damage will reduce to #b",
@@ -63,19 +64,26 @@
 
 
 
+    "${ModID}:Shield": {
+        "NAME": "Shield",
+        "DESCRIPTION": [
+            "#yGuard: Gain #b",
+            " #yBlock.",
+            " #yBlock #b",
+            " times."
+        ]
+    },
     "${ModID}:Buckler": {
         "NAME": "Buckler",
         "DESCRIPTION": [
-            "#yGuard: Gain #b",
-            " #yBlock. NL Dequip: Gain #b",
+            " NL Dequip: Gain #b",
             " #yBlock."
         ]
     },
     "${ModID}:Hologram": {
         "NAME": "Hologram",
         "DESCRIPTION": [
-            "#yGuard: Gain #b",
-            " #yBlock. Gain #b",
+            " Gain #b",
             " #yBlock next turn. NL Dequip: Gain #b",
             " #yTix."
         ]
@@ -83,16 +91,14 @@
     "${ModID}:Heater": {
         "NAME": "Heater",
         "DESCRIPTION": [
-            "#yGuard: Gain #b",
-            " #yBlock twice. NL Dequip: Gain #b",
+            " NL Dequip: Gain #b",
             " #yAegis."
         ]
     },
     "${ModID}:Kite": {
         "NAME": "Kite",
         "DESCRIPTION": [
-            "#yGuard: Gain #b",
-            " #yBlock and #b",
+            " Gain #b",
             " #yVigor. NL Dequip: Gain #b",
             " #yStrength."
         ]

@@ -24,7 +24,7 @@ public class Emeici extends AbstractWeapon {
 
     public Emeici() {
         super(ID, 3, 6, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        primaryTimes = 2;
+        basePrimaryTimes = primaryTimes = 2;
     }
 
     public void useVfx(AbstractMonster m) {
@@ -72,6 +72,12 @@ public class Emeici extends AbstractWeapon {
         renderHelper(sb, -X_OFFSET - animX1, Y_OFFSET + animY1, angle);
         renderHelper(sb, X_OFFSET + animX2, -Y_OFFSET - animY2, angle2);
         hb.render(sb);
+    }
+
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
     }
 
     private static class SpinEmeiciEffect extends AbstractGameEffect {

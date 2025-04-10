@@ -34,6 +34,12 @@ public class Cutlass extends AbstractWeapon {
         }
     }
 
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
+    }
+
     private static class ChuckSwordEffect extends AbstractGameEffect {
         private static final float MOVE_SPEED = 1200f * Settings.scale;
         private static final float SPIN_SPEED = -450f;

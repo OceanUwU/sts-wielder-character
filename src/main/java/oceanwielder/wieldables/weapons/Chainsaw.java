@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import org.lwjgl.Sys;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -27,7 +26,7 @@ public class Chainsaw extends AbstractWeapon {
 
     public Chainsaw() {
         super(ID, 2, 2, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        primaryTimes = 3;
+        basePrimaryTimes = primaryTimes = 3;
     }
 
     public void useVfx(AbstractMonster m) {
@@ -56,6 +55,12 @@ public class Chainsaw extends AbstractWeapon {
         toothProgress -= toothSpeed * Gdx.graphics.getDeltaTime();
         while (toothProgress < 0f)
             toothProgress += 1f;
+    }
+
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
     }
 
     protected static class SwingWeaponEffect extends AbstractGameEffect {

@@ -9,11 +9,16 @@ import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import oceanwielder.powers.HitUpPower;
+import oceanwielder.util.Wiz;
 import oceanwielder.wieldables.AbstractWieldable;
 
+import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
 
 public abstract class AbstractWeapon extends AbstractWieldable {
@@ -22,6 +27,7 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     private static final float TWIST_ANGLE = 6f;
     private static final float TWIST_TIME = 3f;
     private static AbstractCard sim;
+    protected static OrbStrings baseStrings = CardCrawlGame.languagePack.getOrbString(makeID("Weapon"));
 
     protected AbstractGameAction.AttackEffect attackEffect = AbstractGameAction.AttackEffect.NONE;
     protected boolean vfxCanAffectAll = false;
@@ -41,6 +47,7 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         getSim().baseDamage = basePrimary;
         sim.applyPowers();
         primary = Math.max(sim.damage, 0);
+        primaryTimes += Wiz.pwrAmt(adp(), HitUpPower.POWER_ID);
         updateDescription();
     }
 
@@ -93,6 +100,14 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     public void updateAnimation() {
         super.updateAnimation();
         angle = (float)Math.sin(vfxTimer * Math.PI / TWIST_TIME) * TWIST_ANGLE + angleOffset;
+    }
+
+    @Override
+    public void updateDescription() {
+        if (primaryTimes == 1)
+            description = baseStrings.DESCRIPTION[0] + primary + baseStrings.DESCRIPTION[1];
+        else
+            description = baseStrings.DESCRIPTION[0] + primary + baseStrings.DESCRIPTION[2] + primaryTimes + baseStrings.DESCRIPTION[3];
     }
 
     protected static class SwingWeaponEffect extends AbstractGameEffect {

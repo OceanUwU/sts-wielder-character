@@ -54,10 +54,11 @@ public class Crossbow extends AbstractWeapon {
 
     @Override
     public void updateDescription() {
+        super.updateDescription();
         if (secondary > 0)
-            description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + strings.DESCRIPTION[3] + secondary + strings.DESCRIPTION[4] + DAMAGE_WHEN_EMPTY + strings.DESCRIPTION[5] + strings.DESCRIPTION[2];
+            description += strings.DESCRIPTION[1] + secondary + strings.DESCRIPTION[2] + DAMAGE_WHEN_EMPTY + strings.DESCRIPTION[3] + strings.DESCRIPTION[0];
         else
-            description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + strings.DESCRIPTION[2];
+            description += strings.DESCRIPTION[0];
     }
 
     private static class ArrowEffect extends AbstractGameEffect {

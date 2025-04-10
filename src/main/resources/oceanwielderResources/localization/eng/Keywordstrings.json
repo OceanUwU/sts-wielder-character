@@ -2,14 +2,16 @@
   {
     "PROPER_NAME": "Hit",
     "NAMES": [
-      "hit"
+      "hit",
+      "hits"
     ],
     "DESCRIPTION": "Use your weapon."
   },
   {
     "PROPER_NAME": "Guard",
     "NAMES": [
-      "guard"
+      "guard",
+      "guards"
     ],
     "DESCRIPTION": "Use your shield."
   },
@@ -90,7 +92,7 @@
     "NAMES": [
       "scythe"
     ],
-    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and gain #b!S! #yBlock. NL Dequip: ALL enemies lose #b!D! #yStrength."
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and gain #b!S! #yAegis. NL Dequip: ALL enemies lose #b!D! #yStrength."
   },
   {
     "PROPER_NAME": "Crossbow",

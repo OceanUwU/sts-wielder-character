@@ -26,6 +26,7 @@ public class Hologram extends AbstractShield {
 
     @Override
     public void updateDescription() {
-        description = strings.DESCRIPTION[0] + primary + strings.DESCRIPTION[1] + secondary + strings.DESCRIPTION[2] + dequipPower + strings.DESCRIPTION[3];
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + secondary + strings.DESCRIPTION[1] + dequipPower + strings.DESCRIPTION[2];
     }
 }

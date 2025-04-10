@@ -15,4 +15,10 @@ public class Buckler extends AbstractShield {
     public void dequipEffect() {
         att(new GainBlockAction(adp(), dequipPower, true));
     }
+
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
+    }
 }

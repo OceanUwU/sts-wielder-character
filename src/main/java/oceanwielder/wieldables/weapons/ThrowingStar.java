@@ -40,6 +40,12 @@ public class ThrowingStar extends AbstractWeapon {
         animScale = MathHelper.fadeLerpSnap(animScale, 1.0f);
     }
 
+    @Override
+    public void updateDescription() {
+        super.updateDescription();
+        description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
+    }
+
     private static class ThrowThrowingStarEffect extends AbstractGameEffect {
         private static final float SPIN_SPEED = -150f;
 
