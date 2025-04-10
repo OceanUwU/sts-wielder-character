@@ -1,5 +1,6 @@
 package oceanwielder.wieldables.weapons;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import oceanwielder.wieldables.AbstractWieldable;
@@ -80,7 +82,11 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     }
 
     private void dmgAll() {
-        att(new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, attackEffect));
+        for (int i = 0; i < primaryTimes; i++) {
+            AbstractGameAction action = new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, attackEffect);
+            ReflectionHacks.setPrivate(action, AbstractGameAction.class, "duration", Settings.ACTION_DUR_XFAST);
+            att(action);
+        }
     }
 
     @Override

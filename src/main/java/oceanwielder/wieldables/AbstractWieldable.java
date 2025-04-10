@@ -81,7 +81,7 @@ public abstract class AbstractWieldable {
         }
     }
 
-    protected TextureRegion getTexture(String id) {
+    protected static TextureRegion getTexture(String id) {
         String texPath = makeImagePath("wieldables/"+id.replace(WielderMod.modID + ":", "")+".png");
         if (!TEXTURES.containsKey(texPath))
             TEXTURES.put(texPath, new TextureRegion(TexLoader.getTexture(texPath)));

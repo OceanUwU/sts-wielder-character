@@ -3,6 +3,7 @@ package oceanwielder.cards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.wieldables.shields.Kite;
+import oceanwielder.wieldables.weapons.Chainsaw;
 
 import static oceanwielder.WielderMod.makeID;
 
@@ -12,11 +13,13 @@ public class WieldKite extends AbstractWielderCard {
     public WieldKite() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         shield = new Kite();
+        weapon = new Chainsaw();
         setMagic(2, -1);
         initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        wield(weapon);
         wield(shield);
     }
 }

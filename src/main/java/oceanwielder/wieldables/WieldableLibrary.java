@@ -19,6 +19,7 @@ public class WieldableLibrary {
         add(new Hammer());
         add(new Scythe());
         add(new Crossbow());
+        add(new Chainsaw());
         defaultWeapon = weapons.get(Cutlass.ID);
 
         add(new Buckler());

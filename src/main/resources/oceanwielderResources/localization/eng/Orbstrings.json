@@ -23,6 +23,14 @@
             " #yVigor."
         ]
     },
+    "${ModID}:Chainsaw": {
+        "NAME": "Chainsaw",
+        "DESCRIPTION": [
+            "#yHit: Deal #b",
+            " damage 3 times. NL Dequip: Gain #b",
+            " #yStrength."
+        ]
+    },
     "${ModID}:Hammer": {
         "NAME": "Hammer",
         "DESCRIPTION": [
