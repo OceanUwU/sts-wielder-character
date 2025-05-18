@@ -23,7 +23,9 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import java.util.ArrayList;
 import oceanwielder.cards.Defend;
+import oceanwielder.cards.Guzzle;
 import oceanwielder.cards.Strike;
+import oceanwielder.cards.Twirl;
 import oceanwielder.relics.TodoItem;
 
 public class TheWielder extends CustomPlayer {
@@ -50,19 +52,19 @@ public class TheWielder extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                80, 80, 0, 99, 5, this, getStartingRelics(),
+                75, 75, 0, 99, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
             retVal.add(Strike.ID);
-        }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
             retVal.add(Defend.ID);
-        }
+        retVal.add(Twirl.ID);
+        retVal.add(Guzzle.ID);
         return retVal;
     }
 

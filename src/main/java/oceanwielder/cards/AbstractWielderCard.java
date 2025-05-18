@@ -18,6 +18,7 @@ import oceanwielder.actions.HitAction;
 import oceanwielder.actions.HitAllAction;
 import oceanwielder.actions.WieldAction;
 import oceanwielder.characters.TheWielder;
+import oceanwielder.util.Wiz;
 import oceanwielder.wieldables.AbstractWieldable;
 
 import static oceanwielder.WielderMod.makeID;
@@ -45,6 +46,15 @@ public abstract class AbstractWielderCard extends CustomCard {
     public boolean isGuardsModified;
 
     private int magicUpgrade, secondMagicUpgrade, hitsUpgrade, guardsUpgrade, baseCost, costUpgrade;
+    private boolean upgradesExhaust = false;
+    private boolean upgradedExhaust;
+    private boolean upgradesEthereal = false;
+    private boolean upgradedEthereal;
+    private boolean upgradesInnate = false;
+    private boolean upgradedInnate;
+    private boolean upgradesRetain = false;
+    private boolean upgradedRetain;
+
     public boolean usesHits, usesGuards;
     public boolean showWeaponDequipValue, showShieldDequipValue;
     public AbstractWieldable weapon;
@@ -77,11 +87,25 @@ public abstract class AbstractWielderCard extends CustomCard {
                 .replace("!HIT!", sharedStrings[1] + sharedStrings[0])
                 .replace("!HITALL!", sharedStrings[2] + sharedStrings[0])
                 .replace("!HITRANDOM!", sharedStrings[3] + sharedStrings[0])
-                .replace("!GUARD!", sharedStrings[5] + sharedStrings[4]);
+                .replace("!GUARD!", sharedStrings[5] + sharedStrings[4])
+                .replace("!WEIGHT!", sharedStrings[7]);
             if (weapon != null)
                 rawDescription = rawDescription.replace("!WW!", sharedStrings[6] + weapon.id);
             if (shield != null)
                 rawDescription = rawDescription.replace("!WS!", sharedStrings[6] + shield.id);
+            if (selfRetain || isInnate || isEthereal) {
+                rawDescription = "NL " + rawDescription;
+                if (selfRetain)
+                    rawDescription = sharedStrings[9] + " " + rawDescription;
+                if (isInnate)
+                    rawDescription = sharedStrings[10] + " " + rawDescription;
+                if (isEthereal)
+                    rawDescription = sharedStrings[11] + " " + rawDescription;
+            }
+            if (exhaust) {
+                rawDescription += (rawDescription == "" ? "" : " NL ") + sharedStrings[8];
+            }
+            
         }
         super.initializeDescription();
     }
@@ -204,6 +228,50 @@ public abstract class AbstractWielderCard extends CustomCard {
         costUpgrade = upgrade;
     }
 
+    protected void setExhaust(boolean exhausts, boolean exhaustsWhenUpgraded) {
+        setExhaust(exhausts);
+        upgradesExhaust = true;
+        upgradedExhaust = exhaustsWhenUpgraded;
+        if (upgraded) setExhaust(exhaustsWhenUpgraded);
+    }
+
+    protected void setExhaust(boolean exhausts) {
+        exhaust = exhausts;
+    }
+
+    protected void setEthereal(boolean ethereal, boolean etherealWhenUpgraded) {
+        setEthereal(ethereal);
+        upgradesEthereal = true;
+        upgradedEthereal = etherealWhenUpgraded;
+        if (upgraded) setEthereal(etherealWhenUpgraded);
+    }
+
+    protected void setEthereal(boolean exhausts) {
+        isEthereal = exhausts;
+    }
+
+    protected void setInnate(boolean innate, boolean innateWhenUpgraded) {
+        setInnate(innate);
+        upgradesInnate = true;
+        upgradedInnate = innateWhenUpgraded;
+        if (upgraded) setInnate(innateWhenUpgraded);
+    }
+
+    protected void setInnate(boolean innate) {
+        isInnate = innate;
+    }
+
+    protected void setRetain(boolean retains, boolean retainsWhenUpgraded) {
+        setRetain(retains);
+        upgradesRetain = true;
+        upgradedRetain = retainsWhenUpgraded;
+        if (upgraded) setRetain(retainsWhenUpgraded);
+    }
+
+    protected void setRetain(boolean retains) {
+        selfRetain = retains;
+    }
+
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
@@ -217,7 +285,16 @@ public abstract class AbstractWielderCard extends CustomCard {
                 upgradeGuards(guardsUpgrade);
             if (costUpgrade != 0)
                 upgradeBaseCost(baseCost + costUpgrade);
+            if (upgradesExhaust)
+                exhaust = upgradedExhaust;
+            if (upgradesEthereal)
+                isEthereal = upgradedEthereal;
+            if (upgradesInnate)
+                isInnate = upgradedInnate;
+            if (upgradesRetain)
+                selfRetain = upgradedRetain;
             upp();
+            initializeDescription();
         }
     }
 
@@ -261,6 +338,14 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     protected void wield(AbstractWieldable wieldable) {
         atb(new WieldAction(wieldable));
+    }
+
+    protected void bearWeight() {
+        Wiz.bearWeight(secondMagic);
+    }
+
+    protected void bearWeightTop() {
+        Wiz.bearWeightTop(secondMagic);
     }
 
     @SpireOverride

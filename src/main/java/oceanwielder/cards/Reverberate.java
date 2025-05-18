@@ -3,7 +3,6 @@ package oceanwielder.cards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.powers.HitUpPower;
-import oceanwielder.powers.Weight;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -19,6 +18,6 @@ public class Reverberate extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToSelf(new HitUpPower(p, magicNumber));
-        applyToSelf(new Weight(p, secondMagic));
+        bearWeight();
     }
 }

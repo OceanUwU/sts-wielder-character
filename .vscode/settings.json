@@ -1,3 +1,19 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "autoSnippet.snippets": [
+        {
+            "pattern": "**/cards/*.java",
+            "snippet": "Card"
+        }
+    ],
+    "emeraldwalk.runonsave": {
+      "autoClearConsole": true,
+      "commands": [
+        {
+          "match": "(.*)",
+          "cmd": "mvn package",
+          "autoShowOutputPanel": "always"
+        }
+      ]
+    }
 }

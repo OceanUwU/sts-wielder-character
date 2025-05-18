@@ -25,6 +25,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import oceanwielder.actions.GainTixAction;
 import oceanwielder.actions.TimedVFXAction;
+import oceanwielder.powers.Weight;
 
 public class Wiz {
     //The wonderful Wizard of Oz allows access to most easy compilations of data, or functions.
@@ -187,6 +188,16 @@ public class Wiz {
 
     public static void applyToSelfTop(AbstractPower po) {
         att(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, po, po.amount));
+    }
+
+    public static void bearWeight(int amt) {
+        if (amt <= 0) return;
+        applyToSelf(new Weight(adp(), amt));
+    }
+
+    public static void bearWeightTop(int amt) {
+        if (amt <= 0) return;
+        applyToSelfTop(new Weight(adp(), amt));
     }
 
     public static void thornDmg(AbstractCreature m, int amount, AbstractGameAction.AttackEffect AtkFX) {

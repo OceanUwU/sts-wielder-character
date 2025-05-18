@@ -12,7 +12,7 @@
 "import static oceanwielder.util.Wiz.*;",
 "",
 "public class $TM_FILENAME_BASE extends AbstractWielderCard {",
-"    public final static String ID = makeID(\"$TM_FILENAME_BASE\");",
+"    public final static String ID = makeID($TM_FILENAME_BASE.class.getSimpleName());",
 "",
 "    public $TM_FILENAME_BASE() {",
 "        super(ID, ${1|0,1,2,3,-1,-2|}, CardType.${2|ATTACK,SKILL,POWER,CURSE,STATUS|}, CardRarity.${3|COMMON,UNCOMMON,RARE,SPECIAL,BASIC,CURSE|}, CardTarget.${4|ENEMY,ALL_ENEMY,SELF,NONE,SELF_AND_ENEMY,ALL|});",
@@ -23,7 +23,7 @@
 "        ",
 "    }",
 "},",
-"  \"${ModID${ModID}}:$TM_FILENAME_BASE\": {",
+"  \"\\${ModID}:$TM_FILENAME_BASE\": {",
 "    \"NAME\": \"${TM_FILENAME_BASE/(.*)/${1}/}\",",
 "    \"DESCRIPTION\": \"\"",
 "  }"
@@ -32,5 +32,39 @@
 	"Damage": {
 		"scope": "java",
 		"body": ["dmg(m, AbstractGameAction.AttackEffect.${1|BLUNT_LIGHT,BLUNT_HEAVY,SLASH_DIAGONAL,SMASH,SLASH_HEAVY,SLASH_HORIZONTAL,SLASH_VERTICAL,NONE,FIRE,POISON,SHIELD,LIGHTNING|});"]
-	}
+	},
+    "Power": {
+        "scope": "java",
+        "isFileTemplate": true,
+        "body": [
+"package oceanwielder.powers;",
+"",
+"import com.megacrit.cardcrawl.core.AbstractCreature;",
+"import com.megacrit.cardcrawl.core.CardCrawlGame;",
+"import com.megacrit.cardcrawl.localization.PowerStrings;",
+"",
+"import static oceanwielder.WielderMod.makeID;",
+"",
+"public class $TM_FILENAME_BASE extends AbstractWielderPower {",
+"    public static final String POWER_ID = makeID($TM_FILENAME_BASE.class.getSimpleName());",
+"    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);",
+"",
+"    public $TM_FILENAME_BASE(AbstractCreature owner, int amount) {",
+"        super(POWER_ID, powerStrings.NAME, PowerType.${1|BUFF,DEBUFF|}, ${2|true,false|}, owner, amount);",
+"    }",
+"",
+"    public void updateDescription() {",
+"        description = powerStrings.DESCRIPTIONS[0] + amount + powerStrings.DESCRIPTIONS[1];",
+"    }",
+"},",
+"  \"\\${ModID}:$TM_FILENAME_BASE\": {",
+"    \"NAME\": \"$TM_FILENAME_BASE\",",
+"    \"DESCRIPTIONS\": [",
+"      \"You have #b\",",
+"      \" $TM_FILENAME_BASE.\"",
+"    ]",
+"  }"
+            
+        ]
+    }
 }

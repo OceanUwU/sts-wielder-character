@@ -9,7 +9,12 @@
       "${ModID}:Hit a random enemy",
       "{!${ModID}:g!|1=|2= twice|@= !${ModID}:g! times}",
       "${ModID}:Guard",
-      "${ModID}:Wield "
+      "${ModID}:Wield ",
+      "{!${ModID}:m2!|>0= NL Bear !${ModID}:m2! ${ModID}:Weight.|<0=Lose !${ModID}:m2! Weight.}",
+      "Exhaust.",
+      "Retain.",
+      "Innate.",
+      "Ethereal."
     ]
   },
   "${ModID}:Strike": {
@@ -74,7 +79,7 @@
   },
   "${ModID}:TakeAim": {
     "NAME": "Take Aim",
-    "DESCRIPTION": "!WW!.{!M!|>0= NL Increase its initial damage by !M!.} NL Exhaust."
+    "DESCRIPTION": "!WW!.{!M!|>0= NL Increase its initial damage by !M!.}"
   },
   "${ModID}:ShovelKnightCard": {
     "NAME": "shovel knigoht after he',s force to return his shovel to home depot",
@@ -85,14 +90,22 @@
   },
   "${ModID}:WieldKite": {
     "NAME": "Wield Kite",
-    "DESCRIPTION": "!WS!. NL Bear !M! ${ModID}:Weight."
+    "DESCRIPTION": "!WS!.!WEIGHT!"
   },
   "${ModID}:DoubleUp": {
     "NAME": "Double Up",
-    "DESCRIPTION": "!HIT!. NL This turn, ${ModID}:Guards grant Block !M! additional time{!M!|>1=s}.{!${ModID}:m2!|>0= NL Bear !${ModID}:m2! ${ModID}:Weight.}"
+    "DESCRIPTION": "!HIT!. NL This turn, ${ModID}:Guards grant Block !M! additional time{!M!|>1=s}.!WEIGHT!"
   },
   "${ModID}:Reverberate": {
     "NAME": "Reverberate",
-    "DESCRIPTION": "This turn, ${ModID}:Hits deal damage !M! additional time{!M!|>1=s}. NL Bear !${ModID}:m2! ${ModID}:Weight."
+    "DESCRIPTION": "This turn, ${ModID}:Hits deal damage !M! additional time{!M!|>1=s}.!WEIGHT!"
+  },
+  "${ModID}:Guzzle": {
+    "NAME": "Guzzle",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:Twirl": {
+    "NAME": "Twirl",
+    "DESCRIPTION": "!GUARD!. NL !HIT!.!WEIGHT!"
   }
 }
