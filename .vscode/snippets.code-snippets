@@ -66,5 +66,25 @@
 "  }"
             
         ]
-    }
+    },
+	"Tix": {
+		"prefix": "gaintix",
+		"body": "{!M!|>0= NL Gain !M! \\${ModID}:Tix.}"
+	},
+	"Vigor": {
+		"prefix": "gainvigor",
+		"body": "{!\\${ModID}:m2!|>0= NL Gain !\\${ModID}:m2! Vigor.}"
+	},
+	"Aegis": {
+		"prefix": "gainaegis",
+		"body": "{!\\${ModID}:m2!|>0= NL Gain !\\${ModID}:m2! \\${ModID}:Aegis.}"
+	},
+	"Second Magic": {
+		"prefix": "m2",
+		"body": "!\\${ModID}:m2!"
+	},
+	"Third Magic": {
+		"prefix": "m3",
+		"body": "!\\${ModID}:m3!"
+	},
 }

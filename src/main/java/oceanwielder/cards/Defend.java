@@ -28,7 +28,6 @@ public class Defend extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         guard();
-        if (magicNumber > 0)
-            applyToSelf(new AegisPower(p, magicNumber));
+        gainAegis(magicNumber);
     }
 }

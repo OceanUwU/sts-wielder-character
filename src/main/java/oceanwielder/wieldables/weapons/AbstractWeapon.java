@@ -67,6 +67,7 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     @Override
     public void use(AbstractMonster m) {
+        if (m == null || m.isDeadOrEscaped()) return;
         dmg(m);
         useVfx(m);
     }

@@ -13,11 +13,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import oceanwielder.actions.GuardAction;
 import oceanwielder.actions.HitAction;
 import oceanwielder.actions.HitAllAction;
 import oceanwielder.actions.WieldAction;
 import oceanwielder.characters.TheWielder;
+import oceanwielder.powers.AegisPower;
 import oceanwielder.util.Wiz;
 import oceanwielder.wieldables.AbstractWieldable;
 
@@ -102,10 +104,8 @@ public abstract class AbstractWielderCard extends CustomCard {
                 if (isEthereal)
                     rawDescription = sharedStrings[11] + " " + rawDescription;
             }
-            if (exhaust) {
-                rawDescription += (rawDescription == "" ? "" : " NL ") + sharedStrings[8];
-            }
-            
+            if (exhaust)
+                rawDescription += (cardStrings.DESCRIPTION == "" ? "" : " NL ") + sharedStrings[8];
         }
         super.initializeDescription();
     }
@@ -300,40 +300,80 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     public void upp() {};
 
-    private AbstractGameAction hitAction(AbstractMonster m) {
-        return new HitAction(m, hits);
+    private AbstractGameAction hitAction(AbstractMonster m, int amt) {
+        return new HitAction(m, amt);
     }
 
     protected void hit(AbstractMonster m) {
-        atb(hitAction(m));
+        atb(hitAction(m, hits));
     }
     
     protected void hitTop(AbstractMonster m) {
-        att(hitAction(m));
+        att(hitAction(m, hits));
     }
 
-    private AbstractGameAction hitAllAction() {
-        return new HitAllAction(hits);
+    protected void hit(AbstractMonster m, int amt) {
+        atb(hitAction(m, amt));
+    }
+    
+    protected void hitTop(AbstractMonster m, int amt) {
+        att(hitAction(m, amt));
+    }
+
+    protected void hitRandom(AbstractMonster m) {
+        atb(hitAction(null, hits));
+    }
+
+    protected void hitRandomTop(AbstractMonster m) {
+        att(hitAction(null, hits));
+    }
+
+    protected void hitRandom(AbstractMonster m, int amt) {
+        atb(hitAction(null, amt));
+    }
+
+    protected void hitRandomTop(AbstractMonster m, int amt) {
+        att(hitAction(null, amt));
+    }
+
+    private AbstractGameAction hitAllAction(int amt) {
+        return new HitAllAction(amt);
     }
 
     protected void hitAll() {
-        atb(hitAllAction());
+        atb(hitAllAction(hits));
     }
 
     protected void hitAllTop() {
-        att(hitAllAction());
+        att(hitAllAction(hits));
     }
 
-    private AbstractGameAction guardAction() {
-        return new GuardAction(guards);
+    protected void hitAll(int amt) {
+        atb(hitAllAction(amt));
+    }
+
+    protected void hitAllTop(int amt) {
+        att(hitAllAction(amt));
+    }
+
+    private AbstractGameAction guardAction(int amt) {
+        return new GuardAction(amt);
     }
 
     protected void guard() {
-        atb(guardAction());
+        atb(guardAction(guards));
     }
 
     protected void guardTop() {
-        att(guardAction());
+        att(guardAction(guards));
+    }
+
+    protected void guard(int amt) {
+        atb(guardAction(amt));
+    }
+
+    protected void guardTop(int amt) {
+        att(guardAction(amt));
     }
 
     protected void wield(AbstractWieldable wieldable) {
@@ -346,6 +386,16 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     protected void bearWeightTop() {
         Wiz.bearWeightTop(secondMagic);
+    }
+
+    protected void gainVigor(int amount) {
+        if (amount > 0)
+            applyToSelf(new VigorPower(adp(), amount));
+    }
+
+    protected void gainAegis(int amount) {
+        if (amount > 0)
+            applyToSelf(new AegisPower(adp(), amount));
     }
 
     @SpireOverride

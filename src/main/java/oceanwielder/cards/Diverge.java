@@ -4,13 +4,11 @@ import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import java.util.Arrays;
 import java.util.List;
 import oceanwielder.wieldables.shields.Hologram;
 
 import static oceanwielder.WielderMod.makeID;
-import static oceanwielder.util.Wiz.*;
 
 public class Diverge extends AbstractWielderCard {
     public final static String ID = makeID("Diverge");
@@ -30,7 +28,7 @@ public class Diverge extends AbstractWielderCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         guard();
         wield(shield);
-        if (magicNumber > 0)
-            applyToSelf(new NextTurnBlockPower(p, magicNumber));
+        if (upgraded)
+            guard(1);
     }
 }

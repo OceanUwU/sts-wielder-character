@@ -51,7 +51,7 @@
   },
   "${ModID}:Diverge": {
     "NAME": "Diverge",
-    "DESCRIPTION": "!GUARD!. NL !WS!.{!M!|>0= NL Next turn, gain !M! Block.}"
+    "DESCRIPTION": "!GUARD!. NL !WS!.{!Upgrades!|>0= NL ${ModID}:Guard.}"
   },
   "${ModID}:HeavenlyWrath": {
     "NAME": "Heavenly Wrath",
@@ -59,7 +59,7 @@
   },
   "${ModID}:SoulScan": {
     "NAME": "Soul Scan",
-    "DESCRIPTION": "!GUARD!. NL !WW!."
+    "DESCRIPTION": "!GUARD!. NL !WW!.{!Upgrades!|>0= NL ${ModID}:Hit.}"
   },
   "${ModID}:WhateverllDo": {
     "NAME": "Whatever'll Do!",
@@ -107,5 +107,9 @@
   "${ModID}:Twirl": {
     "NAME": "Twirl",
     "DESCRIPTION": "!GUARD!. NL !HIT!.!WEIGHT!"
+  },
+  "${ModID}:CloseUpShop": {
+    "NAME": "Close Up Shop",
+    "DESCRIPTION": "!GUARD!. NL Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
   }
 }
