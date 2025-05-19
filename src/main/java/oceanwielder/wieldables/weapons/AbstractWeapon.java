@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -67,7 +68,9 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     @Override
     public void use(AbstractMonster m) {
-        if (m == null || m.isDeadOrEscaped()) return;
+        if (m == null) 
+            m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        if (m.isDeadOrEscaped()) return;
         dmg(m);
         useVfx(m);
     }

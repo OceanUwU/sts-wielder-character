@@ -14,7 +14,9 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import oceanwielder.powers.AbstractWielderPower;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.WielderMod.makeImagePath;
@@ -73,6 +75,9 @@ public class Tix {
                                 amt--;
                                 if (amt <= 0)
                                     targetAlpha = 0f;
+                                for (AbstractPower p : adp().powers)
+                                    if (p instanceof AbstractWielderPower)
+                                        ((AbstractWielderPower)p).onSpendTix(DrawCardAction.drawnCards.get(0));
                             }
                         })));
                     }

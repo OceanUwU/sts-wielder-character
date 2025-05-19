@@ -173,6 +173,10 @@ public class Stamps {
         stamp(c, 1);
     }
 
+    public static boolean canStamp(AbstractCard c) {
+        return c.cost > -2;
+    }
+
     public static StampedMod getModifier(AbstractCard c) {
         ArrayList<AbstractCardModifier> modifiers = CardModifierManager.getModifiers(c, StampedMod.ID);
         if (modifiers.size() > 0)

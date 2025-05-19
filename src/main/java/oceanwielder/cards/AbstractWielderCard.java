@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,6 +14,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import oceanwielder.WielderMod;
 import oceanwielder.actions.GuardAction;
 import oceanwielder.actions.HitAction;
 import oceanwielder.actions.HitAllAction;
@@ -32,6 +32,8 @@ import static oceanwielder.util.Wiz.*;
 public abstract class AbstractWielderCard extends CustomCard {
     protected static String[] sharedStrings = null;
     protected final CardStrings cardStrings;
+
+    protected String[] exDesc;
 
     public int secondMagic;
     public int baseSecondMagic;
@@ -65,8 +67,8 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     private boolean betaTexture;
 
-    @SpireEnum public static CardTags Stab;
-    @SpireEnum public static CardTags Jab;
+    public static CardTags Stab = WielderMod.Stab;
+    public static CardTags Jab = WielderMod.Jab;
 
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
@@ -82,6 +84,7 @@ public abstract class AbstractWielderCard extends CustomCard {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
         rawDescription = "";
         name = originalName = cardStrings.NAME;
+        exDesc = cardStrings.EXTENDED_DESCRIPTION;
         initializeTitle();
         initializeDescription();
     }
@@ -305,7 +308,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     public void upp() {};
 
     private AbstractGameAction hitAction(AbstractMonster m, int amt) {
-        return new HitAction(m, amt);
+        return new HitAction(m, amt, true);
     }
 
     protected void hit(AbstractMonster m) {
@@ -324,24 +327,24 @@ public abstract class AbstractWielderCard extends CustomCard {
         att(hitAction(m, amt));
     }
 
-    protected void hitRandom(AbstractMonster m) {
-        atb(hitAction(null, hits));
+    protected void hitRandom() {
+        hitRandom(hits);
     }
 
-    protected void hitRandomTop(AbstractMonster m) {
-        att(hitAction(null, hits));
+    protected void hitRandomTop() {
+        hitRandomTop(hits);
     }
 
-    protected void hitRandom(AbstractMonster m, int amt) {
+    protected void hitRandom(int amt) {
         atb(hitAction(null, amt));
     }
 
-    protected void hitRandomTop(AbstractMonster m, int amt) {
+    protected void hitRandomTop(int amt) {
         att(hitAction(null, amt));
     }
 
     private AbstractGameAction hitAllAction(int amt) {
-        return new HitAllAction(amt);
+        return new HitAllAction(amt, true);
     }
 
     protected void hitAll() {
@@ -361,7 +364,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction guardAction(int amt) {
-        return new GuardAction(amt);
+        return new GuardAction(amt, true);
     }
 
     protected void guard() {

@@ -98,7 +98,7 @@
   },
   "${ModID}:Guzzle": {
     "NAME": "Guzzle",
-    "DESCRIPTION": ""
+    "DESCRIPTION": "Gain {!M!|repeat= [E]}."
   },
   "${ModID}:Twirl": {
     "NAME": "Twirl",
@@ -148,17 +148,73 @@
     "NAME": "Over And Over",
     "DESCRIPTION": "{!${ModID}:h!|1=${ModID}:Hit. NL |@={ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each card played this turn.",
     "EXTENDED_DESCRIPTION": [
-        " NL (",
-        " card played.)",
-        " cards played.)"
+      " NL (",
+      " card played.)",
+      " cards played.)"
     ]
   },
   "${ModID}:Catalogue": {
     "NAME": "Catalogue",
-    "DESCRIPTION": "${ModID}:Stamp your hand.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}!WEIGHT!"
+    "DESCRIPTION": "${ModID}:Stamp your hand.{!M!|>0= NL Gain !M! ${ModID}:Aegis.}!WEIGHT!"
   },
   "${ModID}:Launder": {
     "NAME": "Launder",
     "DESCRIPTION": "Gain !M! ${ModID}:Tix.!WEIGHT!"
+  },
+  "${ModID}:Overextend": {
+    "NAME": "Overextend",
+    "DESCRIPTION": "!HIT!. NL Your next {!M!|1=card|@=!M! cards} will not ${ModID}:Hit or ${ModID}:Guard.",
+    "EXTENDED_DESCRIPTION": [
+      "Overextended",
+      "Your next card will not #yHit or #yGuard.",
+      "Your next #b",
+      " cards will not #yHit or #yGuard."
+    ]
+  },
+  "${ModID}:ExpressDelivery": {
+    "NAME": "Express Delivery",
+    "DESCRIPTION": "!HITRANDOM!. NL ${ModID}:Stamp !M! card{!M!|1=|@=s} at random."
+  },
+  "${ModID}:ReapRewards": {
+    "NAME": "ReapRewards",
+    "DESCRIPTION": "Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
+  },
+  "${ModID}:Fortify": {
+    "NAME": "Fortify",
+    "DESCRIPTION": "!GUARD!."
+  },
+  "${ModID}:FromAllSides": {
+    "NAME": "From All Sides",
+    "DESCRIPTION": "!HIT!."
+  },
+  "${ModID}:ProfitMargin": {
+    "NAME": "Profit Margin",
+    "DESCRIPTION": "Whenever you spend ${ModID}:Tix, gain !M! Block.",
+    "EXTENDED_DESCRIPTION": [
+        "Progit Margin",
+        "Whenever you spend #yTix, gain #b",
+        " #yBlock."
+    ]
+  },
+  "${ModID}:SealOfApproval": {
+    "NAME": "Seal of Approval",
+    "DESCRIPTION": "Whenever you play a card, gain !M! Block per ${ModID}:Stamp on it.",
+    "EXTENDED_DESCRIPTION": [
+        "Seal of Approval",
+        "Whenever you play a card, gain #b",
+        " #yBlock per #yStamp on it."
+    ]
+  },
+  "${ModID}:DivineProtection": {
+    "NAME": "Divine Protection",
+    "DESCRIPTION": "Gain !M!X ${ModID}:Aegis.{!${ModID}:m2!|>0= NL Gain }{!${ModID}:m2!|repeat= [E]}{!${ModID}:m2!|>0=.}"
+  },
+  "${ModID}:Readied": {
+    "NAME": "Readied",
+    "DESCRIPTION": "Gain !M!X Vigor.{!${ModID}:m2!|>0= NL Gain }{!${ModID}:m2!|repeat= [E]}{!${ModID}:m2!|>0=.}"
+  },
+  "${ModID}:SpinOut": {
+    "NAME": "Spin Out",
+    "DESCRIPTION": "${ModID}:Hit a random enemy !${ModID}:m2! to !M! times."
   }
 }

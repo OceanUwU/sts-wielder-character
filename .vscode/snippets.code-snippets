@@ -67,6 +67,24 @@
             
         ]
     },
+	"Lambda Power": {
+		"prefix": "pwr",
+		"scope": "java",
+		"body": [
+"new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.${1|BUFF,DEBUFF|}, ${2|true,false|}, $3, magicNumber) {",
+"    $0",
+"    ",
+"    @Override public void updateDescription() {",
+"        description = strings[1] + amount + strings[2];",
+"    }",
+"}"
+		],
+	},
+	"Print": {
+		"prefix": "print",
+		"scope": "java",
+		"body": "System.out.println($0);",
+	},
 	"Tix": {
 		"prefix": "gaintix",
 		"body": "{!M!|>0= NL Gain !M! \\${ModID}:Tix.}"
