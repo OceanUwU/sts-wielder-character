@@ -240,10 +240,12 @@ public class Wiz {
     }
 
     public static void getTix(int amount) {
+        if (amount == 0) return;
         atb(new GainTixAction(amount));
     }
 
     public static void getTixTop(int amount) {
+        if (amount == 0) return;
         att(new GainTixAction(amount));
     }
 

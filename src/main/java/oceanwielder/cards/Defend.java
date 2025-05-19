@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.Arrays;
 import java.util.List;
-import oceanwielder.powers.AegisPower;
 import oceanwielder.wieldables.WieldableLibrary;
 
 import static oceanwielder.WielderMod.makeID;
-import static oceanwielder.util.Wiz.*;
 
 public class Defend extends AbstractWielderCard {
     public final static String ID = makeID("Defend");

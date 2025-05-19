@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -64,6 +65,9 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     private boolean betaTexture;
 
+    @SpireEnum public static CardTags Stab;
+    @SpireEnum public static CardTags Jab;
+
     public AbstractWielderCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
     }
@@ -105,7 +109,7 @@ public abstract class AbstractWielderCard extends CustomCard {
                     rawDescription = sharedStrings[11] + " " + rawDescription;
             }
             if (exhaust)
-                rawDescription += (cardStrings.DESCRIPTION == "" ? "" : " NL ") + sharedStrings[8];
+                rawDescription += (cardStrings.DESCRIPTION.length() == 0 ? "" : " NL ") + sharedStrings[8];
         }
         super.initializeDescription();
     }

@@ -187,6 +187,10 @@ public class Stamps {
         return modifier.amount;
     }
 
+    public static boolean isStamped(AbstractCard c) {
+        return getStamps(c) > 0;
+    }
+
     @SpirePatch(clz=AbstractCard.class, method="initializeDescription")
     public static class AddKeyword {
         private static String STAMP_KEYWORD_ID = makeID("stamp");

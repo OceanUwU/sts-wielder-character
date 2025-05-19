@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static oceanwielder.WielderMod.makeID;
-import static oceanwielder.util.Wiz.*;
 
 public class Twirl extends AbstractWielderCard {
     public final static String ID = makeID(Twirl.class.getSimpleName());

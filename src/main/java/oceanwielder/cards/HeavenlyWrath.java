@@ -23,6 +23,7 @@ public class HeavenlyWrath extends AbstractWielderCard {
         hit(m);
         wield(weapon);
         actB(() -> {
+            if (!(WielderMod.weaponSlot.wieldable instanceof Hammer)) return;
             WielderMod.weaponSlot.wieldable.baseDequipPower += magicNumber;
             WielderMod.weaponSlot.wieldable.applyPowers();
         });

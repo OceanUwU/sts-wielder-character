@@ -4,13 +4,11 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import java.util.Arrays;
 import java.util.List;
 import oceanwielder.wieldables.WieldableLibrary;
 
 import static oceanwielder.WielderMod.makeID;
-import static oceanwielder.util.Wiz.*;
 
 public class Strike extends AbstractWielderCard {
     public final static String ID = makeID("Strike");
@@ -29,7 +27,6 @@ public class Strike extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        if (magicNumber > 0)
-            applyToSelf(new VigorPower(p, magicNumber));
+        gainVigor(magicNumber);
     }
 }

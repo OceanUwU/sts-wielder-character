@@ -17,10 +17,11 @@ import static oceanwielder.util.Wiz.*;
 
 public class Crossbow extends AbstractWeapon {
     public static String ID = makeID("Crossbow");
-    private static int DAMAGE_WHEN_EMPTY = 2;
+    public static final int DAMAGE = 13;
+    private static final int DAMAGE_WHEN_EMPTY = 2;
 
     public Crossbow() {
-        super(ID, 13, 6, -1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        super(ID, DAMAGE, 6, -1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         vfxCanAffectAll = true;
     }
 

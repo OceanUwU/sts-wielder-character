@@ -12,15 +12,16 @@ public class ShovelKnightCard extends AbstractWielderCard {
     public final static String ID = makeID("ShovelKnightCard");
 
     public ShovelKnightCard() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        setGuards(2);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF);
+        setHits(1, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        hit(m);
         boolean upped = upgraded;
         atb(new SelectCardsInHandAction(cardStrings.EXTENDED_DESCRIPTION[0], cards -> {
-            if (cards.get(0).type.equals(CardType.ATTACK) || upped)
-                guardTop();
+            if (cards.get(0).type.equals(CardType.ATTACK) && !upped)
+                hitTop(m, 1);
             att(new ExhaustSpecificCardAction(cards.get(0), p.hand));
         }));
     }

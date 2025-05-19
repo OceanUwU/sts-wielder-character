@@ -11,7 +11,6 @@ import static oceanwielder.WielderMod.makeID;
 public class EasyModalChoiceCard extends AbstractWielderCard {
     private Runnable onUseOrChosen;
     private String passedName;
-    private String passedDesc;
 
     public EasyModalChoiceCard(String name, Runnable onUseOrChosen) {
         super(makeID(name), -2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);

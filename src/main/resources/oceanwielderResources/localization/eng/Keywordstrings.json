@@ -26,7 +26,8 @@
     "PROPER_NAME": "Stamp",
     "NAMES": [
       "stamp",
-      "stamped"
+      "stamped",
+      "stamps"
     ],
     "DESCRIPTION": "Playing stamped cards grants #yMoxie. When you reach #b5 #yMoxie, gain [E] ."
   },
@@ -120,7 +121,7 @@
     "NAMES": [
       "kite"
     ],
-    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. Gain #b!S! #yBlock next turn. NL Dequip: Gain #b!D! #yTix."
+    "DESCRIPTION": "Shield. NL #yGuard: Gain #b!P! #yBlock. Gain #b!S! #yVigor. NL Dequip: Gain #b!D! #yStrength."
   },
   {
     "PROPER_NAME": "Weight",

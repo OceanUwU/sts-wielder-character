@@ -25,10 +25,6 @@
     "NAME": "Defend",
     "DESCRIPTION": "!GUARD!.{!M!|>0= NL Gain !M! ${ModID}:Aegis.}"
   },
-  "${ModID}:Cleave2": {
-    "NAME": "Cleave 2",
-    "DESCRIPTION": "!HITALL!."
-  },
   "${ModID}:Wax": {
     "NAME": "Wax",
     "DESCRIPTION": "!GUARD!. NL {!Upgrades!|>0=Upgrade and }${ModID}:Stamp your hand."
@@ -79,17 +75,17 @@
   },
   "${ModID}:TakeAim": {
     "NAME": "Take Aim",
-    "DESCRIPTION": "!WW!.{!M!|>0= NL Increase its initial damage by !M!.}"
+    "DESCRIPTION": "!WW!.{!M!|0=|@= NL Set its damage to !${ModID}:m2!.}"
   },
   "${ModID}:ShovelKnightCard": {
-    "NAME": "shovel knigoht after he',s force to return his shovel to home depot",
-    "DESCRIPTION": "Exhaust 1 card. NL {!Upgrades!|0=If it's an Attack, }!GUARD!.",
+    "NAME": "Reuse",
+    "DESCRIPTION": "!HIT!. NL Exhaust 1 card.{!Upgrades!|0= NL If it's an Attack, ${ModID}:Hit again.}",
     "EXTENDED_DESCRIPTION": [
       "Exhaust"
     ]
   },
   "${ModID}:WieldKite": {
-    "NAME": "Wield Kite",
+    "NAME": "Heavy Metal",
     "DESCRIPTION": "!WS!.!WEIGHT!"
   },
   "${ModID}:DoubleUp": {
@@ -111,5 +107,58 @@
   "${ModID}:CloseUpShop": {
     "NAME": "Close Up Shop",
     "DESCRIPTION": "!GUARD!. NL Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
+  },
+  "${ModID}:PaperTrail": {
+    "NAME": "Paper Trail",
+    "DESCRIPTION": "If the last card played this combatt was ${ModID}:Stamped, !Guard!."
+  },
+  "${ModID}:StabStab": {
+    "NAME": "Stab Stab",
+    "DESCRIPTION": "!HIT!.{!M!|>0= NL Gain !M! Vigor.}"
+  },
+  "${ModID}:AirSlice": {
+    "NAME": "Air Slice",
+    "DESCRIPTION": "!HITALL!.{!M!|>0= NL Gain !M! Vigor.}"
+  },
+  "${ModID}:DetectFlaws": {
+    "NAME": "Detect Flaws",
+    "DESCRIPTION": "Apply !M! Vulnerable.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
+  },
+  "${ModID}:Leer": {
+    "NAME": "Leer",
+    "DESCRIPTION": "Apply !M! Weak.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
+  },
+  "${ModID}:CinchUp": {
+    "NAME": "Cinch Up",
+    "DESCRIPTION": "!GUARD!. NL Gain !M! Strength.!WEIGHT!"
+  },
+  "${ModID}:LightJab": {
+    "NAME": "Light Jab",
+    "DESCRIPTION": "!HIT!.{!M!|>0= NL Gain !M! Vigor.}"
+  },
+  "${ModID}:LilSpin": {
+    "NAME": "Lil' Spin",
+    "DESCRIPTION": "!GUARD!.{!M!|>0= NL Gain !M! ${ModID}:Aegis.}"
+  },
+  "${ModID}:InkSpill": {
+    "NAME": "Ink Spill",
+    "DESCRIPTION": "!HIT!. NL ${ModID}:Stamp !M! card{!M!|>0=s} in your draw pile."
+  },
+  "${ModID}:OverAndOver": {
+    "NAME": "Over And Over",
+    "DESCRIPTION": "{!${ModID}:h!|1=${ModID}:Hit. NL |@={ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each card played this turn.",
+    "EXTENDED_DESCRIPTION": [
+        " NL (",
+        " card played.)",
+        " cards played.)"
+    ]
+  },
+  "${ModID}:Catalogue": {
+    "NAME": "Catalogue",
+    "DESCRIPTION": "${ModID}:Stamp your hand.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}!WEIGHT!"
+  },
+  "${ModID}:Launder": {
+    "NAME": "Launder",
+    "DESCRIPTION": "Gain !M! ${ModID}:Tix.!WEIGHT!"
   }
 }
