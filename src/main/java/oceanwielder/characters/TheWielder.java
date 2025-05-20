@@ -16,17 +16,21 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import java.util.ArrayList;
+import java.util.List;
 import oceanwielder.cards.Defend;
 import oceanwielder.cards.Guzzle;
 import oceanwielder.cards.Strike;
 import oceanwielder.cards.Twirl;
 import oceanwielder.relics.TodoItem;
+import oceanwielder.vfx.WielderVictoryEffect;
 
 public class TheWielder extends CustomPlayer {
     static final String ID = makeID("ModdedCharacter");
@@ -167,6 +171,26 @@ public class TheWielder extends CustomPlayer {
     @Override
     public String getVampireText() {
         return TEXT[2];
+    }
+
+    private static boolean endEffectStarted = false;
+    @Override
+    public List<CutscenePanel> getCutscenePanels() {
+        endEffectStarted = false;
+        return super.getCutscenePanels();
+        //List<CutscenePanel> panels = new ArrayList<>();
+        //panels.add(new CutscenePanel(makeImagePath("ending/1.png"), "RELIC_DROP_CLINK"));
+        //panels.add(new CutscenePanel(makeImagePath("ending/2.png")));
+        //panels.add(new CutscenePanel(makeImagePath("ending/3.png")));
+        //return panels;
+    }
+
+    @Override
+    public void updateVictoryVfx(ArrayList<AbstractGameEffect> effects) {
+        if (!endEffectStarted) {
+            effects.add(new WielderVictoryEffect());
+            endEffectStarted = true;
+        }
     }
 
     public static class Enums {

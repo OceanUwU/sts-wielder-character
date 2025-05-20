@@ -2,6 +2,7 @@ package oceanwielder.wieldables;
 
 import oceanwielder.wieldables.shields.*;
 import oceanwielder.wieldables.weapons.*;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import java.util.HashMap;
 
@@ -33,24 +34,24 @@ public class WieldableLibrary {
         return wieldables.get(id);
     }
 
-    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from, AbstractWieldable exclude) {
+    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from, AbstractWieldable exclude, boolean useRng) {
         while (true) {
-            AbstractWieldable wieldable = ((AbstractWieldable)from.values().toArray()[AbstractDungeon.cardRandomRng.random(from.size() - 1)]);
+            AbstractWieldable wieldable = ((AbstractWieldable)from.values().toArray()[useRng ? AbstractDungeon.cardRandomRng.random(from.size() - 1) : MathUtils.random(from.size() - 1)]);
             if (exclude == null || wieldable.getClass() != exclude.getClass())
-                return wieldable.makeCopy();
+                return wieldable;
         }
     }
 
-    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from) {
-        return getRandomWieldable(from, null);
+    public static AbstractWieldable getRandomWieldable(HashMap<String, ? extends AbstractWieldable> from, boolean useRng) {
+        return getRandomWieldable(from, null, useRng);
     }
 
-    public static AbstractWieldable getRandomWieldable(AbstractWieldable exclude) {
-        return getRandomWieldable(wieldables, exclude);
+    public static AbstractWieldable getRandomWieldable(AbstractWieldable exclude, boolean useRng) {
+        return getRandomWieldable(wieldables, exclude, useRng);
     }
 
-    public static AbstractWieldable getRandomWieldable() {
-        return getRandomWieldable(wieldables, null);
+    public static AbstractWieldable getRandomWieldable(boolean useRng) {
+        return getRandomWieldable(wieldables, null, useRng);
     }
 
     private static void add(AbstractWieldable wieldable) {
