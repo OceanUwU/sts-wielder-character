@@ -33,27 +33,30 @@ public abstract class AbstractShield extends AbstractWieldable {
     }
 
     @Override
-    public void applyPowers() {
-        if (sim == null) {
-            sim = new Defend_Red();
-            sim.tags.clear();
+    public void applyPowers(AbstractCard c) {
+        if (c == null) {
+            if (sim == null) {
+                sim = new Defend_Red();
+                sim.tags.clear();
+            }
+            c = sim;
         }
-        super.applyPowers();
-        sim.baseBlock = basePrimary;
-        sim.applyPowers();
-        primary = Math.max(sim.block, 0);
+        super.applyPowers(c);
+        c.baseBlock = basePrimary;
+        c.applyPowers();
+        primary = Math.max(c.block, 0);
         primaryTimes += Wiz.pwrAmt(adp(), GuardUpPower.POWER_ID);
         updateDescription();
     }
 
     @Override
-    public void use(AbstractMonster m) {
-        blck();
+    public void use(AbstractCard c, AbstractMonster m) {
+        blck(c);
         vfxTop(new ShieldPulseEffect(this));
     }
 
-    protected void blck() {
-        applyPowers();
+    protected void blck(AbstractCard c) {
+        applyPowers(c);
         for (int i = 0; i < primaryTimes; i++)
             att(new GainBlockAction(adp(), primary, true));
     }

@@ -10,6 +10,7 @@ public class LightJab extends AbstractWielderCard {
 
     public LightJab() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        tags.add(Jab);
         setHits(1);
         setMagic(0, +2);
     }

@@ -308,7 +308,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     public void upp() {};
 
     private AbstractGameAction hitAction(AbstractMonster m, int amt) {
-        return new HitAction(m, amt, true);
+        return new HitAction(m, amt, this);
     }
 
     protected void hit(AbstractMonster m) {
@@ -344,7 +344,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction hitAllAction(int amt) {
-        return new HitAllAction(amt, true);
+        return new HitAllAction(amt, this);
     }
 
     protected void hitAll() {
@@ -364,7 +364,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction guardAction(int amt) {
-        return new GuardAction(amt, true);
+        return new GuardAction(amt, this);
     }
 
     protected void guard() {

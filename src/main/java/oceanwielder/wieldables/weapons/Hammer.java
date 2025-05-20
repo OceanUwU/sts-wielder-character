@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,8 +24,8 @@ public class Hammer extends AbstractWeapon {
         super(ID, 6, 2, 5, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
-    public void use(AbstractMonster m) {
-        super.use(m);
+    public void use(AbstractCard c, AbstractMonster m) {
+        super.use(c, m);
         baseDequipPower += secondary;
         applyPowers();
     }

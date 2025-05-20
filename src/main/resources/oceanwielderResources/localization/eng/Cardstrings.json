@@ -110,7 +110,7 @@
   },
   "${ModID}:PaperTrail": {
     "NAME": "Paper Trail",
-    "DESCRIPTION": "If the last card played this combatt was ${ModID}:Stamped, !Guard!."
+    "DESCRIPTION": "If the last card played this combat was ${ModID}:Stamped, !GUARD!."
   },
   "${ModID}:StabStab": {
     "NAME": "Stab Stab",
@@ -146,7 +146,7 @@
   },
   "${ModID}:OverAndOver": {
     "NAME": "Over And Over",
-    "DESCRIPTION": "{!${ModID}:h!|1=${ModID}:Hit. NL |@={ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each card played this turn.",
+    "DESCRIPTION": "{!${ModID}:h!|0=|1=${ModID}:Hit. NL |@=${ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each card played this turn.",
     "EXTENDED_DESCRIPTION": [
       " NL (",
       " card played.)",
@@ -216,5 +216,33 @@
   "${ModID}:SpinOut": {
     "NAME": "Spin Out",
     "DESCRIPTION": "${ModID}:Hit a random enemy !${ModID}:m2! to !M! times."
+  },
+  "${ModID}:Perpetuity": {
+    "NAME": "Perpetuity",
+    "DESCRIPTION": "Prevent the next {!M!|1=time|@=!M! times} you would consume Vigor or ${ModID}:Aegis.",
+    "EXTENDED_DESCRIPTION": [
+      "Perpetuity",
+      "Prevent the next time you would consume #yVigor or #yAegis.",
+      "Prevent the next #b",
+      " times you would consume #yVigor or #yAegis."
+    ]
+  },
+  "${ModID}:Invest": {
+    "NAME": "Invest",
+    "DESCRIPTION": "{!M!|>0=Gain !M! ${ModID}:Tix. NL }Put a card from your discard pile on top of your draw pile."
+  },
+  "${ModID}:Exploit": {
+    "NAME": "Exploit",
+    "DESCRIPTION": "!HIT!. NL The next !M! time{!M!|>1=s} you hit this enemy, NL gain [E].",
+    "EXTENDED_DESCRIPTION": [
+        "Exploit",
+        "The next #b",
+        " time you #yHit this enemy, gain [E] .",
+        " times you #yHit this enemy, gain [E] ."
+    ]
+  },
+  "${ModID}:ThunderOvation": {
+    "NAME": "Thunder Ovation",
+    "DESCRIPTION": "!HIT!. Apply !M! Vulnerable to them."
   }
 }

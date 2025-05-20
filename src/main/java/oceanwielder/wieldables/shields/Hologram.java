@@ -1,5 +1,6 @@
 package oceanwielder.wieldables.shields;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import oceanwielder.actions.GainTixAction;
@@ -15,9 +16,9 @@ public class Hologram extends AbstractShield {
     }
 
     @Override
-    public void use(AbstractMonster m) {
+    public void use(AbstractCard c, AbstractMonster m) {
         applyToSelfTop(new NextTurnBlockPower(adp(), secondary));
-        super.use(m);
+        super.use(c, m);
     }
 
     public void dequipEffect() {

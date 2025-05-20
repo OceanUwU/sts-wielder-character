@@ -122,12 +122,14 @@ public class Wiz {
         return CardCrawlGame.isInARun() && AbstractDungeon.currMapNode != null && AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT;
     }
 
-    public static void atb(AbstractGameAction action) {
-        AbstractDungeon.actionManager.addToBottom(action);
+    public static void atb(AbstractGameAction... actions) {
+        for (AbstractGameAction action : actions)
+            AbstractDungeon.actionManager.addToBottom(action);
     }
 
-    public static void att(AbstractGameAction action) {
-        AbstractDungeon.actionManager.addToTop(action);
+    public static void att(AbstractGameAction... actions) {
+        for (int i = actions.length - 1; i >= 0; i--)
+            AbstractDungeon.actionManager.addToTop(actions[i]);
     }
 
     public static void vfx(AbstractGameEffect gameEffect) {

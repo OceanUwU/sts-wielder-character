@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -92,9 +93,10 @@ public abstract class AbstractWieldable {
         return AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
     }
 
-    public abstract void use(AbstractMonster m);
-    public void useOnAll() {
-        forAllMonstersLivingBackwards(mo -> use(mo));
+    public abstract void use(AbstractCard c, AbstractMonster m);
+    //public void use(AbstractMonster m) { use(null, m); };
+    public void useOnAll(AbstractCard c) {
+        forAllMonstersLivingBackwards(mo -> use(c, mo));
     }
 
     public abstract void dequipEffect();
@@ -122,7 +124,8 @@ public abstract class AbstractWieldable {
         dequipping = false;
     }
 
-    public void applyPowers() {
+    public void applyPowers() { applyPowers(null); }
+    public void applyPowers(AbstractCard c) {
         primary = basePrimary;
         secondary = baseSecondary;
         dequipPower = baseDequipPower;

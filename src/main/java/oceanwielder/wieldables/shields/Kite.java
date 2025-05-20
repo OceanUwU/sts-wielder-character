@@ -1,5 +1,6 @@
 package oceanwielder.wieldables.shields;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
@@ -15,9 +16,9 @@ public class Kite extends AbstractShield {
     }
 
     @Override
-    public void use(AbstractMonster m) {
+    public void use(AbstractCard c, AbstractMonster m) {
         applyToSelfTop(new VigorPower(adp(), secondary));
-        super.use(m);
+        super.use(c, m);
     }
 
     public void dequipEffect() {

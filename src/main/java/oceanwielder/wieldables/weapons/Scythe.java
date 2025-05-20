@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -21,9 +22,9 @@ public class Scythe extends AbstractWeapon {
         super(ID, 5, 2, 1, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
-    public void use(AbstractMonster m) {
+    public void use(AbstractCard c, AbstractMonster m) {
         applyToSelfTop(new AegisPower(adp(), secondary));
-        super.use(m);
+        super.use(c, m);
     }
 
     public void useVfx(AbstractMonster m) {

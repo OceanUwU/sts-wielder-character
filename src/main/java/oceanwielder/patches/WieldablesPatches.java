@@ -88,7 +88,7 @@ public class WieldablesPatches {
                     WielderMod.weaponSlot.shouldRender = true;
                     if (!hoveredMonsterLastFrame)
                         WielderMod.weaponSlot.wieldable.fontScale = 1.5f;
-                    ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(hoveredMonster);
+                    ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(p.hoveredCard, hoveredMonster);
                     hoveredMonsterLastFrame = true;
                 } else if (p.hoveredCard.target == AbstractCard.CardTarget.ALL_ENEMY || p.hoveredCard.target == AbstractCard.CardTarget.ALL) {
                     WielderMod.weaponSlot.shouldRender = true;
@@ -99,7 +99,7 @@ public class WieldablesPatches {
                     if (theMonster != null) {
                         if (!hoveredMonsterLastFrame)
                             WielderMod.weaponSlot.wieldable.fontScale = 1.5f;
-                        ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(hoveredMonster);
+                        ((AbstractWeapon)WielderMod.weaponSlot.wieldable).calculateDamage(p.hoveredCard, hoveredMonster);
                         hoveredMonsterLastFrame = true;
                     } else
                         hoveredMonsterLastFrame = false;

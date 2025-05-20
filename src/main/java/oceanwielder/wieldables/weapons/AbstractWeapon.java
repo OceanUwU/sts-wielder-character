@@ -43,11 +43,12 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        getSim().baseDamage = basePrimary;
-        sim.applyPowers();
-        primary = Math.max(sim.damage, 0);
+    public void applyPowers(AbstractCard c) {
+        super.applyPowers(c);
+        if (c == null) c = getSim();
+        c.baseDamage = basePrimary;
+        c.applyPowers();
+        primary = Math.max(c.damage, 0);
         primaryTimes += Wiz.pwrAmt(adp(), HitUpPower.POWER_ID);
         updateDescription();
     }
@@ -60,24 +61,31 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         return sim;
     }
 
-    public void calculateDamage(AbstractMonster m) {
-        getSim().baseDamage = basePrimary;
-        sim.calculateCardDamage(m);
-        primary = sim.damage;
+    public int calculateDamage(AbstractMonster m) {
+        return calculateDamage(null, m);
+    }
+
+    public int calculateDamage(AbstractCard c, AbstractMonster m) {
+        if (c == null) c = getSim();
+        c.baseDamage = basePrimary;
+        c.calculateCardDamage(m);
+        primary = c.damage;
+        return primary;
     }
 
     @Override
-    public void use(AbstractMonster m) {
+    public void use(AbstractCard c, AbstractMonster m) {
         if (m == null) 
             m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         if (m.isDeadOrEscaped()) return;
-        dmg(m);
+        System.out.println(c);
+        dmg(c, m);
         useVfx(m);
     }
 
     @Override
-    public void useOnAll() {
-        dmgAll();
+    public void useOnAll(AbstractCard c) {
+        dmgAll(c);
         if (vfxCanAffectAll)
             forAllMonstersLivingBackwards(mo -> useVfx(mo));
         else
@@ -86,15 +94,16 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     abstract void useVfx(AbstractMonster m);
 
-    private void dmg(AbstractMonster m) {
-        calculateDamage(m);
+    private void dmg(AbstractCard c, AbstractMonster m) {
+        calculateDamage(c, m);
         for (int i = 0; i < primaryTimes; i++)
             att(new DamageAction(m, new DamageInfo(adp(), primary, DamageInfo.DamageType.NORMAL), attackEffect, true));
     }
 
-    private void dmgAll() {
+    private void dmgAll(AbstractCard c) {
         for (int i = 0; i < primaryTimes; i++) {
-            AbstractGameAction action = new DamageAllEnemiesAction(adp(), primary, DamageInfo.DamageType.NORMAL, attackEffect);
+            int[] dmg = AbstractDungeon.getCurrRoom().monsters.monsters.stream().mapToInt(m -> calculateDamage(c, m)).toArray();
+            AbstractGameAction action = new DamageAllEnemiesAction(adp(), dmg, DamageInfo.DamageType.NORMAL, attackEffect);
             ReflectionHacks.setPrivate(action, AbstractGameAction.class, "duration", Settings.ACTION_DUR_XFAST);
             att(action);
         }

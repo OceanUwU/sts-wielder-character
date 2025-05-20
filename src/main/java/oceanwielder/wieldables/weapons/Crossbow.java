@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -26,13 +27,13 @@ public class Crossbow extends AbstractWeapon {
     }
 
     @Override
-    public void use(AbstractMonster m) {
+    public void use(AbstractCard c, AbstractMonster m) {
         if (baseSecondary > 0)
             actT(() -> {
                 if (baseSecondary <= 0)
                     texture = getTexture(id + "Empty");
             });
-        super.use(m);
+        super.use(c, m);
         if (baseSecondary > 0) {
             baseSecondary -= 1;
             if (baseSecondary <= 0) {
