@@ -19,7 +19,7 @@ public class ShovelKnightCard extends AbstractWielderCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
         boolean upped = upgraded;
-        atb(new SelectCardsInHandAction(cardStrings.EXTENDED_DESCRIPTION[0], cards -> {
+        atb(new SelectCardsInHandAction(exDesc[0], cards -> {
             if (cards.get(0).type.equals(CardType.ATTACK) && !upped)
                 hitTop(m, 1);
             att(new ExhaustSpecificCardAction(cards.get(0), p.hand));

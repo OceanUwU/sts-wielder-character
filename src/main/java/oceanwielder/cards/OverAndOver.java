@@ -20,11 +20,11 @@ public class OverAndOver extends AbstractWielderCard {
         int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
 
         rawDescription = cardStrings.DESCRIPTION;
-        rawDescription = rawDescription + cardStrings.EXTENDED_DESCRIPTION[0] + count;
+        rawDescription = rawDescription + exDesc[0] + count;
         if (count == 1) {
-            rawDescription = rawDescription + cardStrings.EXTENDED_DESCRIPTION[1];
+            rawDescription = rawDescription + exDesc[1];
         } else {
-            rawDescription = rawDescription + cardStrings.EXTENDED_DESCRIPTION[2];
+            rawDescription = rawDescription + exDesc[2];
         }
 
         initializeDescription();

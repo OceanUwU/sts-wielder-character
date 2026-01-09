@@ -19,7 +19,7 @@ public class Slam extends AbstractWielderCard {
         super.applyPowers();
         int count = pwrAmt(adp(), Weight.POWER_ID);
 
-        rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0] + count + cardStrings.EXTENDED_DESCRIPTION[1];
+        rawDescription = cardStrings.DESCRIPTION + exDesc[0] + count + exDesc[1];
 
         initializeDescription();
     }

@@ -35,7 +35,7 @@
   },
   "${ModID}:Swindle": {
     "NAME": "Swindle",
-    "DESCRIPTION": "!HIT!. NL Gain !M! ${ModID}:Tix."
+    "DESCRIPTION": "!HIT!. NL Gain{!M!|repeat= [${ModID}:TixIcon]} ."
   },
   "${ModID}:SpinnySticks": {
     "NAME": "Spinny Sticks",
@@ -106,7 +106,7 @@
   },
   "${ModID}:CloseUpShop": {
     "NAME": "Close Up Shop",
-    "DESCRIPTION": "!GUARD!. NL Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
+    "DESCRIPTION": "!GUARD!. NL Gain{!M!|repeat= [${ModID}:TixIcon]} .{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
   },
   "${ModID}:PaperTrail": {
     "NAME": "Paper Trail",
@@ -142,7 +142,10 @@
   },
   "${ModID}:InkSpill": {
     "NAME": "Ink Spill",
-    "DESCRIPTION": "!HIT!. NL ${ModID}:Stamp !M! card{!M!|>0=s} in your draw pile."
+    "DESCRIPTION": "!HIT!. NL ${ModID}:Stamp !M! card{!M!|>0=s} in your draw pile.",
+    "EXTENDED_DESCRIPTION": [
+      "Select cards to Stamp."
+    ]
   },
   "${ModID}:OverAndOver": {
     "NAME": "Over And Over",
@@ -175,7 +178,7 @@
   },
   "${ModID}:Launder": {
     "NAME": "Launder",
-    "DESCRIPTION": "Gain !M! ${ModID}:Tix.!WEIGHT!"
+    "DESCRIPTION": "Gain{!M!|repeat= [${ModID}:TixIcon]} .!WEIGHT!"
   },
   "${ModID}:Overextend": {
     "NAME": "Overextend",
@@ -193,7 +196,7 @@
   },
   "${ModID}:ReapRewards": {
     "NAME": "Reap Rewards",
-    "DESCRIPTION": "Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
+    "DESCRIPTION": "Gain{!M!|repeat= [${ModID}:TixIcon]} .{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
   },
   "${ModID}:Fortify": {
     "NAME": "Fortify",
@@ -205,7 +208,7 @@
   },
   "${ModID}:ProfitMargin": {
     "NAME": "Profit Margin",
-    "DESCRIPTION": "Whenever you spend ${ModID}:Tix, gain !M! Block.",
+    "DESCRIPTION": "Whenever you spend [${ModID}:TixIcon] , gain !M! Block.",
     "EXTENDED_DESCRIPTION": [
       "Progit Margin",
       "Whenever you spend #yTix, gain #b",
@@ -245,16 +248,16 @@
   },
   "${ModID}:Invest": {
     "NAME": "Invest",
-    "DESCRIPTION": "{!M!|>0=Gain !M! ${ModID}:Tix. NL }Put a card from your discard pile on top of your draw pile."
+    "DESCRIPTION": "Gain {!M!|>0=Gain{!M!|repeat= [${ModID}:TixIcon]} . NL Put a card from your discard pile on top of your draw pile."
   },
   "${ModID}:Exploit": {
     "NAME": "Exploit",
-    "DESCRIPTION": "!HIT!. NL The next !M! time{!M!|>1=s} you hit this enemy, NL gain [E].",
+    "DESCRIPTION": "!HIT!. NL The next !M! time{!M!|>1=s} you attack this enemy, NL gain [E].",
     "EXTENDED_DESCRIPTION": [
       "Exploit",
       "The next #b",
-      " time you #yHit this enemy, gain [E] .",
-      " times you #yHit this enemy, gain [E] ."
+      " time you attack this enemy, gain [E] .",
+      " times you attack this enemy, gain [E] ."
     ]
   },
   "${ModID}:ThunderOvation": {
@@ -275,7 +278,7 @@
   },
   "${ModID}:SavingsAccount": {
     "NAME": "Savings Account",
-    "DESCRIPTION": "At the start of your turn, gain !M! ${ModID}:Tix{!${ModID}:m2!|1= and draw 1 fewer card|>1= and draw !${ModID}:m2! fewer cards}.",
+    "DESCRIPTION": "At the start of your turn, gain {!M!|repeat= [${ModID}:TixIcon]}{!${ModID}:m2!|1= and draw 1 fewer card|>1= and draw !${ModID}:m2! fewer cards|@= }.",
     "EXTENDED_DESCRIPTION": [
       "Saving",
       "At the start of your turn, gain #b",
@@ -300,7 +303,7 @@
   },
   "${ModID}:SendIt": {
     "NAME": "Send It",
-    "DESCRIPTION": "Play a ${ModID}:Stamped card from your draw or discard pile.!WEIGHT!",
+    "DESCRIPTION": "Play a ${ModID}:Stamped card from your {!Upgrades!|>0=draw or }discard pile.!WEIGHT!",
     "EXTENDED_DESCRIPTION": [
       "Select a card to play."
     ]
@@ -323,7 +326,7 @@
   },
   "${ModID}:CashOut": {
     "NAME": "Cash Out",
-    "DESCRIPTION": "!HIT!. NL Discard your hand. NL Gain !M! ${ModID}:Tix for each card discarded."
+    "DESCRIPTION": "!HIT!. NL Discard your hand. NL Gain{!M!|repeat= [${ModID}:TixIcon]} for each card discarded."
   },
   "${ModID}:FirstClass": {
     "NAME": "First Class",
@@ -341,11 +344,11 @@
   },
   "${ModID}:Payday": {
     "NAME": "Payday",
-    "DESCRIPTION": "Unplayable. NL When you draw this card, gain !M! ${ModID}:Tix and Exhaust."
+    "DESCRIPTION": "Unplayable. NL When you draw this card, gain{!M!|repeat= [${ModID}:TixIcon]} and Exhaust."
   },
   "${ModID}:MakeItRain": {
     "NAME": "Make It Rain",
-    "DESCRIPTION": "${ModID}:Hit for each ${ModID}:Tix spent this turn.",
+    "DESCRIPTION": "${ModID}:Hit for each [${ModID}:TixIcon] spent this turn.",
     "EXTENDED_DESCRIPTION": [
       " NL (",
       " Tix spent)"
@@ -384,7 +387,7 @@
   },
   "${ModID}:Inure": {
     "NAME": "Inure",
-    "DESCRIPTION": "Whenever you lose HP from ${ModID}:Weight, gain !M! ${ModID}:Tix and gain{!M!|repeat= [E]} next turn.",
+    "DESCRIPTION": "Whenever you lose HP from ${ModID}:Weight, NL gain{!M!|repeat= [${ModID}:TixIcon]} and NL gain{!M!|repeat= [E]} next turn.",
     "EXTENDED_DESCRIPTION": [
       "Inure",
       "Whenever you lose HP from #yWeight, gain #b",
@@ -394,7 +397,7 @@
   },
   "${ModID}:Splurge": {
     "NAME": "Splurge",
-    "DESCRIPTION": "${ModID}:Tix draw !M! additional card{!M!|>1=s}{!${ModID}:m2!|>0= and grant !${ModID}:m2! Block} this turn.",
+    "DESCRIPTION": "[${ModID}:TixIcon] draw !M! additional card{!M!|>1=s}{!${ModID}:m2!|>0= and grant !${ModID}:m2! Block} this turn.",
     "EXTENDED_DESCRIPTION": [
       "Splurge",
       "#yTix draw #b",
@@ -430,11 +433,11 @@
   },
   "${ModID}:Grandeur": {
     "NAME": "Grandeur",
-    "DESCRIPTION": "Whenever you spend ${ModID}:Tix, ${ModID}:Stamp the drawn card.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Tix.}",
+    "DESCRIPTION": "Whenever you spend NL [${ModID}:TixIcon] , ${ModID}:Stamp the drawn card.{!${ModID}:m2!|>0= NL Gain}{!${ModID}:m2!|repeat= [${ModID}:TixIcon]}{!${ModID}:m2!|>0= .}",
     "EXTENDED_DESCRIPTION": [
         "Grandeur",
-        "Whenever you draw a card with #yTix, stamp it.",
-        "Whenever you draw a card with #yTix, stamp it #b",
+        "Whenever you draw a card using #yTix, stamp it.",
+        "Whenever you draw a card using #yTix, stamp it #b",
         " times."
     ]
   },

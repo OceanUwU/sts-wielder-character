@@ -23,7 +23,7 @@
     "DESCRIPTION": "Increases the #yBlock of your next #yGuard."
   },
   {
-    "PROPER_NAME": "Stamp",
+    "PROPER_NAME": "[${ModID}:StampIcon] Stamp",
     "NAMES": [
       "stamp",
       "stamped",
@@ -32,7 +32,7 @@
     "DESCRIPTION": "Playing stamped cards grants #yMoxie. When you reach #b5 #yMoxie, gain [E] ."
   },
   {
-    "PROPER_NAME": "Tix",
+    "PROPER_NAME": "[${ModID}:TixIcon] Tix",
     "NAMES": [
       "tix"
     ],

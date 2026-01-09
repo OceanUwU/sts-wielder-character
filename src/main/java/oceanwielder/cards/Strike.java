@@ -4,7 +4,7 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import oceanwielder.wieldables.WieldableLibrary;
 
@@ -21,8 +21,11 @@ public class Strike extends AbstractWielderCard {
         tags.add(CardTags.STARTER_STRIKE);
     }
 
+    @Override
     public List<TooltipInfo> getCustomTooltips() {
-        return Arrays.asList(new TooltipInfo(WieldableLibrary.defaultWeapon.name, GameDictionary.keywords.get(WieldableLibrary.defaultWeapon.id.toLowerCase())));
+        ArrayList<TooltipInfo> list = new ArrayList<TooltipInfo>();
+        list.add(new TooltipInfo(WieldableLibrary.defaultWeapon.name, GameDictionary.keywords.get(WieldableLibrary.defaultWeapon.id.toLowerCase())));
+        return list;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

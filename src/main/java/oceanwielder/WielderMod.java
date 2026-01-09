@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -27,6 +29,10 @@ import oceanwielder.cards.AbstractWielderCard;
 import oceanwielder.cards.cardvars.*;
 import oceanwielder.characters.TheWielder;
 import oceanwielder.relics.AbstractWielderRelic;
+import oceanwielder.util.GuardIcon;
+import oceanwielder.util.HitIcon;
+import oceanwielder.util.StampIcon;
+import oceanwielder.util.TixIcon;
 import oceanwielder.util.WielderAudio;
 import oceanwielder.wieldables.AbstractWieldable;
 import oceanwielder.wieldables.WieldableLibrary;
@@ -148,6 +154,10 @@ public class WielderMod implements
 
     @Override
     public void receiveEditCards() {
+        CustomIconHelper.addCustomIcon(HitIcon.get());
+        CustomIconHelper.addCustomIcon(GuardIcon.get());
+        CustomIconHelper.addCustomIcon(TixIcon.get());
+        CustomIconHelper.addCustomIcon(StampIcon.get());
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new Hits());
         BaseMod.addDynamicVariable(new Guards());
