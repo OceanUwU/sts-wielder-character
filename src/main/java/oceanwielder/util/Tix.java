@@ -3,8 +3,11 @@ package oceanwielder.util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
@@ -16,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import java.util.ArrayList;
 import oceanwielder.powers.AbstractWielderPower;
 
 import static oceanwielder.WielderMod.makeID;
@@ -42,11 +46,13 @@ public class Tix {
     private static float targetAlpha = color.a;
     private static Hitbox hb = new Hitbox(SIZE, SIZE);
     public static float x, y;
+    public static int spentThisCombat, spentThisTurn;
 
     private static void reset() {
         amt = 0;
         targetAlpha = 0f;
         color.a = targetAlpha;
+        spentThisCombat = spentThisTurn = 0;
     }
 
     public static void move() {
@@ -69,15 +75,21 @@ public class Tix {
                     if (adp().hand.group.size() >= BaseMod.MAX_HAND_SIZE)
                         adp().createHandIsFullDialog();
                     else if (amt > 0) {
-                        att(new DrawCardAction(1, actionify(() -> {
+                        int drawn = 1;
+                        for (AbstractPower p : adp().powers)
+                            if (p instanceof AbstractWielderPower)
+                                drawn = ((AbstractWielderPower)p).changeCardsDrawnByTix(drawn);
+                        att(new DrawCardAction(drawn, actionify(() -> {
                             if (DrawCardAction.drawnCards.size() > 0) {
+                                spentThisCombat++;
+                                spentThisTurn++;
                                 fontScale *= 1.5f;
                                 amt--;
                                 if (amt <= 0)
                                     targetAlpha = 0f;
                                 for (AbstractPower p : adp().powers)
                                     if (p instanceof AbstractWielderPower)
-                                        ((AbstractWielderPower)p).onSpendTix(DrawCardAction.drawnCards.get(0));
+                                        ((AbstractWielderPower)p).onSpendTix((ArrayList<AbstractCard>)DrawCardAction.drawnCards.clone());
                             }
                         })));
                     }
@@ -125,6 +137,14 @@ public class Tix {
     public static class ResetPatch {
         public static void Postfix() {
             reset();
+        }
+    }
+
+    @SpirePatch(clz=GameActionManager.class, method="clear")
+    public static class ResetTrackedTurn {
+        @SpireInsertPatch(loc=452)
+        public static void Insert() {
+            spentThisTurn = 0;
         }
     }
 }

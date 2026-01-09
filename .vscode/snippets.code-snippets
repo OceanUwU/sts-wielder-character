@@ -71,7 +71,7 @@
 		"prefix": "pwr",
 		"scope": "java",
 		"body": [
-"new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.${1|BUFF,DEBUFF|}, ${2|true,false|}, $3, magicNumber) {",
+"new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.${1|BUFF,DEBUFF|}, ${2|false,true|}, $3, magicNumber) {",
 "    $0",
 "    ",
 "    @Override public void updateDescription() {",

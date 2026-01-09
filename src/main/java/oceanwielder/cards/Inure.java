@@ -1,33 +1,35 @@
 package oceanwielder.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import java.util.ArrayList;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import oceanwielder.powers.LambdaPower;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
 
-public class ProfitMargin extends AbstractWielderCard {
-    public final static String ID = makeID(ProfitMargin.class.getSimpleName());
+public class Inure extends AbstractWielderCard {
+    public final static String ID = makeID(Inure.class.getSimpleName());
 
-    public ProfitMargin() {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(3, +1);
+    public Inure() {
+        super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        setMagic(2, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToSelf(new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.BUFF, false, p, magicNumber) {
             @Override
-            public void onSpendTix(ArrayList<AbstractCard> drawn) {
+            public void onLoseHPFromWeight(int weight) {
                 flash();
-                att(new GainBlockAction(p, amount));
+                applyToSelfTop(new EnergizedPower(p, amount));
+                getTixTop(amount);
             }
-        
+            
             @Override public void updateDescription() {
                 description = strings[1] + amount + strings[2];
+                for (int i = 0; i < amount; i++)
+                    description += " [E]";
+                description += strings[3];
             }
         });
     }

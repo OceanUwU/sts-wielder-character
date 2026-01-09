@@ -8,9 +8,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import java.util.ArrayList;
 import oceanwielder.WielderMod;
 import oceanwielder.util.TexLoader;
+import oceanwielder.wieldables.AbstractWieldable;
 
 public abstract class AbstractWielderPower extends AbstractPower {
     public int amount2 = -1;
@@ -44,7 +47,13 @@ public abstract class AbstractWielderPower extends AbstractPower {
             updateDescription();
     }
 
-    public void onSpendTix(AbstractCard drawn) {}
+    public void onWield(AbstractWieldable wieldable) {}
+    public void onSpendTix(ArrayList<AbstractCard> drawn) {}
+    public int changeCardsDrawnByTix(int drawn) { return drawn; }
+    public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard) {}
+    public void onHit(AbstractCard c, AbstractMonster m, boolean fromCard) {}
+    public void onHitAll(AbstractCard c, boolean fromCard) {}
+    public void onLoseHPFromWeight(int weight) {}
 
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
         super.renderAmount(sb, x, y, c);

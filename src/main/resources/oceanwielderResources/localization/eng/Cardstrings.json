@@ -153,6 +153,22 @@
       " cards played.)"
     ]
   },
+  "${ModID}:Slam": {
+    "NAME": "Slam",
+    "DESCRIPTION": "{!${ModID}:h!|0=|1=${ModID}:Hit. NL |@=${ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each ${ModID}:Weight you bear.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Bearing ",
+      " ${ModID}:Weight.)"
+    ]
+  },
+  "${ModID}:Bulwark": {
+    "NAME": "Bulwark",
+    "DESCRIPTION": "{!${ModID}:g!|0=|1=${ModID}:Guard. NL |@=${ModID}:Guard !${ModID}:h! times. NL }${ModID}:Guard for each ${ModID}:Weight you bear.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Bearing ",
+      " ${ModID}:Weight.)"
+    ]
+  },
   "${ModID}:Catalogue": {
     "NAME": "Catalogue",
     "DESCRIPTION": "${ModID}:Stamp your hand.{!M!|>0= NL Gain !M! ${ModID}:Aegis.}!WEIGHT!"
@@ -176,7 +192,7 @@
     "DESCRIPTION": "!HITRANDOM!. NL ${ModID}:Stamp !M! card{!M!|1=|@=s} at random."
   },
   "${ModID}:ReapRewards": {
-    "NAME": "ReapRewards",
+    "NAME": "Reap Rewards",
     "DESCRIPTION": "Gain !M! ${ModID}:Tix.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
   },
   "${ModID}:Fortify": {
@@ -191,18 +207,18 @@
     "NAME": "Profit Margin",
     "DESCRIPTION": "Whenever you spend ${ModID}:Tix, gain !M! Block.",
     "EXTENDED_DESCRIPTION": [
-        "Progit Margin",
-        "Whenever you spend #yTix, gain #b",
-        " #yBlock."
+      "Progit Margin",
+      "Whenever you spend #yTix, gain #b",
+      " #yBlock."
     ]
   },
   "${ModID}:SealOfApproval": {
     "NAME": "Seal of Approval",
     "DESCRIPTION": "Whenever you play a card, gain !M! Block per ${ModID}:Stamp on it.",
     "EXTENDED_DESCRIPTION": [
-        "Seal of Approval",
-        "Whenever you play a card, gain #b",
-        " #yBlock per #yStamp on it."
+      "Seal of Approval",
+      "Whenever you play a card, gain #b",
+      " #yBlock per #yStamp on it."
     ]
   },
   "${ModID}:DivineProtection": {
@@ -235,14 +251,195 @@
     "NAME": "Exploit",
     "DESCRIPTION": "!HIT!. NL The next !M! time{!M!|>1=s} you hit this enemy, NL gain [E].",
     "EXTENDED_DESCRIPTION": [
-        "Exploit",
-        "The next #b",
-        " time you #yHit this enemy, gain [E] .",
-        " times you #yHit this enemy, gain [E] ."
+      "Exploit",
+      "The next #b",
+      " time you #yHit this enemy, gain [E] .",
+      " times you #yHit this enemy, gain [E] ."
     ]
   },
   "${ModID}:ThunderOvation": {
     "NAME": "Thunder Ovation",
-    "DESCRIPTION": "!HIT!. Apply !M! Vulnerable to them."
+    "DESCRIPTION": "!HITALL!. Apply !M! Vulnerable to them."
+  },
+  "${ModID}:Whirligig": {
+    "NAME": "Whirligig",
+    "DESCRIPTION": "Every {!M!|1=time|2=2nd time|3=3rd time|@=!M!th time} you ${ModID}:Guard, ${ModID}:Guard again."
+  },
+  "${ModID}:Grindset": {
+    "NAME": "Grindset",
+    "DESCRIPTION": "!HIT!. NL ${ModID}:Stamp this card{!M!|1=|2= twice|@= !M! times}. NL Shuffle this card into your draw pile."
+  },
+  "${ModID}:Surge": {
+    "NAME": "Surge",
+    "DESCRIPTION": "{!M!|1=Double|2=Triple|3=Quadruple|@=Gain Vigor equal to !M! times} your Vigor."
+  },
+  "${ModID}:SavingsAccount": {
+    "NAME": "Savings Account",
+    "DESCRIPTION": "At the start of your turn, gain !M! ${ModID}:Tix{!${ModID}:m2!|1= and draw 1 fewer card|>1= and draw !${ModID}:m2! fewer cards}.",
+    "EXTENDED_DESCRIPTION": [
+      "Saving",
+      "At the start of your turn, gain #b",
+      " #yTix."
+    ]
+  },
+  "${ModID}:EternalDance": {
+    "NAME": "Eternal Dance",
+    "DESCRIPTION": "Gain !M! Dexterity.!WEIGHT!"
+  },
+  "${ModID}:Dismiss": {
+    "NAME": "Dismiss",
+    "DESCRIPTION": "!GUARD!. NL Discard up to !M! card{!M!|>1=s} from your draw pile."
+  },
+  "${ModID}:KerChunk": {
+    "NAME": "Ker-chunk!",
+    "DESCRIPTION": "Stamp !M! card{!M!|>1=s} at random."
+  },
+  "${ModID}:Diet": {
+    "NAME": "Diet",
+    "DESCRIPTION": "Lose !M! ${ModID}:Weight."
+  },
+  "${ModID}:SendIt": {
+    "NAME": "Send It",
+    "DESCRIPTION": "Play a ${ModID}:Stamped card from your draw or discard pile.!WEIGHT!",
+    "EXTENDED_DESCRIPTION": [
+      "Select a card to play."
+    ]
+  },
+  "${ModID}:Unleash": {
+    "NAME": "Unleash",
+    "DESCRIPTION": "!GUARD!. NL !HIT!. NL ${ModID}:Aegis and Vigor affect this card !M! time{!M!|>1=s}."
+  },
+  "${ModID}:Lift": {
+    "NAME": "Lift",
+    "DESCRIPTION": "At the start of your turn, gain !M! Vigor{!${ModID}:m2!|>1= and bear !${ModID}:m2! ${ModID}:Weight}.",
+    "EXTENDED_DESCRIPTION": [
+      "Invigorated",
+      "At the start of your turn, gain #b",
+      " #yVigor.",
+      "Lift",
+      "At the start of your turn, bear #b",
+      " #yWeight."
+    ]
+  },
+  "${ModID}:CashOut": {
+    "NAME": "Cash Out",
+    "DESCRIPTION": "!HIT!. NL Discard your hand. NL Gain !M! ${ModID}:Tix for each card discarded."
+  },
+  "${ModID}:FirstClass": {
+    "NAME": "First Class",
+    "DESCRIPTION": "Can only be played if ${ModID}:Stamped. NL !HIT!.{!M!|>0= NL Gain !M! Vigor.}",
+    "EXTENDED_DESCRIPTION": [
+      "This must be #yStamped!"
+    ]
+  },
+  "${ModID}:PackageDeal": {
+    "NAME": "Package Deal",
+    "DESCRIPTION": "${ModID}:Stamp a card{!M!|1=|@=!M! times}. NL ${ModID}:Hit for each ${ModID}:Stamp on it.",
+    "EXTENDED_DESCRIPTION": [
+      "Stamp"
+    ]
+  },
+  "${ModID}:Payday": {
+    "NAME": "Payday",
+    "DESCRIPTION": "Unplayable. NL When you draw this card, gain !M! ${ModID}:Tix and Exhaust."
+  },
+  "${ModID}:MakeItRain": {
+    "NAME": "Make It Rain",
+    "DESCRIPTION": "${ModID}:Hit for each ${ModID}:Tix spent this turn.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (",
+      " Tix spent)"
+    ]
+  },
+  "${ModID}:Terminator": {
+    "NAME": "Terminator",
+    "DESCRIPTION": "!HITALL!.!WEIGHT!"
+  },
+  "${ModID}:Sharpen": {
+    "NAME": "Sharpen",
+    "DESCRIPTION": "Whenever you ${ModID}:Wield, gain !M! Strength.",
+    "EXTENDED_DESCRIPTION": [
+      "Sharpen",
+      "Whenever you #yWield, gain #b",
+      " #yStrength."
+    ]
+  },
+  "${ModID}:MassMail": {
+    "NAME": "Mass Mail",
+    "DESCRIPTION": "This turn, your next{!M!|>1= !M!} ${ModID}:Stamped card{!M!|>1=s} {!M!|1=is|@=are} played twice.",
+    "EXTENDED_DESCRIPTION": [
+      "Mass Mail",
+      "This turn, your next #yStamped card is played twice.",
+      "This turn, your next #b",
+      " #yStamped cards are played twice."
+    ]
+  },
+  "${ModID}:ReturnToSender": {
+    "NAME": "Return to Sender",
+    "DESCRIPTION": "!HIT!. NL Put !M! ${ModID}:Stamped card{!M!|>1=s} from your draw or discard piles into your hand."
+  },
+  "${ModID}:BrandEmblem": {
+    "NAME": "Brand Emblem",
+    "DESCRIPTION": "!HIT!. NL Permanently ${ModID}:Stamp a random card in your deck{!M!|1=|@=!M! times}."
+  },
+  "${ModID}:Inure": {
+    "NAME": "Inure",
+    "DESCRIPTION": "Whenever you lose HP from ${ModID}:Weight, gain !M! ${ModID}:Tix and gain{!M!|repeat= [E]} next turn.",
+    "EXTENDED_DESCRIPTION": [
+      "Inure",
+      "Whenever you lose HP from #yWeight, gain #b",
+      " #yTix and gain",
+      " next turn."
+    ]
+  },
+  "${ModID}:Splurge": {
+    "NAME": "Splurge",
+    "DESCRIPTION": "${ModID}:Tix draw !M! additional card{!M!|>1=s}{!${ModID}:m2!|>0= and grant !${ModID}:m2! Block} this turn.",
+    "EXTENDED_DESCRIPTION": [
+      "Splurge",
+      "#yTix draw #b",
+      " additional card this turn.",
+      " additional cards this turn.",
+      "Splurge: Block",
+      "Whenever you spend #yTix this turn, gain #b",
+      " #yBlock."
+    ]
+  },
+  "${ModID}:Bide": {
+    "NAME": "Bide",
+    "DESCRIPTION": "Gain !M! Dexterity. NL The next !${ModID}:m2! card{!${ModID}:m2!|>1=s} you play will not ${ModID}:Guard.",
+    "EXTENDED_DESCRIPTION": [
+      "Biding",
+      "The next card you play will not #yGuard.",
+      "The next #b",
+      " cards you play will not #yGuard."
+    ]
+  },
+  "${ModID}:Temper": {
+    "NAME": "Temper",
+    "DESCRIPTION": "Whenever you ${ModID}:Hit, gain !M! Vigor.",
+    "EXTENDED_DESCRIPTION": [
+      "Temper",
+      "Whenever you #yHit, gain #b",
+      " #yVigor."
+    ]
+  },
+  "${ModID}:ProficientForm": {
+    "NAME": "Proficient Form",
+    "DESCRIPTION": "Repeat every{!M!|1=|2= 2nd|3= 3rd|@= !M!th} ${ModID}:Hit or ${ModID}:Guard."
+  },
+  "${ModID}:Grandeur": {
+    "NAME": "Grandeur",
+    "DESCRIPTION": "Whenever you spend ${ModID}:Tix, ${ModID}:Stamp the drawn card.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Tix.}",
+    "EXTENDED_DESCRIPTION": [
+        "Grandeur",
+        "Whenever you draw a card with #yTix, stamp it.",
+        "Whenever you draw a card with #yTix, stamp it #b",
+        " times."
+    ]
+  },
+  "${ModID}:DropAnchor": {
+    "NAME": "Drop Anchor",
+    "DESCRIPTION": "!HIT!. You cannot bear ${ModID}:Weight {!M!|1=this turn|@=for !M! turns}.{!${ModID}:m2!|>0= NL Lose !${ModID}:m2! ${ModID}:Weight.}"
   }
 }

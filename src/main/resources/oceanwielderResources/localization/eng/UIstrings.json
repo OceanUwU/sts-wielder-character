@@ -4,5 +4,10 @@
             "Tix",
             "Click to spend Tix to draw cards."
         ]
+    },
+    "${ModID}:DiscardFromDrawPile": {
+        "TEXT": [
+            "Choose cards from your draw pile to discard."
+        ]
     }
 }

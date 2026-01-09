@@ -34,6 +34,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     protected final CardStrings cardStrings;
 
     protected String[] exDesc;
+    protected String baseDesc;
 
     public int secondMagic;
     public int baseSecondMagic;
@@ -59,6 +60,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     private boolean upgradedInnate;
     private boolean upgradesRetain = false;
     private boolean upgradedRetain;
+    private boolean needsDescRefresh = true;
 
     public boolean usesHits, usesGuards;
     public boolean showWeaponDequipValue, showShieldDequipValue;
@@ -82,6 +84,7 @@ public abstract class AbstractWielderCard extends CustomCard {
         if (sharedStrings == null)
             sharedStrings = CardCrawlGame.languagePack.getCardStrings(makeID("AbstractWielderCard")).EXTENDED_DESCRIPTION;
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
+        baseDesc = cardStrings.DESCRIPTION;
         rawDescription = "";
         name = originalName = cardStrings.NAME;
         exDesc = cardStrings.EXTENDED_DESCRIPTION;
@@ -92,7 +95,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     @Override
     public void initializeDescription() {
         if (cardStrings != null) {
-            rawDescription = ("{@@}" + cardStrings.DESCRIPTION)
+            rawDescription = ("{@@}" + baseDesc)
                 .replace("!HIT!", sharedStrings[1] + sharedStrings[0])
                 .replace("!HITALL!", sharedStrings[2] + sharedStrings[0])
                 .replace("!HITRANDOM!", sharedStrings[3] + sharedStrings[0])
@@ -115,6 +118,14 @@ public abstract class AbstractWielderCard extends CustomCard {
                 rawDescription += (cardStrings.DESCRIPTION.length() == 0 ? "" : " NL ") + sharedStrings[8];
         }
         super.initializeDescription();
+    }
+
+    public void update() {
+        super.update();
+        if (needsDescRefresh) {
+            initializeDescription();
+            needsDescRefresh = false;
+        }
     }
 
     public static String getCardTextureString(final String cardName, final AbstractCard.CardType cardType) {
@@ -308,7 +319,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     public void upp() {};
 
     private AbstractGameAction hitAction(AbstractMonster m, int amt) {
-        return new HitAction(m, amt, this);
+        return new HitAction(m, amt, this, true);
     }
 
     protected void hit(AbstractMonster m) {
@@ -344,7 +355,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction hitAllAction(int amt) {
-        return new HitAllAction(amt, this);
+        return new HitAllAction(amt, this, true);
     }
 
     protected void hitAll() {
@@ -364,7 +375,7 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     private AbstractGameAction guardAction(int amt) {
-        return new GuardAction(amt, this);
+        return new GuardAction(amt, this, true);
     }
 
     protected void guard() {

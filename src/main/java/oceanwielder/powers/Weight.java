@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.vfx.combat.SilentGainPowerEffect;
 import java.util.ArrayList;
 
 import static oceanwielder.WielderMod.makeID;
+import static oceanwielder.util.Wiz.*;
 
 public class Weight extends AbstractWielderPower {
     public static String POWER_ID = makeID("Weight");
@@ -31,8 +32,16 @@ public class Weight extends AbstractWielderPower {
     public void atEndOfTurn(boolean isPlayer) {
         if (amount >= THRESHOLD) {
             flash();
-            addToBot(new LoseHPAction(owner, owner, amount));
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+            final int weight = amount;
+            atb(
+                new LoseHPAction(owner, owner, amount),
+                new RemoveSpecificPowerAction(owner, owner, this),
+                actionify(() -> {
+                    for (AbstractPower p : owner.powers)
+                        if (p instanceof AbstractWielderPower)
+                            ((AbstractWielderPower)p).onLoseHPFromWeight(weight);
+                })
+            );
         }
     }
     
