@@ -23,6 +23,7 @@ public class Readied extends AbstractWielderCard {
             applyToSelfTop(new VigorPower(adp(), magicNumber * power));
             return true;
         }));
-        atb(new GainEnergyAction(secondMagic));
+        if (secondMagic > 0)
+            atb(new GainEnergyAction(secondMagic));
     }
 }

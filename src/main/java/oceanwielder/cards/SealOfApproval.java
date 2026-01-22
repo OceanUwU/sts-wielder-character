@@ -25,7 +25,8 @@ public class SealOfApproval extends AbstractWielderCard {
                 int stamps = Stamps.getStamps(card);
                 if (stamps > 0) {
                     flash();
-                    atb(new GainBlockAction(owner, owner, amount, true));
+                    for (int i = 0; i < stamps; i++)
+                        atb(new GainBlockAction(owner, owner, amount, true));
                 }
             }
             

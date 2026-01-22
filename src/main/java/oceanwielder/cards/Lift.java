@@ -30,7 +30,7 @@ public class Lift extends AbstractWielderCard {
                 description = strings[1] + amount + strings[2];
             }
         });
-        applyToSelf(new LambdaPower(ID, exDesc, exDesc[3], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.DEBUFF, false, p, secondMagic) {
+        applyToSelf(new LambdaPower(ID + "Weight", exDesc, exDesc[3], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.DEBUFF, false, p, secondMagic) {
             @Override
             public void atStartOfTurnPostDraw() {
                 flash();

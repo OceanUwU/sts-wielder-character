@@ -27,7 +27,7 @@ public class PaperTrail extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         actB(() -> {
-            if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() && Stamps.isStamped((AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1))))
+            if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() >= 2 && Stamps.isStamped((AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 2))))
                 guardTop();
         });
     }

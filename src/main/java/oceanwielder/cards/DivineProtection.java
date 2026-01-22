@@ -23,6 +23,7 @@ public class DivineProtection extends AbstractWielderCard {
             applyToSelfTop(new AegisPower(adp(), magicNumber * power));
             return true;
         }));
-        atb(new GainEnergyAction(secondMagic));
+        if (secondMagic > 0)
+            atb(new GainEnergyAction(secondMagic));
     }
 }

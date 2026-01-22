@@ -208,7 +208,7 @@
   },
   "${ModID}:ProfitMargin": {
     "NAME": "Profit Margin",
-    "DESCRIPTION": "Whenever you spend [${ModID}:TixIcon] , gain !M! Block.",
+    "DESCRIPTION": "Whenever you spend NL [${ModID}:TixIcon] , gain !M! Block.",
     "EXTENDED_DESCRIPTION": [
       "Progit Margin",
       "Whenever you spend #yTix, gain #b",
@@ -389,7 +389,7 @@
     "NAME": "Inure",
     "DESCRIPTION": "Whenever you lose HP from ${ModID}:Weight, NL gain{!M!|repeat= [${ModID}:TixIcon]} and NL gain{!M!|repeat= [E]} next turn.",
     "EXTENDED_DESCRIPTION": [
-      "Inure",
+      "Inured",
       "Whenever you lose HP from #yWeight, gain #b",
       " #yTix and gain",
       " next turn."
@@ -409,7 +409,7 @@
     ]
   },
   "${ModID}:Bide": {
-    "NAME": "Bide",
+    "NAME": "Biding Time",
     "DESCRIPTION": "Gain !M! Dexterity. NL The next !${ModID}:m2! card{!${ModID}:m2!|>1=s} you play will not ${ModID}:Guard.",
     "EXTENDED_DESCRIPTION": [
       "Biding",

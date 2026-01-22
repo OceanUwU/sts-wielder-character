@@ -29,6 +29,7 @@ public class SoulScan extends AbstractWielderCard {
     public void upgrade() {
         super.upgrade();
         type = CardType.ATTACK;
+        target = CardTarget.SELF_AND_ENEMY;
         if (textureImg != null)
             loadCardImage(textureImg);
     }

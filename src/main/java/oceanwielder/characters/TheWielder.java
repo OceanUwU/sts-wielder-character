@@ -29,7 +29,7 @@ import oceanwielder.cards.Defend;
 import oceanwielder.cards.Guzzle;
 import oceanwielder.cards.Strike;
 import oceanwielder.cards.Twirl;
-import oceanwielder.relics.TodoItem;
+import oceanwielder.relics.RemarkablyThrowableRock;
 import oceanwielder.vfx.WielderVictoryEffect;
 
 public class TheWielder extends CustomPlayer {
@@ -74,7 +74,7 @@ public class TheWielder extends CustomPlayer {
 
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add(TodoItem.ID);
+        retVal.add(RemarkablyThrowableRock.ID);
         return retVal;
     }
 

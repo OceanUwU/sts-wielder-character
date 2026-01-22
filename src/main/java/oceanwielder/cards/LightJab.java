@@ -17,6 +17,6 @@ public class LightJab extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        gainVigor(secondMagic);
+        gainVigor(magicNumber);
     }
 }

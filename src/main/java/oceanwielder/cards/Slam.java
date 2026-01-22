@@ -19,14 +19,14 @@ public class Slam extends AbstractWielderCard {
         super.applyPowers();
         int count = pwrAmt(adp(), Weight.POWER_ID);
 
-        rawDescription = cardStrings.DESCRIPTION + exDesc[0] + count + exDesc[1];
+        baseDesc = cardStrings.DESCRIPTION + exDesc[0] + count + exDesc[1];
 
         initializeDescription();
     }
 
     public void onMoveToDiscard() {
-        this.rawDescription = cardStrings.DESCRIPTION;
-        this.initializeDescription();
+        baseDesc = cardStrings.DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

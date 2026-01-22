@@ -1,7 +1,77 @@
 {
-  "${ModID}:TodoItem": {
-    "NAME": "Todo Item",
-    "FLAVOR": "TODO: make this a sweet relic.",
+  "${ModID}:RemarkablyThrowableRock": {
+    "NAME": "Remarkably Throwable Rock",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:GravShoes": {
+    "NAME": "Grav-Shoes",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:Okebaka": {
+    "NAME": "Okebaka",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:Robuck": {
+    "NAME": "Robuk",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:Stamp": {
+    "NAME": "Stamp",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:PunchCard": {
+    "NAME": "Punchcard",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:SharpRuby": {
+    "NAME": "Sharp Ruby",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:TotemWithATopHat": {
+    "NAME": "Totem with a Top Hat",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:CarvedStone": {
+    "NAME": "Carved Stone",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:Envelope": {
+    "NAME": "Envelope",
+    "FLAVOR": "TODO: FLAVOUR",
+    "DESCRIPTIONS": [
+      "Has no effect."
+    ]
+  },
+  "${ModID}:WholeAhhShed": {
+    "NAME": "Whole Ahh Shed",
+    "FLAVOR": "TODO: FLAVOUR",
     "DESCRIPTIONS": [
       "Has no effect."
     ]

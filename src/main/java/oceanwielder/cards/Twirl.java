@@ -9,7 +9,7 @@ public class Twirl extends AbstractWielderCard {
     public final static String ID = makeID(Twirl.class.getSimpleName());
 
     public Twirl() {
-        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.SELF_AND_ENEMY);
         setHits(1);
         setGuards(1);
         setSecondMagic(1);

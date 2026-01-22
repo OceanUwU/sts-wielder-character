@@ -36,7 +36,7 @@ public class Hammer extends AbstractWeapon {
     }
 
     public void dequipEffect() {
-        att(new DamageAllEnemiesAction(adp(), dequipPower, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
+        att(new DamageAllEnemiesAction(adp(), DamageInfo.createDamageMatrix(dequipPower, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
         forAllMonstersLivingBackwards(mo -> vfxTop(new WeightyImpactEffect(mo.hb.cX, mo.hb.cY, new Color(0.5f, 0.4f, 0.3f, 1f)), mo == getEnemies().get(getEnemies().size()-1) ? 0.6f : 0f));
     }
 

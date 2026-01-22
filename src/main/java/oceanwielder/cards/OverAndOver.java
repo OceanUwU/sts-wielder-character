@@ -19,24 +19,24 @@ public class OverAndOver extends AbstractWielderCard {
         super.applyPowers();
         int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
 
-        rawDescription = cardStrings.DESCRIPTION;
-        rawDescription = rawDescription + exDesc[0] + count;
+        baseDesc = cardStrings.DESCRIPTION;
+        baseDesc = baseDesc + exDesc[0] + count;
         if (count == 1) {
-            rawDescription = rawDescription + exDesc[1];
+            baseDesc = baseDesc + exDesc[1];
         } else {
-            rawDescription = rawDescription + exDesc[2];
+            baseDesc = baseDesc + exDesc[2];
         }
 
         initializeDescription();
     }
 
     public void onMoveToDiscard() {
-        this.rawDescription = cardStrings.DESCRIPTION;
-        this.initializeDescription();
+        baseDesc = cardStrings.DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        actB(() -> hitTop(m, AbstractDungeon.actionManager.cardsPlayedThisTurn.size()));
+        actB(() -> hitTop(m, AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 1));
     }
 }
