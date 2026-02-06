@@ -326,7 +326,7 @@
   },
   "${ModID}:CashOut": {
     "NAME": "Cash Out",
-    "DESCRIPTION": "!HIT!. NL Discard your hand. NL Gain{!M!|repeat= [${ModID}:TixIcon]} for each card discarded."
+    "DESCRIPTION": "!HITALL!. NL Discard your hand. NL Gain{!M!|repeat= [${ModID}:TixIcon]} for each card discarded."
   },
   "${ModID}:FirstClass": {
     "NAME": "First Class",

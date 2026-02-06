@@ -5,13 +5,22 @@ import static oceanwielder.characters.TheWielder.Enums.OCEAN_WIELDER_COLOUR;
 
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpriterAnimation;
+import basemod.animations.SpineAnimation;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -30,27 +39,72 @@ import oceanwielder.cards.Guzzle;
 import oceanwielder.cards.Strike;
 import oceanwielder.cards.Twirl;
 import oceanwielder.relics.RemarkablyThrowableRock;
+import oceanwielder.util.TexLoader;
 import oceanwielder.vfx.WielderVictoryEffect;
 
 public class TheWielder extends CustomPlayer {
     static final String ID = makeID("ModdedCharacter");
+    private static final float ORB_IMG_SCALE = 1.15F * Settings.scale;
     public static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     static final String[] NAMES = characterStrings.NAMES;
     static final String[] TEXT = characterStrings.TEXT;
+    public static final Float SIZE_SCALE = 1.0f;
+    public static final Float ANIMATION_SPEED = 1.0f;
 
 
     public TheWielder(String name, PlayerClass setClass) {
-        super(name, setClass, new CustomEnergyOrb(orbTextures, makeCharacterPath("mainChar/orb/vfx.png"), null), new SpriterAnimation(
-                makeCharacterPath("mainChar/static.scml")));
+        super(name, setClass, new CustomEnergyOrb(orbTextures, makeCharacterPath("mainChar/orb/vfx.png"), new float[] { 40f, 60f, 80f, 40f, 20f }) {
+            private FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
+            private Texture mask = TexLoader.getTexture(makeCharacterPath("mainChar/orb/mask.png"));
+
+            @Override
+            public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
+                sb.end();
+                fbo.begin();
+                Gdx.gl.glClearColor(0, 0, 0, 0);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+                Gdx.gl.glColorMask(true, true, true, true);
+                sb.begin();
+                sb.setColor(Color.WHITE);
+                sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+                for(int i = 0; i < energyLayers.length; ++i)
+                    sb.draw((enabled ? energyLayers : noEnergyLayers)[i], current_x - 64f, current_y - 64f, 64.0F, 64.0F, 128.0F, 128.0F, ORB_IMG_SCALE, ORB_IMG_SCALE, angles[i], 0, 0, 128, 128, false, false);
+                sb.setBlendFunction(0, GL20.GL_SRC_ALPHA);
+                sb.setColor(Color.WHITE);
+                sb.draw(mask, current_x - 256, current_y - 256, 256, 256, 512, 512, ORB_IMG_SCALE, ORB_IMG_SCALE, 0, 0, 0, 512, 512, false, false);
+                sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+                sb.end();
+                fbo.end();
+                sb.begin();
+                TextureRegion drawTex = new TextureRegion(fbo.getColorBufferTexture());
+                drawTex.flip(false, true);
+                sb.draw(drawTex, -Settings.VERT_LETTERBOX_AMT, -Settings.HORIZ_LETTERBOX_AMT);
+                sb.draw(baseLayer, current_x - 64.0F, current_y - 64.0F, 64.0F, 64.0F, 128.0F, 128.0F, ORB_IMG_SCALE, ORB_IMG_SCALE, 0, 0, 0, 128, 128, false, false);
+            }
+        }, new SpineAnimation(
+                makeCharacterPath("mainChar/foxts3.atlas"), makeCharacterPath("mainChar/foxts3.json"), SIZE_SCALE));
         initializeClass(null,
                 SHOULDER1,
                 SHOULDER2,
                 CORPSE,
                 getLoadout(), 20.0F, -10.0F, 166.0F, 327.0F, new EnergyManager(3));
 
-
+        AnimationState.TrackEntry e = state.setAnimation(0, "Idle", true);
+        stateData.setMix("Hit", "Idle", 0.2f);
+        e.setTimeScale(ANIMATION_SPEED);
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 240.0F * Settings.scale);
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output - currentBlock > 0) {
+            AnimationState.TrackEntry e = state.setAnimation(0, "Hit", false);
+            AnimationState.TrackEntry e2 = state.addAnimation(0, "Idle", true, 0.0F);
+            e.setTimeScale(ANIMATION_SPEED);
+            e2.setTimeScale(ANIMATION_SPEED);
+        }
+        super.damage(info);
     }
 
     @Override
@@ -90,7 +144,7 @@ public class TheWielder extends CustomPlayer {
             makeCharacterPath("mainChar/orb/layer2.png"),
             makeCharacterPath("mainChar/orb/layer3.png"),
             makeCharacterPath("mainChar/orb/layer4.png"),
-            makeCharacterPath("mainChar/orb/layer4.png"),
+            makeCharacterPath("mainChar/orb/layer5.png"),
             makeCharacterPath("mainChar/orb/layer6.png"),
             makeCharacterPath("mainChar/orb/layer1d.png"),
             makeCharacterPath("mainChar/orb/layer2d.png"),

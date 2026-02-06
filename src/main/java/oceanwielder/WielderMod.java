@@ -55,7 +55,7 @@ public class WielderMod implements
         return modID + ":" + idText;
     }
 
-    public static Color characterColor = new Color(0.25f, 0.09f, 0.69f, 1); // This should be changed eventually
+    public static Color characterColor = new Color(1.00f, 0.59f, 0.15f, 1);
 
     public static final String SHOULDER1 = makeCharacterPath("mainChar/shoulder.png");
     public static final String SHOULDER2 = makeCharacterPath("mainChar/shoulder2.png");

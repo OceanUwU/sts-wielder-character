@@ -1,0 +1,125 @@
+
+foxts3.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+016
+  rotate: false
+  xy: 1, 109
+  size: 145, 36
+  orig: 147, 38
+  offset: 1, 1
+  index: -1
+015
+  rotate: false
+  xy: 1, 1
+  size: 92, 106
+  orig: 92, 106
+  offset: 0, 0
+  index: -1
+014
+  rotate: false
+  xy: 187, 156
+  size: 17, 45
+  orig: 17, 45
+  offset: 0, 0
+  index: -1
+013
+  rotate: false
+  xy: 202, 1
+  size: 27, 45
+  orig: 27, 45
+  offset: 0, 0
+  index: -1
+012
+  rotate: false
+  xy: 231, 1
+  size: 22, 41
+  orig: 22, 41
+  offset: 0, 0
+  index: -1
+011
+  rotate: false
+  xy: 196, 118
+  size: 28, 36
+  orig: 28, 36
+  offset: 0, 0
+  index: -1
+010
+  rotate: false
+  xy: 196, 59
+  size: 30, 57
+  orig: 30, 57
+  offset: 0, 0
+  index: -1
+009
+  rotate: false
+  xy: 226, 143
+  size: 19, 42
+  orig: 19, 42
+  offset: 0, 0
+  index: -1
+008
+  rotate: false
+  xy: 95, 60
+  size: 34, 43
+  orig: 34, 43
+  offset: 0, 0
+  index: -1
+007
+  rotate: false
+  xy: 169, 1
+  size: 31, 56
+  orig: 31, 56
+  offset: 0, 0
+  index: -1
+006
+  rotate: false
+  xy: 148, 60
+  size: 46, 82
+  orig: 46, 82
+  offset: 0, 0
+  index: -1
+005
+  rotate: false
+  xy: 228, 48
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+004
+  rotate: false
+  xy: 228, 93
+  size: 22, 48
+  orig: 22, 48
+  offset: 0, 0
+  index: -1
+003
+  rotate: false
+  xy: 95, 1
+  size: 72, 57
+  orig: 72, 57
+  offset: 0, 0
+  index: -1
+002
+  rotate: false
+  xy: 148, 144
+  size: 37, 24
+  orig: 37, 24
+  offset: 0, 0
+  index: -1
+001
+  rotate: false
+  xy: 1, 203
+  size: 30, 14
+  orig: 30, 14
+  offset: 0, 0
+  index: -1
+000
+  rotate: false
+  xy: 206, 187
+  size: 34, 17
+  orig: 34, 17
+  offset: 0, 0
+  index: -1
