@@ -53,7 +53,7 @@ public class TheWielder extends CustomPlayer {
 
 
     public TheWielder(String name, PlayerClass setClass) {
-        super(name, setClass, new CustomEnergyOrb(orbTextures, makeCharacterPath("mainChar/orb/vfx.png"), new float[] { 40f, 60f, 80f, 40f, 20f }) {
+        super(name, setClass, new CustomEnergyOrb(orbTextures, makeCharacterPath("mainChar/orb/vfx.png"), new float[] { 40f, 60f, 80f, 40f, 0f }) {
             private FrameBuffer fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, false);
             private Texture mask = TexLoader.getTexture(makeCharacterPath("mainChar/orb/mask.png"));
 
