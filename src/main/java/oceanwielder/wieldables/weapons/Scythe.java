@@ -27,6 +27,11 @@ public class Scythe extends AbstractWeapon {
         super.use(c, m);
     }
 
+    public void useOnAll(AbstractCard c) {
+        applyToSelfTop(new AegisPower(adp(), secondary));
+        super.useOnAll(c);
+    }
+
     public void useVfx(AbstractMonster m) {
         vfxTop(new SwingWeaponEffect(this));
     }

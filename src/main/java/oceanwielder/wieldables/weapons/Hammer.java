@@ -30,6 +30,12 @@ public class Hammer extends AbstractWeapon {
         applyPowers();
     }
 
+    public void useOnAll(AbstractCard c) {
+        super.useOnAll(c);
+        baseDequipPower += secondary;
+        applyPowers();
+    }
+
     public void useVfx(AbstractMonster m) {
         vfxTop(new VerticalImpactEffect(m.hb.cX, m.hb.cY));
         vfxTop(new ThrowHammerEffect(this, m.hb.cX, m.hb.cY), 0.2f);

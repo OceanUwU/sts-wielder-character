@@ -45,6 +45,25 @@ public class Crossbow extends AbstractWeapon {
         }
     }
 
+    @Override
+    public void useOnAll(AbstractCard c) {
+        if (baseSecondary > 0)
+            actT(() -> {
+                if (baseSecondary <= 0)
+                    texture = getTexture(id + "Empty");
+            });
+        super.useOnAll(c);
+        if (baseSecondary > 0) {
+            baseSecondary -= 1;
+            if (baseSecondary <= 0) {
+                baseSecondary = -1;
+                attackEffect = AbstractGameAction.AttackEffect.BLUNT_LIGHT;
+                basePrimary = primary = DAMAGE_WHEN_EMPTY;
+            }
+            applyPowers();
+        }
+    }
+
     public void useVfx(AbstractMonster m) {
         if (baseSecondary > 0)
             vfxTop(new ArrowEffect(cX + 25f * Settings.scale, cY, m.hb.cX, m.hb.cY));
