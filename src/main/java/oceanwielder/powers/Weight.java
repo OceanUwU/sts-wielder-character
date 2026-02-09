@@ -34,7 +34,7 @@ public class Weight extends AbstractWielderPower {
             flash();
             final int weight = amount;
             atb(
-                new LoseHPAction(owner, owner, amount),
+                new LoseHPAction(owner, owner, HP_LOST),
                 new RemoveSpecificPowerAction(owner, owner, this),
                 actionify(() -> {
                     for (AbstractPower p : owner.powers)
