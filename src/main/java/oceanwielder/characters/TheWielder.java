@@ -226,16 +226,20 @@ public class TheWielder extends CustomPlayer {
         return TEXT[2];
     }
 
+    @Override
+    public Texture getCutsceneBg() {
+        return TexLoader.getTexture(makeImagePath("ending/bg.png"));
+    }
+
     private static boolean endEffectStarted = false;
     @Override
     public List<CutscenePanel> getCutscenePanels() {
         endEffectStarted = false;
-        return super.getCutscenePanels();
-        //List<CutscenePanel> panels = new ArrayList<>();
-        //panels.add(new CutscenePanel(makeImagePath("ending/1.png"), "RELIC_DROP_CLINK"));
-        //panels.add(new CutscenePanel(makeImagePath("ending/2.png")));
-        //panels.add(new CutscenePanel(makeImagePath("ending/3.png")));
-        //return panels;
+        List<CutscenePanel> panels = new ArrayList<>();
+        panels.add(new CutscenePanel(makeImagePath("ending/1.png"), "BLUNT_HEAVY"));
+        panels.add(new CutscenePanel(makeImagePath("ending/2.png"), "ATTACK_HEAVY"));
+        panels.add(new CutscenePanel(makeImagePath("ending/3.png")));
+        return panels;
     }
 
     @Override
