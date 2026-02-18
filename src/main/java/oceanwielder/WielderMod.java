@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import oceanwielder.cards.AbstractWielderCard;
 import oceanwielder.cards.cardvars.*;
 import oceanwielder.characters.TheWielder;
+import oceanwielder.potions.AbstractEasyPotion;
 import oceanwielder.relics.AbstractWielderRelic;
 import oceanwielder.util.GuardIcon;
 import oceanwielder.util.HitIcon;
@@ -134,6 +135,15 @@ public class WielderMod implements
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new TheWielder(TheWielder.characterStrings.NAMES[1], TheWielder.Enums.OCEAN_WIELDER_CLASS),
                 CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheWielder.Enums.OCEAN_WIELDER_CLASS);
+        
+        new AutoAdd(modID)
+            .packageFilter(AbstractEasyPotion.class)
+            .any(AbstractEasyPotion.class, (info, potion) -> {
+                if (potion.pool == null)
+                    BaseMod.addPotion(potion.getClass(), potion.liquidColor, potion.hybridColor, potion.spotsColor, potion.ID);
+                else
+                    BaseMod.addPotion(potion.getClass(), potion.liquidColor, potion.hybridColor, potion.spotsColor, potion.ID, potion.pool);
+            });
     }
 
     @Override
@@ -174,7 +184,7 @@ public class WielderMod implements
         BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
         BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + getLangString() + "/Charstrings.json");
         BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
-        //BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + getLangString() + "/Potionstrings.json");
+        BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + getLangString() + "/PotionStrings.json");
         BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/UIstrings.json");
         BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
         //BaseMod.loadCustomStringsFile(StanceStrings.class, modID + "Resources/localization/" + getLangString() + "/Stancestrings.json");

@@ -1,0 +1,30 @@
+{
+    "${ModID}:HolyWater": {
+        "NAME": "Holy Water",
+        "DESCRIPTIONS": [
+            "Gain #b",
+            " #yAegis."
+        ]
+    },
+    "${ModID}:BottledRage": {
+        "NAME": "Bottled Rage",
+        "DESCRIPTIONS": [
+            "Gain #b",
+            " #yVigor."
+        ]
+    },
+    "${ModID}:Ticket": {
+        "NAME": "Ticket",
+        "DESCRIPTIONS": [
+            "Gain ",
+            "[${ModID}:TixIcon] ",
+            "."
+        ]
+    },
+    "${ModID}:Substitute": {
+        "NAME": "Substitute",
+        "DESCRIPTIONS": [
+            "#yWield a random weapon and a random shield."
+        ]
+    }
+}

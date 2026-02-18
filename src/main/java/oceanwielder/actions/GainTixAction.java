@@ -36,9 +36,8 @@ public class GainTixAction extends AbstractGameAction {
         private static final int H = 50;
         private static final TextureAtlas.AtlasRegion IMG = new TextureAtlas.AtlasRegion(TexLoader.getTexture(makeImagePath("vfx/tix.png")), 0, 0, W, H);
 
-        private float x = Tix.x, y = Tix.y, oX, oY, rotation, shootOutTime, shootOutVel, shootOutDirection, timeScale, rotationScale, movementScale;
+        private float x = Tix.x, y = Tix.y, oX = x, oY = y, rotation, shootOutTime, shootOutVel, shootOutDirection, timeScale, rotationScale, movementScale;
         private int xDir = MathUtils.random(0, 1) * 2 - 1;
-        private boolean shooting = true;
 
         public TixSprayEffect() {
             scale *= MathUtils.random(0.5f, 0.85f);
@@ -52,21 +51,15 @@ public class GainTixAction extends AbstractGameAction {
 
         public void update() {
             duration += Gdx.graphics.getDeltaTime();
-            if (shooting) {
+            float progress = Math.min(1f, duration / shootOutTime);
+            if (progress < 1f) {
                 float vel = shootOutVel * (float)Math.cos(Math.PI * duration / shootOutTime / 2f);
-                x += Math.cos(shootOutDirection) * Gdx.graphics.getDeltaTime() * vel;
-                y += Math.sin(shootOutDirection) * Gdx.graphics.getDeltaTime() * vel;
-                if (duration >= shootOutTime) {
-                    shooting = false;
-                    oX = x;
-                    oY = y;
-                    duration = 0f;
-                }
-            } else {
-                x = oX + (float)Math.sin(duration * timeScale * Math.PI) * movementScale * xDir;
-                y = oY + (0.6f * (float)Math.pow(Math.sin(duration * timeScale * Math.PI), 2) - 0.5f * duration * timeScale) * movementScale;
-                rotation = (float)Math.sin(duration * timeScale * Math.PI) * rotationScale * xDir;
+                oX += Math.cos(shootOutDirection) * Gdx.graphics.getDeltaTime() * vel;
+                oY += Math.sin(shootOutDirection) * Gdx.graphics.getDeltaTime() * vel;
             }
+            x = oX + (float)Math.sin(duration * timeScale * Math.PI) * movementScale * xDir * progress;
+            y = oY + (0.6f * (float)Math.pow(Math.sin(duration * timeScale * Math.PI), 2) - 0.5f * duration * timeScale) * movementScale * progress;
+            rotation = (float)Math.sin(duration * timeScale * Math.PI) * rotationScale * xDir * progress;
             if (y < -100f * scale)
                 isDone = true;
         }
