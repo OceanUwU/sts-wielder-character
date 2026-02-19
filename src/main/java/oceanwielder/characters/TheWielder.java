@@ -227,6 +227,11 @@ public class TheWielder extends CustomPlayer {
     }
 
     @Override
+    public String getSensoryStoneText() {
+        return TEXT[3];
+    }
+
+    @Override
     public Texture getCutsceneBg() {
         return TexLoader.getTexture(makeImagePath("ending/bg.png"));
     }

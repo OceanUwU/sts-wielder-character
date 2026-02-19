@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import oceanwielder.WielderMod;
 import oceanwielder.cards.Bide;
 import oceanwielder.cards.Overextend;
 import oceanwielder.powers.AbstractWielderPower;
+import oceanwielder.relics.AbstractWielderRelic;
 
 import static oceanwielder.util.Wiz.*;
 
@@ -39,6 +41,9 @@ public class GuardAction extends AbstractGameAction {
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)
                     ((AbstractWielderPower)p).onGuard(card, target, real, this);
+            for (AbstractRelic r : adp().relics)
+                if (r instanceof AbstractWielderRelic)
+                    ((AbstractWielderRelic)r).onGuard(card, target, real, this);
             WielderMod.shieldSlot.wieldable.use(card, target);
         } while (--amount > 0);
     }

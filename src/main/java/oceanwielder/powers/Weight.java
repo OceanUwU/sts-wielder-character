@@ -3,14 +3,17 @@ package oceanwielder.powers;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.SilentGainPowerEffect;
 import java.util.ArrayList;
+import oceanwielder.relics.GravShoes;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -33,8 +36,16 @@ public class Weight extends AbstractWielderPower {
         if (amount >= THRESHOLD) {
             flash();
             final int weight = amount;
+            int hpToLose = HP_LOST;
+            for (AbstractRelic r : adp().relics)
+                if (r instanceof GravShoes) {
+                    AbstractRelic relic = adp().getRelic(GravShoes.ID);
+                    relic.flash();
+                    atb(new RelicAboveCreatureAction(owner, relic));
+                    hpToLose = Math.max(0, hpToLose - GravShoes.POWER);
+                }
             atb(
-                new LoseHPAction(owner, owner, HP_LOST),
+                new LoseHPAction(owner, owner, hpToLose),
                 new RemoveSpecificPowerAction(owner, owner, this),
                 actionify(() -> {
                     for (AbstractPower p : owner.powers)

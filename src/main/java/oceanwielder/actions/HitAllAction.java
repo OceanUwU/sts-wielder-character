@@ -3,9 +3,11 @@ package oceanwielder.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import oceanwielder.WielderMod;
 import oceanwielder.cards.Overextend;
 import oceanwielder.powers.AbstractWielderPower;
+import oceanwielder.relics.AbstractWielderRelic;
 
 import static oceanwielder.util.Wiz.*;
 
@@ -36,6 +38,9 @@ public class HitAllAction extends AbstractGameAction {
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)
                     ((AbstractWielderPower)p).onHitAll(card, real, this);
+            for (AbstractRelic r : adp().relics)
+                if (r instanceof AbstractWielderRelic)
+                    ((AbstractWielderRelic)r).onHitAll(card, real, this);
             WielderMod.weaponSlot.wieldable.useOnAll(card);
         } while (--amount > 0);
     }

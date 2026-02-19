@@ -18,70 +18,81 @@
     "NAME": "Grav-Shoes",
     "FLAVOR": "Not quite suited for a set of paws, but they'll do.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Whenever you lose HP from #y${ModID}:Weight, lose #b",
+      " less."
     ]
   },
   "${ModID}:Okebaka": {
     "NAME": "Okebaka",
     "FLAVOR": "~Uuum",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "The first time you #y${ModID}:Guard each combat, gain #b",
+      " #y${ModID}:Aegis."
     ]
   },
   "${ModID}:Robuck": {
     "NAME": "Robuk",
     "FLAVOR": "Premium.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Start each combat with ",
+      "[${ModID}:TixIcon] ",
+      "."
     ]
   },
   "${ModID}:Stamp": {
     "NAME": "Stamp",
     "FLAVOR": "The Royals' seal. This one's a counterfeit, of course.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Upon pickup, permanently #yStamp #b",
+      " random cards in your deck."
     ]
   },
   "${ModID}:PunchCard": {
     "NAME": "Punchcard",
     "FLAVOR": "Pow!",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Every #b",
+      "th time you #y${ModID}:Hit or #y${ModID}:Guard, gain [${ModID}:TixIcon] ."
     ]
   },
   "${ModID}:SharpRuby": {
     "NAME": "Sharp Ruby",
     "FLAVOR": "An impeccable cutting tool. The greatest invention leading up to sliced bread.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Every #b",
+      "nd #yStri​ke or #yDefend played exhausts."
     ]
   },
   "${ModID}:TotemWithATopHat": {
     "NAME": "Totem with a Top Hat",
     "FLAVOR": "You're fairly certain it wasn't made this way, but you don't have the heart to take away its hat, it looks too content.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "[${ModID}:TixIcon] no longer draw cards and now grant [E] . NL #yMoxie no longer grants [E] and now draws cards."
     ]
   },
   "${ModID}:CarvedStone": {
     "NAME": "Carved Stone",
     "FLAVOR": "...or three, or four... Hell, you could smash anything with this!",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Replaces [#fcba03]Remarkably[] [#fcba03]Throwable [#fcba03]Rock[]. NL Whenever you play a card, gain #b",
+      " #yVigor and #y${ModID}:Aegis."
     ]
   },
   "${ModID}:Envelope": {
     "NAME": "Envelope",
     "FLAVOR": "Correspondence is a much better read when it isn't addressed to you.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "#y${ModID}:Moxie triggers at #b",
+      " stacks rather than #b",
+      "."
     ]
   },
   "${ModID}:WholeAhhShed": {
     "NAME": "Whole Ahh Shed",
     "FLAVOR": "Miniaturisation technology can't come soon enough.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Every #b",
+      " turns, #y${ModID}:Wield #y${ModID}:Chainsaw."
     ]
   }
 }

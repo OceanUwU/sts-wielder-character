@@ -5,7 +5,11 @@ import static oceanwielder.WielderMod.modID;
 
 import basemod.abstracts.CustomRelic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import oceanwielder.actions.GuardAction;
+import oceanwielder.actions.HitAction;
+import oceanwielder.actions.HitAllAction;
 import oceanwielder.util.TexLoader;
 
 public abstract class AbstractWielderRelic extends CustomRelic {
@@ -24,4 +28,8 @@ public abstract class AbstractWielderRelic extends CustomRelic {
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
     }
+
+    public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard, GuardAction action) {}
+    public void onHit(AbstractCard c, AbstractMonster m, boolean fromCard, HitAction action) {}
+    public void onHitAll(AbstractCard c, boolean fromCard, HitAllAction action) {}
 }

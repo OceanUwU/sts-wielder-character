@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import java.util.ArrayList;
 import oceanwielder.powers.AbstractWielderPower;
+import oceanwielder.relics.TotemWithATopHat;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.WielderMod.makeImagePath;
@@ -79,19 +81,13 @@ public class Tix {
                         for (AbstractPower p : adp().powers)
                             if (p instanceof AbstractWielderPower)
                                 drawn = ((AbstractWielderPower)p).changeCardsDrawnByTix(drawn);
-                        att(new DrawCardAction(drawn, actionify(() -> {
-                            if (DrawCardAction.drawnCards.size() > 0) {
-                                spentThisCombat++;
-                                spentThisTurn++;
-                                fontScale *= 1.5f;
-                                amt--;
-                                if (amt <= 0)
-                                    targetAlpha = 0f;
-                                for (AbstractPower p : adp().powers)
-                                    if (p instanceof AbstractWielderPower)
-                                        ((AbstractWielderPower)p).onSpendTix((ArrayList<AbstractCard>)DrawCardAction.drawnCards.clone());
-                            }
-                        })));
+                        if (adp().hasRelic(TotemWithATopHat.ID))
+                            att(actionify(() -> { adp().getRelic(TotemWithATopHat.ID).flash(); }), new GainEnergyAction(drawn), actionify(() -> onSpendTix()));
+                        else
+                            att(new DrawCardAction(drawn, actionify(() -> {
+                                if (DrawCardAction.drawnCards.size() > 0)
+                                    onSpendTix();
+                            })));
                     }
                 });
             }
@@ -101,6 +97,18 @@ public class Tix {
         fontScale = MathHelper.scaleLerpSnap(fontScale, DEFAULT_FONT_SCALE);
         if (color.a <= 0f)
             shouldRender = false;
+    }
+
+    private static void onSpendTix() {
+        spentThisCombat++;
+        spentThisTurn++;
+        fontScale *= 1.5f;
+        amt--;
+        if (amt <= 0)
+            targetAlpha = 0f;
+        for (AbstractPower p : adp().powers)
+            if (p instanceof AbstractWielderPower)
+                ((AbstractWielderPower)p).onSpendTix((ArrayList<AbstractCard>)DrawCardAction.drawnCards.clone());
     }
 
     private static void render(SpriteBatch sb) {

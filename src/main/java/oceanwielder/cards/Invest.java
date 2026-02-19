@@ -1,6 +1,5 @@
 package oceanwielder.cards;
 
-import com.megacrit.cardcrawl.actions.unique.DiscardPileToTopOfDeckAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -12,11 +11,18 @@ public class Invest extends AbstractWielderCard {
 
     public Invest() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.NONE);
-        setMagic(1, +1);
+        setMagic(1);
+        setSecondMagic(1, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         getTix(magicNumber);
-        atb(new DiscardPileToTopOfDeckAction(p));
+        atb(new InkSpill.SelectCardsAction(p.discardPile.group, secondMagic, exDesc[0], upgraded, c -> true, cards -> {
+            cards.forEach(c -> {
+               p.discardPile.removeCard(c);
+               p.hand.moveToDeck(c, false);
+            });
+            p.hand.refreshHandLayout();
+        }));
     }
 }

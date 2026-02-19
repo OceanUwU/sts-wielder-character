@@ -129,6 +129,6 @@
     "NAMES": [
       "weight"
     ],
-    "DESCRIPTION": "If you end your turn while bearing 3 or more Weight, lose 6 HP and all Weight."
+    "DESCRIPTION": "If you end your turn while bearing #b3 or more Weight, lose #b6 HP and all Weight."
   }
 ]

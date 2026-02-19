@@ -51,11 +51,6 @@ public class MassMail extends AbstractWielderCard {
                 }
 
             }
-
-            public void atEndOfTurn(boolean isPlayer) {
-                if (isPlayer)
-                    addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-            }
             
             @Override public void updateDescription() {
                 description = amount == 1 ? strings[1] : (strings[2] + amount + strings[3]);

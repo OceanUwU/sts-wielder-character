@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.util.extraicons.ExtraIcons;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -20,9 +21,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import oceanwielder.powers.AbstractWielderPower;
+import oceanwielder.relics.Envelope;
+import oceanwielder.relics.GravShoes;
+import oceanwielder.relics.TotemWithATopHat;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.WielderMod.makeImagePath;
@@ -53,10 +58,19 @@ public class Stamps {
         public void onUse(AbstractCard c, AbstractCreature target, UseCardAction action) {
             applyToSelf(new MoxiePower(adp(), StampedMod.this.amount));
             actB(() -> {
-                int energy = pwrAmt(adp(), MoxiePower.POWER_ID) / MoxiePower.MOXIE_PER_ENERGY;
+                int stacksNeeded = MoxiePower.MOXIE_PER_ENERGY;
+                for (AbstractRelic r : adp().relics)
+                    if (r instanceof Envelope) {
+                        r.flash();
+                        stacksNeeded = Math.max(0, stacksNeeded - Envelope.POWER);
+                    }
+                int energy = pwrAmt(adp(), MoxiePower.POWER_ID) / stacksNeeded;
                 if (energy > 0) {
-                    att(new GainEnergyAction(energy));
-                    att(new ReducePowerAction(adp(), adp(), MoxiePower.POWER_ID, energy * MoxiePower.MOXIE_PER_ENERGY));
+                    if (adp().hasRelic(TotemWithATopHat.ID))
+                        att(actionify(() -> { adp().getRelic(TotemWithATopHat.ID).flash(); }), new DrawCardAction(energy));
+                    else
+                        att(new GainEnergyAction(energy));
+                    att(new ReducePowerAction(adp(), adp(), MoxiePower.POWER_ID, energy * stacksNeeded));
                 }
             });
         }

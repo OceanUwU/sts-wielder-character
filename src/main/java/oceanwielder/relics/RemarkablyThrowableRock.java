@@ -19,7 +19,7 @@ public class RemarkablyThrowableRock extends AbstractWielderRelic {
     public static final String ID = makeID("RemarkablyThrowableRock");
 
     public RemarkablyThrowableRock() {
-        super(ID, RelicTier.STARTER, LandingSound.FLAT, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
+        super(ID, RelicTier.STARTER, LandingSound.SOLID, TheWielder.Enums.OCEAN_WIELDER_COLOUR);
     }
 
     @Override

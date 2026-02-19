@@ -79,7 +79,7 @@
   },
   "${ModID}:ShovelKnightCard": {
     "NAME": "Reuse",
-    "DESCRIPTION": "!HIT!. NL Exhaust 1 card.{!Upgrades!|0= NL If it's an Attack, ${ModID}:Hit again.}",
+    "DESCRIPTION": "!HIT!. NL Exhaust{!Upgrades!|>0= up to} 1 card.{!Upgrades!|0= NL If it's an Attack, ${ModID}:Hit again.}",
     "EXTENDED_DESCRIPTION": [
       "Exhaust"
     ]
@@ -248,7 +248,10 @@
   },
   "${ModID}:Invest": {
     "NAME": "Invest",
-    "DESCRIPTION": "Gain {!M!|>0=Gain{!M!|repeat= [${ModID}:TixIcon]} . NL Put a card from your discard pile on top of your draw pile."
+    "DESCRIPTION": "Gain {!M!|>0=Gain{!M!|repeat= [${ModID}:TixIcon]} . NL Put {!Upgrades!|>0=up to }{!${ModID}:m2!|1=a card|@=!${ModID}:m2! cards} from your discard pile on top of your draw pile.",
+    "EXTENDED_DESCRIPTION": [
+      "put on top of your draw pile"
+    ]
   },
   "${ModID}:Exploit": {
     "NAME": "Exploit",
@@ -369,11 +372,11 @@
   },
   "${ModID}:MassMail": {
     "NAME": "Mass Mail",
-    "DESCRIPTION": "This turn, your next{!M!|>1= !M!} ${ModID}:Stamped card{!M!|>1=s} {!M!|1=is|@=are} played twice.",
+    "DESCRIPTION": "Your next{!M!|>1= !M!} ${ModID}:Stamped card{!M!|>1=s} {!M!|1=is|@=are} played twice.",
     "EXTENDED_DESCRIPTION": [
       "Mass Mail",
-      "This turn, your next #yStamped card is played twice.",
-      "This turn, your next #b",
+      "Your next #yStamped card is played twice.",
+      "Your next #b",
       " #yStamped cards are played twice."
     ]
   },
