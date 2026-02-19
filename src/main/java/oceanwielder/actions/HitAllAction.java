@@ -10,12 +10,13 @@ import oceanwielder.powers.AbstractWielderPower;
 import static oceanwielder.util.Wiz.*;
 
 public class HitAllAction extends AbstractGameAction {
-    private final AbstractCard fromCard;
+    private final AbstractCard card;
     private final boolean fromRealCard;
+    public int additionalNonReal = 0;
 
     public HitAllAction(int hits, AbstractCard fromCard, boolean fromRealCard) {
         amount = hits;
-        this.fromCard = fromCard;
+        this.card = fromCard;
         this.fromRealCard = fromRealCard;
     }
 
@@ -25,15 +26,17 @@ public class HitAllAction extends AbstractGameAction {
 
     public void update() {
         isDone = true;
-        if (fromCard != null) {
+        if (card != null) {
             if (adp().hasPower(Overextend.ID))
                 return;
         }
-        for (int i = 0; i < amount; i++) {
+        do {
+            boolean real = fromRealCard && additionalNonReal <= 0;
+            if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)
-                    ((AbstractWielderPower)p).onHitAll(fromCard, fromRealCard);
-            WielderMod.weaponSlot.wieldable.useOnAll(fromCard);
-        }
+                    ((AbstractWielderPower)p).onHitAll(card, real, this);
+            WielderMod.weaponSlot.wieldable.useOnAll(card);
+        } while (--amount > 0);
     }
 }

@@ -6,7 +6,7 @@
             "snippet": "Card"
         }
     ],
-    "emeraldwalk.runonsave": {
+    /*"emeraldwalk.runonsave": {
       "autoClearConsole": true,
       "commands": [
         {
@@ -15,7 +15,7 @@
           "autoShowOutputPanel": "always"
         }
       ]
-    },
+    },*/
     "editor.quickSuggestions": {
       "other": "on",
       "comments": "off",

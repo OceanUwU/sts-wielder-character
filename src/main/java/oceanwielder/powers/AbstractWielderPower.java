@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import java.util.ArrayList;
 import oceanwielder.WielderMod;
+import oceanwielder.actions.GuardAction;
+import oceanwielder.actions.HitAction;
+import oceanwielder.actions.HitAllAction;
 import oceanwielder.util.TexLoader;
 import oceanwielder.wieldables.AbstractWieldable;
 
@@ -53,6 +56,9 @@ public abstract class AbstractWielderPower extends AbstractPower {
     public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard) {}
     public void onHit(AbstractCard c, AbstractMonster m, boolean fromCard) {}
     public void onHitAll(AbstractCard c, boolean fromCard) {}
+    public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard, GuardAction action) { onGuard(c, m, fromCard); }
+    public void onHit(AbstractCard c, AbstractMonster m, boolean fromCard, HitAction action) { onHit(c, m, fromCard); }
+    public void onHitAll(AbstractCard c, boolean fromCard, HitAllAction action) { onHitAll(c,fromCard); }
     public void onLoseHPFromWeight(int weight) {}
 
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {

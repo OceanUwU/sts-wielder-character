@@ -12,14 +12,14 @@ import oceanwielder.powers.AbstractWielderPower;
 import static oceanwielder.util.Wiz.*;
 
 public class GuardAction extends AbstractGameAction {
-    private int guards;
     private AbstractMonster target;
-    private final AbstractCard fromCard;
+    private final AbstractCard card;
     private final boolean fromRealCard;
+    public int additionalNonReal = 0;
 
     public GuardAction(int guards, AbstractCard fromCard, boolean fromRealCard) {
-        this.guards = guards;
-        this.fromCard = fromCard;
+        amount = guards;
+        this.card = fromCard;
         this.fromRealCard = fromRealCard;
     }
 
@@ -29,15 +29,17 @@ public class GuardAction extends AbstractGameAction {
 
     public void update() {
         isDone = true;
-        if (fromCard != null) {
+        if (card != null) {
             if (adp().hasPower(Overextend.ID) || adp().hasPower(Bide.ID))
                 return;
         }
-        for (int i = 0; i < guards; i++) {
+        do {
+            boolean real = fromRealCard && additionalNonReal <= 0;
+            if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)
-                    ((AbstractWielderPower)p).onGuard(fromCard, target, fromRealCard);
-            WielderMod.shieldSlot.wieldable.use(fromCard, target);
-        }
+                    ((AbstractWielderPower)p).onGuard(card, target, real, this);
+            WielderMod.shieldSlot.wieldable.use(card, target);
+        } while (--amount > 0);
     }
 }

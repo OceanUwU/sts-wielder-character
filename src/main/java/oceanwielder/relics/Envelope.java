@@ -1,6 +1,7 @@
 package oceanwielder.relics;
 
 import static oceanwielder.WielderMod.makeID;
+import static oceanwielder.util.Wiz.*;
 
 import oceanwielder.characters.TheWielder;
 

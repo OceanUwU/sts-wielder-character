@@ -12,13 +12,14 @@ import oceanwielder.powers.AbstractWielderPower;
 
 public class HitAction extends AbstractGameAction {
     private AbstractMonster target;
-    private final AbstractCard fromCard;
+    private final AbstractCard card;
     private final boolean fromRealCard;
+    public int additionalNonReal = 0;
 
     public HitAction(AbstractMonster m, int hits, AbstractCard fromCard, boolean fromRealCard) {
         target = m;
         amount = hits;
-        this.fromCard = fromCard;
+        this.card = fromCard;
         this.fromRealCard = fromRealCard;
     }
 
@@ -29,15 +30,17 @@ public class HitAction extends AbstractGameAction {
     public void update() {
         isDone = true;
         if (amount <= 0) return;
-        if (fromCard != null) {
+        if (card != null) {
             if (adp().hasPower(Overextend.ID))
                 return;
         }
-        for (int i = 0; i < amount; i++) {
+        do {
+            boolean real = fromRealCard && additionalNonReal <= 0;
+            if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)
-                    ((AbstractWielderPower)p).onHit(fromCard, target, fromRealCard);
-            WielderMod.weaponSlot.wieldable.use(fromCard, target);
-        }
+                    ((AbstractWielderPower)p).onHit(card, target, real, this);
+            WielderMod.weaponSlot.wieldable.use(card, target);
+        } while (--amount > 0);
     }
 }

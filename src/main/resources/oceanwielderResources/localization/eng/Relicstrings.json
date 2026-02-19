@@ -3,7 +3,15 @@
     "NAME": "Remarkably Throwable Rock",
     "FLAVOR": "Ain't no better feeling than smashing a window or two.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "Your first #y${ModID}:Hit and #y${ModID}:Guard each combat are repeated.",
+      "Left Half of a Rock",
+      "Your next #yHit is repeated.",
+      "Your next #yHit is repeated #b",
+      " additional times",
+      "Right Half of a Rock",
+      "Your next #yGuard is repeated.",
+      "Your next #yGuard is repeated #b",
+      " additional times"
     ]
   },
   "${ModID}:GravShoes": {

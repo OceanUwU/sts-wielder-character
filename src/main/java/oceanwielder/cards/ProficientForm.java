@@ -39,34 +39,37 @@ public class ProficientForm extends AbstractWielderCard {
         }
 
         @Override
-        public void onHit(AbstractCard c, AbstractMonster m, boolean fromRealCard) {
+        public void onHit(AbstractCard c, AbstractMonster m, boolean fromRealCard, HitAction action) {
             if (fromRealCard) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();
-                    att(new HitAction(m, c, false));
+                    action.amount++;
+                    action.additionalNonReal++;
                 }
             }
         }
 
         @Override
-        public void onHitAll(AbstractCard c, boolean fromRealCard) {
+        public void onHitAll(AbstractCard c, boolean fromRealCard, HitAllAction action) {
             if (fromRealCard) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();
-                    att(new HitAllAction(c, false));
+                    action.amount++;
+                    action.additionalNonReal++;
                 }
             }
         }
 
         @Override
-        public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard) {
+        public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard, GuardAction action) {
             if (fromRealCard) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();
-                    att(new GuardAction(c, false));
+                    action.amount++;
+                    action.additionalNonReal++;
                 }
             }
         }
