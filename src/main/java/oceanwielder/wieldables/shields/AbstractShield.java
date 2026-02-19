@@ -37,13 +37,16 @@ public abstract class AbstractShield extends AbstractWieldable {
         if (c == null) {
             if (sim == null) {
                 sim = new Defend_Red();
+                sim.baseBlock = 0;
                 sim.tags.clear();
             }
             c = sim;
         }
         super.applyPowers(c);
-        c.baseBlock = basePrimary;
+        int base = c.baseBlock;
+        c.baseBlock += basePrimary;
         c.applyPowers();
+        c.baseBlock = base;
         primary = Math.max(c.block, 0);
         primaryTimes += Wiz.pwrAmt(adp(), GuardUpPower.POWER_ID);
         updateDescription();

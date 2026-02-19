@@ -13,7 +13,7 @@ public class Unleash extends AbstractWielderCard {
     public final static String ID = makeID(Unleash.class.getSimpleName());
 
     public Unleash() {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY);
         setGuards(1);
         setHits(1);
         setMagic(2, +1);

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -59,8 +60,9 @@ public class WieldablesPatches {
             AbstractWielderCard c = (AbstractWielderCard)p.hoveredCard;
             if (c.usesGuards || c.usesHits) {
                 if (c.usesGuards) {
-                    WielderMod.shieldSlot.shouldRender = true;
+                    //WielderMod.shieldSlot.wieldable.applyPowers(c);
                     WielderMod.shieldSlot.wieldable.fontScale = 1.5f;
+                    WielderMod.shieldSlot.shouldRender = true;
                 }
             }
             if (c.weapon != null)
@@ -81,7 +83,10 @@ public class WieldablesPatches {
 
         public static void Prefix(AbstractPlayer p) {
             WielderMod.weaponSlot.wieldable.applyPowers();
-            WielderMod.shieldSlot.wieldable.applyPowers();
+            if (p.hoveredCard instanceof AbstractWielderCard && ((AbstractWielderCard)p.hoveredCard).usesGuards && ((p.hoveredCard.target == CardTarget.ENEMY || p.hoveredCard.target == CardTarget.SELF_AND_ENEMY) ? p.inSingleTargetMode : p.isHoveringDropZone))
+                WielderMod.shieldSlot.wieldable.applyPowers(p.hoveredCard);
+            else 
+                WielderMod.shieldSlot.wieldable.applyPowers();
             if ((p.isDraggingCard || p.inSingleTargetMode) && p.isHoveringDropZone && p.hoveredCard instanceof AbstractWielderCard && ((AbstractWielderCard)p.hoveredCard).usesHits) {
                 AbstractMonster hoveredMonster = ReflectionHacks.getPrivate(p, AbstractPlayer.class, "hoveredMonster");
                 if ((p.hoveredCard.target == AbstractCard.CardTarget.ENEMY || p.hoveredCard.target == AbstractCard.CardTarget.SELF_AND_ENEMY) && p.inSingleTargetMode && hoveredMonster != null) {

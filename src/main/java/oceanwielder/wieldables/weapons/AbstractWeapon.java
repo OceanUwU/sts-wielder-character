@@ -46,8 +46,10 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     public void applyPowers(AbstractCard c) {
         super.applyPowers(c);
         if (c == null) c = getSim();
+        int base = c.baseDamage;
         c.baseDamage = basePrimary;
         c.applyPowers();
+        c.baseDamage = base;
         primary = Math.max(c.damage, 0);
         primaryTimes += Wiz.pwrAmt(adp(), HitUpPower.POWER_ID);
         updateDescription();
@@ -56,6 +58,7 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     private AbstractCard getSim() {
         if (sim == null) {
             sim = new Strike_Red();
+            sim.baseDamage = 0;
             sim.tags.clear();
         }
         return sim;
@@ -67,8 +70,10 @@ public abstract class AbstractWeapon extends AbstractWieldable {
 
     public int calculateDamage(AbstractCard c, AbstractMonster m) {
         if (c == null) c = getSim();
-        c.baseDamage = basePrimary;
+        int base = c.baseDamage;
+        c.baseDamage += basePrimary;
         c.calculateCardDamage(m);
+        c.baseDamage = base;
         primary = c.damage;
         return primary;
     }
