@@ -1,77 +1,77 @@
 {
   "${ModID}:RemarkablyThrowableRock": {
     "NAME": "Remarkably Throwable Rock",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Ain't no better feeling than smashing a window or two.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:GravShoes": {
     "NAME": "Grav-Shoes",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Not quite suited for a set of paws, but they'll do.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:Okebaka": {
     "NAME": "Okebaka",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "~Uuum",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:Robuck": {
     "NAME": "Robuk",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Premium.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:Stamp": {
     "NAME": "Stamp",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "The Royals' seal. This one's a counterfeit, of course.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:PunchCard": {
     "NAME": "Punchcard",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Pow!",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:SharpRuby": {
     "NAME": "Sharp Ruby",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "An impeccable cutting tool. The greatest invention leading up to sliced bread.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:TotemWithATopHat": {
     "NAME": "Totem with a Top Hat",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "You're fairly certain it wasn't made this way, but you don't have the heart to take away its hat, it looks too content.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:CarvedStone": {
     "NAME": "Carved Stone",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "...or three, or four... Hell, you could smash anything with this!",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:Envelope": {
     "NAME": "Envelope",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Correspondence is a much better read when it isn't addressed to you.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
   },
   "${ModID}:WholeAhhShed": {
     "NAME": "Whole Ahh Shed",
-    "FLAVOR": "TODO: FLAVOUR",
+    "FLAVOR": "Miniaturisation technology can't come soon enough.",
     "DESCRIPTIONS": [
       "Has no effect."
     ]
