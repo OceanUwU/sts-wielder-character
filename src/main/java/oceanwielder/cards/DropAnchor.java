@@ -26,7 +26,7 @@ public class DropAnchor extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        applyToSelf(new Power(p, showEvokeOrbCount));
+        applyToSelf(new Power(p, 1));
         if (secondMagic > 0)
             atb(new ReducePowerAction(p, p, Weight.POWER_ID, secondMagic));
     }

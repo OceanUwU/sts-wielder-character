@@ -2,7 +2,7 @@ package oceanwielder.cards;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -17,7 +17,7 @@ public class EternalDance extends AbstractWielderCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new DexterityPower(p, magicNumber));
+        applyToSelf(new StrengthPower(p, magicNumber));
         bearWeight();
     }
 }

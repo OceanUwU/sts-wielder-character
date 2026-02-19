@@ -15,7 +15,7 @@ public class SealOfApproval extends AbstractWielderCard {
 
     public SealOfApproval() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(4, +2);
+        setMagic(4, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

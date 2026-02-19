@@ -160,16 +160,18 @@
     "NAME": "Slam",
     "DESCRIPTION": "{!${ModID}:h!|0=|1=${ModID}:Hit. NL |@=${ModID}:Hit !${ModID}:h! times. NL }${ModID}:Hit for each ${ModID}:Weight you bear.",
     "EXTENDED_DESCRIPTION": [
-      " NL (Bearing ",
-      " ${ModID}:Weight.)"
+      " (",
+      " time)",
+      " times)"
     ]
   },
   "${ModID}:Bulwark": {
     "NAME": "Bulwark",
     "DESCRIPTION": "{!${ModID}:g!|0=|1=${ModID}:Guard. NL |@=${ModID}:Guard !${ModID}:h! times. NL }${ModID}:Guard for each ${ModID}:Weight you bear.",
     "EXTENDED_DESCRIPTION": [
-      " NL (Bearing ",
-      " ${ModID}:Weight.)"
+      " (",
+      " time)",
+      " times)"
     ]
   },
   "${ModID}:Catalogue": {
@@ -290,11 +292,14 @@
   },
   "${ModID}:EternalDance": {
     "NAME": "Eternal Dance",
-    "DESCRIPTION": "Gain !M! Dexterity.!WEIGHT!"
+    "DESCRIPTION": "Gain !M! Strength.!WEIGHT!"
   },
   "${ModID}:Dismiss": {
     "NAME": "Dismiss",
-    "DESCRIPTION": "!GUARD!. NL Discard up to !M! card{!M!|>1=s} from your draw pile."
+    "DESCRIPTION": "!GUARD!. NL Discard up to !M! card{!M!|>1=s} from your draw pile.",
+    "EXTENDED_DESCRIPTION": [
+      "Discard."
+    ]
   },
   "${ModID}:KerChunk": {
     "NAME": "Ker-chunk!",

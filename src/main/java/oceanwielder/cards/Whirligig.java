@@ -1,5 +1,6 @@
 package oceanwielder.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -24,24 +25,25 @@ public class Whirligig extends AbstractWielderCard {
         applyToSelf(new Power(p, magicNumber));
     }
 
-    private static class Power extends AbstractWielderPower {
+    private static class Power extends AbstractWielderPower implements NonStackablePower {
         private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(Whirligig.ID);
 
         public Power(AbstractCreature owner, int amount) {
             super(Whirligig.ID, powerStrings.NAME, PowerType.BUFF, false, owner, amount);
             amount2 = amount;
             isTwoAmount = true;
+            updateDescription();
         }
 
         @Override
-        public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard) {
-            if (c != null) {
-                if (--amount == 0) {
-                    amount = amount2;
-                    flash();
-                    att(new GuardAction(null, false));
-                }
+        public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard, GuardAction action) {
+            if (fromRealCard && --amount == 0) {
+                amount = amount2;
+                flash();
+                action.amount++;
+                action.additionalNonReal++;
             }
+            updateDescription();
         }
 
         @Override

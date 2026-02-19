@@ -254,4 +254,8 @@ public class Wiz {
     public static void playAudio(WielderAudio a) {
         CardCrawlGame.sound.play(makeID(a.name()));
     }
+
+    public static AbstractMonster getRandomEnemy() {
+        return AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+    }
 }
