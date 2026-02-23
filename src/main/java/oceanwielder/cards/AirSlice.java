@@ -11,7 +11,7 @@ public class AirSlice extends AbstractWielderCard {
     public AirSlice() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
         setHits(1);
-        setMagic(0, +2);
+        setMagic(2, +2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

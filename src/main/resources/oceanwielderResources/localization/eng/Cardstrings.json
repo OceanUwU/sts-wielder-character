@@ -42,7 +42,7 @@
     "DESCRIPTION": "!WW!.{!M!|>0= NL Gain !M! temporary Strength.}"
   },
   "${ModID}:ExpandDefenses": {
-    "NAME": "Expand Defenses",
+    "NAME": "Expand Defences",
     "DESCRIPTION": "!WS!.{!M!|>0= NL Gain !M! temporary Dexterity.}"
   },
   "${ModID}:Diverge": {
@@ -125,7 +125,7 @@
     "DESCRIPTION": "Apply !M! Vulnerable.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! Vigor.}"
   },
   "${ModID}:Leer": {
-    "NAME": "Leer",
+    "NAME": "Tail Whip",
     "DESCRIPTION": "Apply !M! Weak.{!${ModID}:m2!|>0= NL Gain !${ModID}:m2! ${ModID}:Aegis.}"
   },
   "${ModID}:CinchUp": {
@@ -451,6 +451,6 @@
   },
   "${ModID}:DropAnchor": {
     "NAME": "Drop Anchor",
-    "DESCRIPTION": "!HIT!. You cannot bear ${ModID}:Weight {!M!|1=this turn|@=for !M! turns}.{!${ModID}:m2!|>0= NL Lose !${ModID}:m2! ${ModID}:Weight.}"
+    "DESCRIPTION": "!HIT!. NL You cannot bear ${ModID}:Weight {!M!|1=this turn|@=for !M! turns}.{!${ModID}:m2!|>0= NL Lose !${ModID}:m2! ${ModID}:Weight.}"
   }
 }

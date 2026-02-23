@@ -15,8 +15,8 @@ public class Overextend extends AbstractWielderCard {
 
     public Overextend() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        setHits(3);
-        setMagic(4, -2);
+        setHits(3, +1);
+        setMagic(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

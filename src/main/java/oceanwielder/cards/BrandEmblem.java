@@ -20,6 +20,7 @@ public class BrandEmblem extends AbstractWielderCard {
         setHits(1);
         setMagic(1);
         setExhaust(true);
+        tags.add(CardTags.HEALING);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
