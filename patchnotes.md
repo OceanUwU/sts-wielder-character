@@ -1,3 +1,6 @@
+# v0.1.2
+- Fixed: Drop Anchor now wears off properly
+
 # v0.1.1
 - Eternal Dance: reworked
 - Temper: Vigor given 3 -> 2

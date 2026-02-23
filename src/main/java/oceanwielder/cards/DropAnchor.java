@@ -42,7 +42,12 @@ public class DropAnchor extends AbstractWielderCard {
         }
 
         public Power(AbstractCreature owner, int amount) {
-            super(DropAnchor.ID, powerStrings.NAME, PowerType.BUFF, false, owner, amount);
+            super(DropAnchor.ID, powerStrings.NAME, PowerType.BUFF, true, owner, amount);
+        }
+
+        @Override
+        public void atEndOfRound() {
+            addToBot(new ReducePowerAction(owner, this.owner, ID, 1));
         }
 
         @Override
