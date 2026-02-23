@@ -228,7 +228,7 @@ public class TheWielder extends CustomPlayer {
 
     @Override
     public String getSensoryStoneText() {
-        return TEXT[3];
+        return null;//TEXT[3];
     }
 
     @Override
