@@ -12,6 +12,7 @@ public class SpinOut extends AbstractWielderCard {
 
     public SpinOut() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        setHits(0);
         setMagic(3, +1);
         setSecondMagic(1);
     }

@@ -292,7 +292,12 @@
   },
   "${ModID}:EternalDance": {
     "NAME": "Eternal Dance",
-    "DESCRIPTION": "Gain !M! Strength.!WEIGHT!"
+    "DESCRIPTION": "The next time you would lose HP from ${ModID}:Weight, heal !M! HP instead.!WEIGHT!",
+    "EXTENDED_DESCRIPTION": [
+      "Eternal Dance",
+      "The next time you would lose HP from #yWeight, heal #b",
+      " HP instead."
+    ]
   },
   "${ModID}:Dismiss": {
     "NAME": "Dismiss",

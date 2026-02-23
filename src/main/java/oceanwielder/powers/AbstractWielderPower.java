@@ -60,6 +60,7 @@ public abstract class AbstractWielderPower extends AbstractPower {
     public void onHit(AbstractCard c, AbstractMonster m, boolean fromCard, HitAction action) { onHit(c, m, fromCard); }
     public void onHitAll(AbstractCard c, boolean fromCard, HitAllAction action) { onHitAll(c,fromCard); }
     public void onLoseHPFromWeight(int weight) {}
+    public boolean shouldCancelWeightHPLoss(int weight) { return false; }
 
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
         super.renderAmount(sb, x, y, c);

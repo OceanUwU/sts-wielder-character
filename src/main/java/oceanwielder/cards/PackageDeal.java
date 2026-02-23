@@ -15,6 +15,7 @@ public class PackageDeal extends AbstractWielderCard {
 
     public PackageDeal() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        setHits(0);
         setCostUpgrade(-1);
         setMagic(1);
     }

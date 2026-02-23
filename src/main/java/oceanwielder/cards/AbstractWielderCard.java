@@ -218,10 +218,8 @@ public abstract class AbstractWielderCard extends CustomCard {
 
     protected void setHits(int amount) {
         baseHits = hits = amount;
-        if (baseHits > 0) {
-            usesHits = true;
-            baseDamage = 0;
-        }
+        usesHits = true;
+        baseDamage = 0;
     }
     
     protected void setHits(int amount, int upgrade) {

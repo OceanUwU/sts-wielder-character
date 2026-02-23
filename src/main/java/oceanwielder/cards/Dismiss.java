@@ -17,7 +17,7 @@ public class Dismiss extends AbstractWielderCard {
     public Dismiss() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         setGuards(1);
-        setMagic(2, +1);
+        setMagic(2, +2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -20,6 +20,7 @@ public class Readied extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new EasyXCostAction(this, (power, params) -> {
+            if (power == 0) return true;
             applyToSelfTop(new VigorPower(adp(), magicNumber * power));
             return true;
         }));

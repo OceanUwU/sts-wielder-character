@@ -44,8 +44,16 @@ public class Weight extends AbstractWielderPower {
                     atb(new RelicAboveCreatureAction(owner, relic));
                     hpToLose = Math.max(0, hpToLose - GravShoes.POWER);
                 }
+            final int hp = hpToLose;
             atb(
-                new LoseHPAction(owner, owner, hpToLose),
+                actionify(() -> {
+                    boolean losing = true;
+                    for (AbstractPower p : owner.powers)
+                        if (p instanceof AbstractWielderPower && ((AbstractWielderPower)p).shouldCancelWeightHPLoss(weight))
+                            losing = false;
+                    if (losing)
+                        att(new LoseHPAction(owner, owner, hp));
+                }),
                 new RemoveSpecificPowerAction(owner, owner, this),
                 actionify(() -> {
                     for (AbstractPower p : owner.powers)

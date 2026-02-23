@@ -31,6 +31,6 @@ public class Slam extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
-        actB(() -> hitTop(m, pwrAmt(p, Weight.POWER_ID)));
+        hitTop(m, pwrAmt(p, Weight.POWER_ID));
     }
 }

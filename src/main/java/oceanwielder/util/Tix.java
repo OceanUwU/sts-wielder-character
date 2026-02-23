@@ -120,10 +120,9 @@ public class Tix {
 
     public static void gain(int amount) {
         amt += amount;
-        if (!shouldRender) {
-            shouldRender = true;
-            targetAlpha = 1f;
-        }
+        if (amt <= 0) return;
+        targetAlpha = 1f;
+        shouldRender = true;
     }
 
     @SpirePatch(clz=EnergyPanel.class, method="renderOrb", paramtypez={SpriteBatch.class})

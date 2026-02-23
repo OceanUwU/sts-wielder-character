@@ -13,6 +13,7 @@ public class MakeItRain extends AbstractWielderCard {
 
     public MakeItRain() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        setHits(0);
         setRetain(false, true);
         setExhaust(true);
     }

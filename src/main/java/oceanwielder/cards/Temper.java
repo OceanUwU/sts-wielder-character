@@ -14,7 +14,7 @@ public class Temper extends AbstractWielderCard {
 
     public Temper() {
         super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        setMagic(3, +1);
+        setMagic(2, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
