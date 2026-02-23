@@ -16,13 +16,13 @@ public class Bide extends AbstractWielderCard {
 
     public Bide() {
         super(ID, 0, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        setMagic(2, +1);
+        setMagic(3, +1);
         setSecondMagic(8);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToSelf(new DexterityPower(p, magicNumber));
-        applyToSelf(new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.DEBUFF, false, p, magicNumber) {
+        applyToSelf(new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.DEBUFF, false, p, secondMagic) {
             public void onUseCard(AbstractCard card, UseCardAction action) {
                 flash();
                 atb(new ReducePowerAction(owner, owner, this, 1));

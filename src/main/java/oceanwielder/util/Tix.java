@@ -109,6 +109,7 @@ public class Tix {
         for (AbstractPower p : adp().powers)
             if (p instanceof AbstractWielderPower)
                 ((AbstractWielderPower)p).onSpendTix((ArrayList<AbstractCard>)DrawCardAction.drawnCards.clone());
+        adp().hand.group.forEach(c -> c.applyPowers());
     }
 
     private static void render(SpriteBatch sb) {
@@ -148,9 +149,9 @@ public class Tix {
         }
     }
 
-    @SpirePatch(clz=GameActionManager.class, method="clear")
+    @SpirePatch(clz=GameActionManager.class, method="getNextAction")
     public static class ResetTrackedTurn {
-        @SpireInsertPatch(loc=452)
+        @SpireInsertPatch(loc=434)
         public static void Insert() {
             spentThisTurn = 0;
         }

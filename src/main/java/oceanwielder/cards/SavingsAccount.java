@@ -40,10 +40,6 @@ public class SavingsAccount extends AbstractWielderCard {
         });
         if (secondMagic > 0) {
             applyToSelf(new NewDrawPower(p, -secondMagic));
-            actB(() -> {
-                if (p.hasPower(NewDrawPower.POWER_ID))
-                    System.out.println(p.getPower(NewDrawPower.POWER_ID).amount);
-            });
         }
     }
 

@@ -17,12 +17,14 @@ public class ReturnToSender extends AbstractWielderCard {
     public final static String ID = makeID(ReturnToSender.class.getSimpleName());
 
     public ReturnToSender() {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.NONE);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         setHits(1);
         setMagic(2, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        System.out.println(p);
+        System.out.println(m);
         hit(m);
         atb(new MultiGroupSelectAction(exDesc[0], (cards, groups) -> {
             Collections.reverse(cards);
@@ -37,6 +39,6 @@ public class ReturnToSender extends AbstractWielderCard {
                         p.hand.moveToHand(c, groups.get(c));
                 }
             }));
-        }, 1, c -> Stamps.isStamped(c), CardGroup.CardGroupType.DRAW_PILE, CardGroup.CardGroupType.DISCARD_PILE));
+        }, magicNumber, c -> Stamps.isStamped(c), CardGroup.CardGroupType.DRAW_PILE, CardGroup.CardGroupType.DISCARD_PILE));
     }
 }

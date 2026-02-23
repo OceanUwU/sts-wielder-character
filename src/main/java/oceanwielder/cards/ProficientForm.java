@@ -36,6 +36,7 @@ public class ProficientForm extends AbstractWielderCard {
             super(ProficientForm.ID, powerStrings.NAME, PowerType.BUFF, false, owner, amount);
             amount2 = amount;
             isTwoAmount = true;
+            updateDescription();
         }
 
         @Override
@@ -47,6 +48,7 @@ public class ProficientForm extends AbstractWielderCard {
                     action.amount++;
                     action.additionalNonReal++;
                 }
+                updateDescription();
             }
         }
 
@@ -59,6 +61,7 @@ public class ProficientForm extends AbstractWielderCard {
                     action.amount++;
                     action.additionalNonReal++;
                 }
+                updateDescription();
             }
         }
 
@@ -71,13 +74,14 @@ public class ProficientForm extends AbstractWielderCard {
                     action.amount++;
                     action.additionalNonReal++;
                 }
+                updateDescription();
             }
         }
 
         @Override
         public void updateDescription() {
             String[] d = powerStrings.DESCRIPTIONS;
-            description = d[0] + amount + d[1] + amount2 + d[2];
+            description = d[0] + amount2 + d[1] + amount + d[2];
         }
     }
 }

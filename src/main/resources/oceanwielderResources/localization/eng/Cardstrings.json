@@ -75,7 +75,7 @@
   },
   "${ModID}:TakeAim": {
     "NAME": "Take Aim",
-    "DESCRIPTION": "!WW!.{!M!|0=|@= NL Set its damage to !${ModID}:m2!.}"
+    "DESCRIPTION": "!WW!.{!M!|0=|@= NL Its first !${ModID}:m2! ${ModID}:Hits have +!M! damage.}"
   },
   "${ModID}:ShovelKnightCard": {
     "NAME": "Reuse",
@@ -322,7 +322,7 @@
   },
   "${ModID}:Lift": {
     "NAME": "Lift",
-    "DESCRIPTION": "At the start of your turn, gain !M! Vigor{!${ModID}:m2!|>1= and bear !${ModID}:m2! ${ModID}:Weight}.",
+    "DESCRIPTION": "At the start of your turn, gain !M! Vigor{!${ModID}:m2!|>0= and bear !${ModID}:m2! ${ModID}:Weight}.",
     "EXTENDED_DESCRIPTION": [
       "Invigorated",
       "At the start of your turn, gain #b",
@@ -387,7 +387,10 @@
   },
   "${ModID}:ReturnToSender": {
     "NAME": "Return to Sender",
-    "DESCRIPTION": "!HIT!. NL Put !M! ${ModID}:Stamped card{!M!|>1=s} from your draw or discard piles into your hand."
+    "DESCRIPTION": "!HIT!. NL Put !M! ${ModID}:Stamped card{!M!|>1=s} from your draw or discard piles into your hand.",
+    "EXTENDED_DESCRIPTION": [
+      "put in your hand"
+    ]
   },
   "${ModID}:BrandEmblem": {
     "NAME": "Brand Emblem",

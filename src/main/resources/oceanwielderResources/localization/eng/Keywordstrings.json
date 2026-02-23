@@ -101,7 +101,7 @@
     "NAMES": [
       "crossbow"
     ],
-    "DESCRIPTION": "Weapon. NL First #b!S! #yHits deal #b!P! damage. NL Further #yHits deal #b2 damage. NL Dequip: Nothing."
+    "DESCRIPTION": "Weapon. NL First #b!S! #yHits deal #b!P! damage. NL Further #yHits deal #b2 damage. NL Dequip: Your next weapon gets +!D! damage."
   },
   {
     "PROPER_NAME": "Heater",

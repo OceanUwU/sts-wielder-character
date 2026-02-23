@@ -23,7 +23,7 @@ public class MakeItRain extends AbstractWielderCard {
 
     public void applyPowers() {
         super.applyPowers();
-        baseDesc = cardStrings.DESCRIPTION + exDesc[0] + Tix.spentThisTurn + exDesc;
+        baseDesc = cardStrings.DESCRIPTION + exDesc[0] + Tix.spentThisTurn + exDesc[1];
         initializeDescription();
     }
 

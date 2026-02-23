@@ -16,7 +16,7 @@ public class Defend extends AbstractWielderCard {
     public Defend() {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         setGuards(1);
-        setMagic(0, +2);
+        setMagic(0, +3);
         tags.add(CardTags.STARTER_DEFEND);
     }
 

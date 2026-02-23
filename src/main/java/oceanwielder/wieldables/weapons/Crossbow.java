@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import oceanwielder.WielderMod;
 import oceanwielder.util.TexLoader;
 import oceanwielder.util.WielderAudio;
 
@@ -18,11 +19,12 @@ import static oceanwielder.util.Wiz.*;
 
 public class Crossbow extends AbstractWeapon {
     public static String ID = makeID("Crossbow");
-    public static final int DAMAGE = 13;
+    private static final int DAMAGE = 13;
     private static final int DAMAGE_WHEN_EMPTY = 2;
+    public static final int NUM_SHOTS = 6;
 
     public Crossbow() {
-        super(ID, DAMAGE, 6, -1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        super(ID, DAMAGE, NUM_SHOTS, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         vfxCanAffectAll = true;
     }
 
@@ -71,7 +73,13 @@ public class Crossbow extends AbstractWeapon {
             vfxTop(new SwingWeaponEffect(this));
     }
 
-    public void dequipEffect() {}
+    public void dequipEffect() {
+        actT(() -> {
+            if (WielderMod.weaponSlot.wieldable == this) return;
+            WielderMod.weaponSlot.wieldable.basePrimary += dequipPower;
+            WielderMod.weaponSlot.wieldable.applyPowers();
+        });
+    }
 
     @Override
     public void updateDescription() {

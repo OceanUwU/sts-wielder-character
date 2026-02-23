@@ -31,5 +31,6 @@ public class FirstClass extends AbstractWielderCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         hit(m);
+        gainVigor(magicNumber);
     }
 }

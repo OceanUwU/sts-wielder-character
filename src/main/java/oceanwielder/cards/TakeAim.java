@@ -15,21 +15,21 @@ public class TakeAim extends AbstractWielderCard {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         weapon = new Crossbow();
         setMagic(0, +1);
-        setSecondMagic(Crossbow.DAMAGE, +1);
+        setSecondMagic(Crossbow.NUM_SHOTS);
         exhaust = true;
         initializeDescription();
     }
 
     @Override public void applyPowers() {
-        baseSecondMagic = secondMagic = Crossbow.DAMAGE + magicNumber;
+        baseSecondMagic = secondMagic = Crossbow.NUM_SHOTS;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         wield(weapon);
-        if (secondMagic != Crossbow.DAMAGE)
+        if (magicNumber != 0)
             actB(() -> {
                 if (!(WielderMod.weaponSlot.wieldable instanceof Crossbow)) return;
-                WielderMod.weaponSlot.wieldable.basePrimary = Crossbow.DAMAGE + magicNumber;
+                WielderMod.weaponSlot.wieldable.basePrimary += magicNumber;
                 WielderMod.weaponSlot.wieldable.applyPowers();
             });
     }

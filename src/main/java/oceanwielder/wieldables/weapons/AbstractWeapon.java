@@ -83,7 +83,6 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         if (m == null) 
             m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         if (m.isDeadOrEscaped()) return;
-        System.out.println(c);
         dmg(c, m);
         useVfx(m);
     }

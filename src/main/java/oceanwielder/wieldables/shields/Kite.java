@@ -12,7 +12,7 @@ public class Kite extends AbstractShield {
     public static String ID = makeID("Kite");
 
     public Kite() {
-        super(ID, 6, 2, 1);
+        super(ID, 6, 2, 2);
     }
 
     @Override
