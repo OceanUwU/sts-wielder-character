@@ -12,13 +12,27 @@ public class Hologram extends AbstractShield {
     public static String ID = makeID("Hologram");
 
     public Hologram() {
-        super(ID, 3, 3, 2);
+        super(ID, 4, 3, 2);
     }
 
     @Override
     public void use(AbstractCard c, AbstractMonster m) {
+        for (int i = 0; i < secondaryTimes; i++)
         applyToSelfTop(new NextTurnBlockPower(adp(), secondary));
         super.use(c, m);
+    }
+
+    @Override
+    public void applyPowers(AbstractCard c) {
+        super.applyPowers(c);
+        if (c == null) c = sim;
+        int base = c.baseBlock;
+        c.baseBlock += baseSecondary;
+        c.applyPowers();
+        c.baseBlock = base;
+        secondary = Math.max(c.block, 0);
+        secondaryTimes = primaryTimes;
+        updateDescription();
     }
 
     public void dequipEffect() {

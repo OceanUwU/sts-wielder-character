@@ -42,11 +42,9 @@
   "${ModID}:Whirligig": {
     "NAME": "Whirligig",
     "DESCRIPTIONS": [
-      "Every time you #yGuard, #yGuard again. #b",
-      "Every #b",
-      " times you #yGuard, #yGuard again. #b",
-      " #yGuard to go.",
-      " #yGuards to go."
+      "At the end of your turn, Guard #b",
+      " time.",
+      " times."
     ]
   },
   "${ModID}:ProficientForm": {

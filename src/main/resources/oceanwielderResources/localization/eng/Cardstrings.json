@@ -47,7 +47,7 @@
   },
   "${ModID}:Diverge": {
     "NAME": "Diverge",
-    "DESCRIPTION": "!GUARD!. NL !WS!.{!Upgrades!|>0= NL ${ModID}:Guard.}"
+    "DESCRIPTION": "!WS!. NL !GUARD!."
   },
   "${ModID}:HeavenlyWrath": {
     "NAME": "Heavenly Wrath",
@@ -271,7 +271,7 @@
   },
   "${ModID}:Whirligig": {
     "NAME": "Whirligig",
-    "DESCRIPTION": "Every {!M!|1=time|2=2nd time|3=3rd time|@=!M!th time} you ${ModID}:Guard, ${ModID}:Guard again."
+    "DESCRIPTION": "At the end of your turn, ${ModID}:Guard{!M!|1=|@= !M! times}."
   },
   "${ModID}:Grindset": {
     "NAME": "Grindset",
@@ -308,7 +308,7 @@
   },
   "${ModID}:KerChunk": {
     "NAME": "Ker-chunk!",
-    "DESCRIPTION": "Stamp !M! card{!M!|>1=s} at random."
+    "DESCRIPTION": "${ModID}:Stamp !M! card{!M!|>1=s} at random."
   },
   "${ModID}:Diet": {
     "NAME": "Diet",

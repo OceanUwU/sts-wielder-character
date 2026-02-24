@@ -56,11 +56,11 @@
     ]
   },
   "${ModID}:SharpRuby": {
-    "NAME": "Sharp Ruby",
+    "NAME": "Ruby",
     "FLAVOR": "An impeccable cutting tool. The greatest invention leading up to sliced bread.",
     "DESCRIPTIONS": [
-      "Every #b",
-      "nd #yStri​ke or #yDefend played exhausts."
+      "At the end of every #b",
+      "nd turn, #y${ModID}:Guard."
     ]
   },
   "${ModID}:TotemWithATopHat": {

@@ -55,7 +55,8 @@
     "${ModID}:Crossbow": {
         "NAME": "Crossbow",
         "DESCRIPTION": [
-            " NL Dequip: Nothing.",
+            " NL Dequip: Increase your next weapon's damage by #b",
+            ".",
             " After #b",
             " more hits, damage will reduce to #b",
             "."

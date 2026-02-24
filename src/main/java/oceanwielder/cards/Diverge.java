@@ -15,8 +15,7 @@ public class Diverge extends AbstractWielderCard {
 
     public Diverge() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        setGuards(1);
-        setMagic(0, +4);
+        setGuards(1, +1);
         shield = new Hologram();
         initializeDescription();
     }
@@ -28,7 +27,6 @@ public class Diverge extends AbstractWielderCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         guard();
         wield(shield);
-        if (upgraded)
-            guard(1);
+        guard(1);
     }
 }

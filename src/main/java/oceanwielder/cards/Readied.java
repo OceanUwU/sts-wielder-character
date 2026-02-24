@@ -14,7 +14,7 @@ public class Readied extends AbstractWielderCard {
 
     public Readied() {
         super(ID, -1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(8);
+        setMagic(6);
         setSecondMagic(0, +1);
     }
 

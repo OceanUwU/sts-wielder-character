@@ -15,7 +15,7 @@ public class EternalDance extends AbstractWielderCard {
 
     public EternalDance() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(5, +2);
+        setMagic(5, +3);
         setSecondMagic(1);
     }
 

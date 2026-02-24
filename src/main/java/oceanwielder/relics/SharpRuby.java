@@ -4,9 +4,8 @@ import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
 
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.Orichalcum;
+import oceanwielder.actions.GuardAction;
 import oceanwielder.characters.TheWielder;
 
 public class SharpRuby extends AbstractWielderRelic {
@@ -18,13 +17,34 @@ public class SharpRuby extends AbstractWielderRelic {
         counter = 0;
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.hasTag(AbstractCard.CardTags.STARTER_STRIKE) && !card.hasTag(AbstractCard.CardTags.STARTER_DEFEND)) return;
-        if (++counter < POWER) return;
+    public void onEquip() {
         counter = 0;
-        flash();
-        action.exhaustCard = true;
-        atb(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+    }
+
+    @Override
+    public void atTurnStart() {
+        if (counter == POWER - 1)
+            beginLongPulse();
+    }
+
+    public void onPlayerEndTurn() {
+        if (counter == -1)
+            counter += 2;
+        else
+            ++counter;
+
+        if (counter == POWER) {
+            counter = 0;
+            flash();
+
+            atb(new RelicAboveCreatureAction(adp(), this));
+            atb(new GuardAction(null, false));
+        }
+        stopPulse();
+    }
+
+    public void onVictory() {
+        stopPulse();
     }
 
     @Override

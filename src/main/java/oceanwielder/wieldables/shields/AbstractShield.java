@@ -21,7 +21,7 @@ public abstract class AbstractShield extends AbstractWieldable {
     public static final float Y_OFFSET = 180f;
     private static final float BOB_HEIGHT = 5f;
     private static final float BOB_TIME = 3.5f;
-    private static AbstractCard sim;
+    protected static AbstractCard sim;
     protected static OrbStrings baseStrings = CardCrawlGame.languagePack.getOrbString(makeID("Shield"));
 
     public AbstractShield(String id, int basePrimary, int baseSecondary, int baseDequipPower) {

@@ -11,7 +11,7 @@ public class LilSpin extends AbstractWielderCard {
     public LilSpin() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         setGuards(1);
-        setMagic(0, +2);
+        setMagic(0, +3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
