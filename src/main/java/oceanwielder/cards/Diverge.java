@@ -25,8 +25,7 @@ public class Diverge extends AbstractWielderCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        guard();
         wield(shield);
-        guard(1);
+        guard();
     }
 }

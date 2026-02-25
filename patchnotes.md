@@ -1,3 +1,6 @@
+# v0.1.5
+- Fixed: Diverge no longer gives you 2 guards by base
+
 # v0.1.4
 - Take Aim: Reworked. cost 0 -> 3
 - Strike+: Vigor 2 -> 3
