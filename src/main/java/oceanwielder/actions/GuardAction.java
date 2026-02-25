@@ -16,17 +16,17 @@ import static oceanwielder.util.Wiz.*;
 public class GuardAction extends AbstractGameAction {
     private AbstractMonster target;
     private final AbstractCard card;
-    private final boolean fromRealCard;
+    private final boolean notARepeat;
     public int additionalNonReal = 0;
 
-    public GuardAction(int guards, AbstractCard fromCard, boolean fromRealCard) {
+    public GuardAction(int guards, AbstractCard fromCard, boolean notARepeat) {
         amount = guards;
         this.card = fromCard;
-        this.fromRealCard = fromRealCard;
+        this.notARepeat = notARepeat;
     }
 
-    public GuardAction(AbstractCard fromCard, boolean fromRealCard) {
-        this(1, fromCard, fromRealCard);
+    public GuardAction(AbstractCard fromCard, boolean notARepeat) {
+        this(1, fromCard, notARepeat);
     }
 
     public void update() {
@@ -36,7 +36,7 @@ public class GuardAction extends AbstractGameAction {
                 return;
         }
         do {
-            boolean real = fromRealCard && additionalNonReal <= 0;
+            boolean real = notARepeat && additionalNonReal <= 0;
             if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)

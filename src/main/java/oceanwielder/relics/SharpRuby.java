@@ -38,7 +38,7 @@ public class SharpRuby extends AbstractWielderRelic {
             flash();
 
             atb(new RelicAboveCreatureAction(adp(), this));
-            atb(new GuardAction(null, false));
+            atb(new GuardAction(null, true));
         }
         stopPulse();
     }

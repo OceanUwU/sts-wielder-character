@@ -21,7 +21,7 @@ public class PackageDeal extends AbstractWielderCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new SelectCardsInHandAction(1, exDesc[0], false, false, c -> Stamps.canStamp(c), cards -> {
+        atb(new SelectCardsInHandAction(1, exDesc[0], false, false, c -> true, cards -> {
             cards.forEach(c -> att(new Stamps.Action(c, magicNumber), Wiz.actionify(() -> att(new HitAction(m, Stamps.getStamps(c), this, true)))));
         }));
     }

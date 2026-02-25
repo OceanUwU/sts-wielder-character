@@ -4,9 +4,11 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardTarget;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -120,6 +122,15 @@ public class WieldablesPatches {
         @SpireInsertPatch(loc=1570)
         public static void Insert(AbstractPlayer p) {
             onSelectCard(p);
+        }
+    }
+
+    @SpirePatch(clz=UseCardAction.class, method=SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, AbstractCreature.class})
+    public static class PlayCardPatch {
+        @SpireInsertPatch(loc=33)
+        public static void Insert(UseCardAction __instance, AbstractCard card, AbstractCreature target) {
+            WielderMod.weaponSlot.wieldable.onUseCard(card, __instance);
+            WielderMod.shieldSlot.wieldable.onUseCard(card, __instance);
         }
     }
 

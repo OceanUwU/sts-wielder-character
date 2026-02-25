@@ -13,17 +13,17 @@ import static oceanwielder.util.Wiz.*;
 
 public class HitAllAction extends AbstractGameAction {
     private final AbstractCard card;
-    private final boolean fromRealCard;
+    private final boolean notARepeat;
     public int additionalNonReal = 0;
 
-    public HitAllAction(int hits, AbstractCard fromCard, boolean fromRealCard) {
+    public HitAllAction(int hits, AbstractCard fromCard, boolean notARepeat) {
         amount = hits;
         this.card = fromCard;
-        this.fromRealCard = fromRealCard;
+        this.notARepeat = notARepeat;
     }
 
-    public HitAllAction(AbstractCard fromCard, boolean fromRealCard) {
-        this(1, fromCard, fromRealCard);
+    public HitAllAction(AbstractCard fromCard, boolean notARepeat) {
+        this(1, fromCard, notARepeat);
     }
 
     public void update() {
@@ -33,7 +33,7 @@ public class HitAllAction extends AbstractGameAction {
                 return;
         }
         do {
-            boolean real = fromRealCard && additionalNonReal <= 0;
+            boolean real = notARepeat && additionalNonReal <= 0;
             if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)

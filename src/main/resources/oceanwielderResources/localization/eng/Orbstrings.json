@@ -48,18 +48,18 @@
         "NAME": "Scythe",
         "DESCRIPTION": [
             " Gain #b",
-            " #yAegis. NL Dequip: ALL enemies lose #b",
+            " #yBlock. NL Dequip: ALL enemies lose #b",
             " #yStrength."
         ]
     },
     "${ModID}:Crossbow": {
         "NAME": "Crossbow",
         "DESCRIPTION": [
-            " NL Dequip: Increase your next weapon's damage by #b",
-            ".",
-            " After #b",
-            " more hits, damage will reduce to #b",
-            "."
+            " NL Dequip: Gain #b",
+            " #yBlock.",
+            " #yBlock #b",
+            " times.",
+            " NL Whenever you play a card, #yCrssbow's damage increases by the number of #yStamps on it."
         ]
     },
 
@@ -86,6 +86,8 @@
         "DESCRIPTION": [
             " Gain #b",
             " #yBlock next turn. NL Dequip: Gain #b",
+            " #yBlock next turn #b",
+            " times. NL Dequip: Gain #b",
             " #yTix."
         ]
     },

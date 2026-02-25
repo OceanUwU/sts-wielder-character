@@ -5,11 +5,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import oceanwielder.WielderMod;
+import oceanwielder.util.Stamps;
 import oceanwielder.util.TexLoader;
 import oceanwielder.util.WielderAudio;
 
@@ -19,75 +22,47 @@ import static oceanwielder.util.Wiz.*;
 
 public class Crossbow extends AbstractWeapon {
     public static String ID = makeID("Crossbow");
-    private static final int DAMAGE = 13;
-    private static final int DAMAGE_WHEN_EMPTY = 2;
-    public static final int NUM_SHOTS = 6;
 
     public Crossbow() {
-        super(ID, DAMAGE, NUM_SHOTS, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        super(ID, 9, 0, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
         vfxCanAffectAll = true;
     }
 
     @Override
-    public void use(AbstractCard c, AbstractMonster m) {
-        if (baseSecondary > 0)
-            actT(() -> {
-                if (baseSecondary <= 0)
-                    texture = getTexture(id + "Empty");
-            });
-        super.use(c, m);
-        if (baseSecondary > 0) {
-            baseSecondary -= 1;
-            if (baseSecondary <= 0) {
-                baseSecondary = -1;
-                attackEffect = AbstractGameAction.AttackEffect.BLUNT_LIGHT;
-                basePrimary = primary = DAMAGE_WHEN_EMPTY;
-            }
-            applyPowers();
-        }
-    }
-
-    @Override
-    public void useOnAll(AbstractCard c) {
-        if (baseSecondary > 0)
-            actT(() -> {
-                if (baseSecondary <= 0)
-                    texture = getTexture(id + "Empty");
-            });
-        super.useOnAll(c);
-        if (baseSecondary > 0) {
-            baseSecondary -= 1;
-            if (baseSecondary <= 0) {
-                baseSecondary = -1;
-                attackEffect = AbstractGameAction.AttackEffect.BLUNT_LIGHT;
-                basePrimary = primary = DAMAGE_WHEN_EMPTY;
-            }
-            applyPowers();
-        }
+    public void applyPowers(AbstractCard c) {
+        super.applyPowers(c);
+        baseDequipPower = basePrimary;
+        dequipPower = primary;
+        dequipTimes = primaryTimes;
+        updateDescription();
     }
 
     public void useVfx(AbstractMonster m) {
-        if (baseSecondary > 0)
-            vfxTop(new ArrowEffect(cX + 25f * Settings.scale, cY, m.hb.cX, m.hb.cY));
-        else
-            vfxTop(new SwingWeaponEffect(this));
+        vfxTop(new ArrowEffect(cX + 25f * Settings.scale, cY, m.hb.cX, m.hb.cY));
     }
 
     public void dequipEffect() {
-        actT(() -> {
-            if (WielderMod.weaponSlot.wieldable == this) return;
-            WielderMod.weaponSlot.wieldable.basePrimary += dequipPower;
-            WielderMod.weaponSlot.wieldable.applyPowers();
+        att(new GainBlockAction(adp(), dequipPower));
+    }
+
+    @Override
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        if (!Stamps.isStamped(card)) return;
+        actB(() -> {
+            basePrimary += Stamps.getStamps(card);
+            applyPowers();
+            AbstractDungeon.effectList.add(new WieldablePulseEffect(this));
+            fontScale *= 2f;
         });
     }
 
     @Override
     public void updateDescription() {
         super.updateDescription();
-        if (secondary > 0)
-            description += strings.DESCRIPTION[2] + secondary + strings.DESCRIPTION[3] + DAMAGE_WHEN_EMPTY + strings.DESCRIPTION[4] + strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
+        if (dequipTimes == 1)
+            description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1] + strings.DESCRIPTION[4];
         else
-            description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[1];
+            description += strings.DESCRIPTION[0] + dequipPower + strings.DESCRIPTION[2] + dequipTimes + strings.DESCRIPTION[3] + strings.DESCRIPTION[4];
     }
 
     private static class ArrowEffect extends AbstractGameEffect {

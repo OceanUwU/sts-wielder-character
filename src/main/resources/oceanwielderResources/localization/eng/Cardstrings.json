@@ -75,7 +75,7 @@
   },
   "${ModID}:TakeAim": {
     "NAME": "Take Aim",
-    "DESCRIPTION": "!WW!.{!M!|0=|@= NL Its first !${ModID}:m2! ${ModID}:Hits have +!M! damage.}"
+    "DESCRIPTION": "!WW!.{!Upgrades!|>0= NL If this dequips a ${ModID}:Crossbow, ${ModID}:Stamp ALL cards.}"
   },
   "${ModID}:ShovelKnightCard": {
     "NAME": "Reuse",
@@ -210,20 +210,21 @@
   },
   "${ModID}:ProfitMargin": {
     "NAME": "Profit Margin",
-    "DESCRIPTION": "Whenever you spend NL [${ModID}:TixIcon] , gain !M! Block.",
+    "DESCRIPTION": "Whenever you spend NL [${ModID}:TixIcon] , gain !M! ${ModID}:Aegis.",
     "EXTENDED_DESCRIPTION": [
-      "Progit Margin",
+      "Profit Margin",
       "Whenever you spend #yTix, gain #b",
-      " #yBlock."
+      " #yAegis."
     ]
   },
   "${ModID}:SealOfApproval": {
     "NAME": "Seal of Approval",
-    "DESCRIPTION": "Whenever you play a card, gain !M! Block per ${ModID}:Stamp on it.",
+    "DESCRIPTION": "Whenever you play a ${ModID}:Stamped card, ${ModID}:Guard{!M!|1=|@= !M! times}.{!Upgrades!|>0= NL ${ModID}:Stamp your hand.}",
     "EXTENDED_DESCRIPTION": [
       "Seal of Approval",
-      "Whenever you play a card, gain #b",
-      " #yBlock per #yStamp on it."
+      "Whenever you play a #yStamped card, #yGuard #b",
+      " time.",
+      " times."
     ]
   },
   "${ModID}:DivineProtection": {
@@ -312,7 +313,7 @@
   },
   "${ModID}:Diet": {
     "NAME": "Diet",
-    "DESCRIPTION": "Lose !M! ${ModID}:Weight."
+    "DESCRIPTION": "Lose all your ${ModID}:Weight and gain !M! times as much ${ModID}:Aegis."
   },
   "${ModID}:SendIt": {
     "NAME": "Send It",

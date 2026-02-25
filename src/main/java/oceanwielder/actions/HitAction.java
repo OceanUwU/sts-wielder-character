@@ -15,18 +15,18 @@ import oceanwielder.relics.AbstractWielderRelic;
 public class HitAction extends AbstractGameAction {
     private AbstractMonster target;
     private final AbstractCard card;
-    private final boolean fromRealCard;
+    private final boolean notARepeat;
     public int additionalNonReal = 0;
 
-    public HitAction(AbstractMonster m, int hits, AbstractCard fromCard, boolean fromRealCard) {
+    public HitAction(AbstractMonster m, int hits, AbstractCard fromCard, boolean notARepeat) {
         target = m;
         amount = hits;
         this.card = fromCard;
-        this.fromRealCard = fromRealCard;
+        this.notARepeat = notARepeat;
     }
 
-    public HitAction(AbstractMonster m, AbstractCard fromCard, boolean fromRealCard) {
-        this(m, 1, fromCard, fromRealCard);
+    public HitAction(AbstractMonster m, AbstractCard fromCard, boolean notARepeat) {
+        this(m, 1, fromCard, notARepeat);
     }
 
     public void update() {
@@ -37,7 +37,7 @@ public class HitAction extends AbstractGameAction {
                 return;
         }
         do {
-            boolean real = fromRealCard && additionalNonReal <= 0;
+            boolean real = notARepeat && additionalNonReal <= 0;
             if (additionalNonReal > 0) additionalNonReal--;
             for (AbstractPower p : adp().powers)
                 if (p instanceof AbstractWielderPower)

@@ -36,7 +36,7 @@ public class Whirligig extends AbstractWielderCard {
         public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
             if (!isPlayer) return;
             flash();
-            atb(new GuardAction(amount, null, false));
+            atb(new GuardAction(amount, null, true));
         }
 
         @Override

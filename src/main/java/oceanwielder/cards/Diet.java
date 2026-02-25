@@ -1,8 +1,9 @@
 package oceanwielder.cards;
 
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import oceanwielder.powers.AegisPower;
 import oceanwielder.powers.Weight;
 
 import static oceanwielder.WielderMod.makeID;
@@ -13,10 +14,16 @@ public class Diet extends AbstractWielderCard {
 
     public Diet() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(2, +1);
+        setMagic(3, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new ReducePowerAction(p, p, Weight.POWER_ID, magicNumber));
+        final int mgc = magicNumber;
+        actB(() -> {
+            int aegis = pwrAmt(p, Weight.POWER_ID) * mgc;
+            if (aegis > 0)
+                applyToSelfTop(new AegisPower(p, aegis));
+            att(new RemoveSpecificPowerAction(p, p, Weight.POWER_ID));
+        });
     }
 }

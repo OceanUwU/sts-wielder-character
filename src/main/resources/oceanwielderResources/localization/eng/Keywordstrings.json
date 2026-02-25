@@ -94,14 +94,14 @@
     "NAMES": [
       "scythe"
     ],
-    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and gain #b!S! #yAegis. NL Dequip: ALL enemies lose #b!D! #yStrength."
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage and gain #b!S! #yBlock. NL Dequip: ALL enemies lose #b!D! #yStrength."
   },
   {
     "PROPER_NAME": "Crossbow",
     "NAMES": [
       "crossbow"
     ],
-    "DESCRIPTION": "Weapon. NL First #b!S! #yHits deal #b!P! damage. NL Further #yHits deal #b2 damage. NL Dequip: Your next weapon gets +!D! damage."
+    "DESCRIPTION": "Weapon. NL #yHit: Deal #b!P! damage. NL #yDequip: Gain #yBlock equal to Crossbow's current damage. NL Whenever you play a card, Crossbow's damage increases by the number of #yStamps on it."
   },
   {
     "PROPER_NAME": "Heater",

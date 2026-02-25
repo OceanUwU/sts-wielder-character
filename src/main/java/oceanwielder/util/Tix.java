@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import java.util.ArrayList;
 import oceanwielder.powers.AbstractWielderPower;
@@ -65,7 +66,7 @@ public class Tix {
 
     private static void update() {
         move();
-        if (hb.hovered) {
+        if (hb.hovered && !AbstractDungeon.isScreenUp) {
             TipHelper.renderGenericTip(x + 50f * Settings.scale, y, TEXT[0], TEXT[1]);
             img = HOVERED_IMG;
             if (InputHelper.justClickedLeft && amt > 0)

@@ -1,9 +1,10 @@
 package oceanwielder.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import oceanwielder.actions.GuardAction;
 import oceanwielder.powers.LambdaPower;
 import oceanwielder.util.Stamps;
 
@@ -15,24 +16,27 @@ public class SealOfApproval extends AbstractWielderCard {
 
     public SealOfApproval() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-        setMagic(4, +1);
+        setMagic(1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToSelf(new LambdaPower(ID, exDesc, exDesc[0], com.megacrit.cardcrawl.powers.AbstractPower.PowerType.BUFF, false, p, magicNumber) {
             @Override
-            public void onPlayCard(AbstractCard card, AbstractMonster m) {
+            public void onUseCard(AbstractCard card, UseCardAction action) {
                 int stamps = Stamps.getStamps(card);
                 if (stamps > 0) {
                     flash();
-                    for (int i = 0; i < stamps; i++)
-                        atb(new GainBlockAction(owner, owner, amount, true));
+                    atb(new GuardAction(amount, null, false));
                 }
             }
             
             @Override public void updateDescription() {
-                description = strings[1] + amount + strings[2];
+                description = strings[1] + amount + strings[amount == 1 ? 2 : 3];
             }
         });
+        if (upgraded)
+            actB(() -> adp().hand.group.forEach(c -> {
+                att(new Stamps.Action(c));
+            }));
     }
 }

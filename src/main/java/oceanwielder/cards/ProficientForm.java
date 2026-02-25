@@ -40,8 +40,8 @@ public class ProficientForm extends AbstractWielderCard {
         }
 
         @Override
-        public void onHit(AbstractCard c, AbstractMonster m, boolean fromRealCard, HitAction action) {
-            if (fromRealCard) {
+        public void onHit(AbstractCard c, AbstractMonster m, boolean notARepeat, HitAction action) {
+            if (notARepeat) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();
@@ -53,8 +53,8 @@ public class ProficientForm extends AbstractWielderCard {
         }
 
         @Override
-        public void onHitAll(AbstractCard c, boolean fromRealCard, HitAllAction action) {
-            if (fromRealCard) {
+        public void onHitAll(AbstractCard c, boolean notARepeat, HitAllAction action) {
+            if (notARepeat) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();
@@ -66,8 +66,8 @@ public class ProficientForm extends AbstractWielderCard {
         }
 
         @Override
-        public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard, GuardAction action) {
-            if (fromRealCard) {
+        public void onGuard(AbstractCard c, AbstractMonster m, boolean notARepeat, GuardAction action) {
+            if (notARepeat) {
                 if (--amount == 0) {
                     amount = amount2;
                     flash();

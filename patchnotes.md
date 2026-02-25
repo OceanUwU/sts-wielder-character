@@ -1,3 +1,19 @@
+# v0.1.4
+- Take Aim: Reworked. cost 0 -> 3
+- Strike+: Vigor 2 -> 3
+- Seal of Approval: reworked
+- Diet: now removes all weight and gives you 3 (4) aegis per weight removed
+- Soul Scan: Scythe now gives Block rather than Aegis
+- Profit Margin: now gives Aegis rather than Block
+- Expand Defences: temp. dex 0 (2) -> 2 (4)
+- Biding Time: Cards blocked from guarding 7 -> 6
+- Sharpen: Upgrade no longer decreases cost, now increases strength gain by 1
+- Whirligig & Ruby now count towards & trigger Proficient Form
+- Package Deal can now stamp any card, including unplayable ones
+- Fixed: the Tix button can no longer be clicked or hovered when a screen is shown
+- Hologram's tooltip now considers Double Up
+- Fixed: Profit Margin's buff is no longer called Progit Margin
+
 # v0.1.3
 - Sharp Ruby: Reworked. now reads "At the end of every 2nd turn, Guard." Renamed to "Ruby". 
 - Whirligig: Cost 2 -> 1. Reworked. now reads "At the end of your turn, Guard." (Was "Every 5th (4th) time you Guard, Guard again.")

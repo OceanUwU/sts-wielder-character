@@ -55,7 +55,7 @@ public abstract class AbstractShield extends AbstractWieldable {
     @Override
     public void use(AbstractCard c, AbstractMonster m) {
         blck(c);
-        vfxTop(new ShieldPulseEffect(this));
+        vfxTop(new WieldablePulseEffect(this));
     }
 
     protected void blck(AbstractCard c) {
@@ -76,27 +76,5 @@ public abstract class AbstractShield extends AbstractWieldable {
             description = baseStrings.DESCRIPTION[0] + primary + baseStrings.DESCRIPTION[1];
         else
             description = baseStrings.DESCRIPTION[0] + primary + baseStrings.DESCRIPTION[2] + primaryTimes + baseStrings.DESCRIPTION[3];
-    }
-
-    private static class ShieldPulseEffect extends AbstractGameEffect {
-        private static final float DURATION = 0.4f;
-        private static final float EXPANSION = 0.25f;
-        private AbstractShield shield;
-
-        public ShieldPulseEffect(AbstractShield shield) {
-            this.shield = shield;
-        }
-
-        public void update() {
-            duration += Gdx.graphics.getDeltaTime();
-            shield.animScale = 1f + (float)Math.sin(duration / DURATION * Math.PI) * EXPANSION;
-            if (duration >= DURATION) {
-                isDone = true;
-                shield.animScale = 1f;
-            }
-        }
-
-        public void render(SpriteBatch sb) {}
-        public void dispose() {}
     }
 }

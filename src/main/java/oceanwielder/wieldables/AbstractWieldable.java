@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -15,8 +16,10 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import java.util.HashMap;
 import oceanwielder.WielderMod;
+import oceanwielder.util.Stamps;
 import oceanwielder.util.TexLoader;
 
 import static oceanwielder.WielderMod.makeImagePath;
@@ -178,6 +181,8 @@ public abstract class AbstractWieldable {
         sb.draw(texture, cX - CENTRE + (animX + xOffset) * Settings.scale, cY - CENTRE + (animY + previewOffsetY + yOffset) * Settings.scale, CENTRE, CENTRE, SIZE, SIZE, Settings.scale * animScale, Settings.scale * animScale, rotation);
     }
 
+    public void onUseCard(AbstractCard card, UseCardAction action) {}
+
     private Color getDynvarColor(int base, int amount) {
         if (amount > base) return POSITIVE_COLOR;
         else if (amount < base) return NEGATIVE_COLOR;
@@ -208,4 +213,26 @@ public abstract class AbstractWieldable {
 			throw new RuntimeException("Failed to auto-generate makeCopy for wieldable: " + id);
 		}
 	}
+
+    protected static class WieldablePulseEffect extends AbstractGameEffect {
+        private static final float DURATION = 0.4f;
+        private static final float EXPANSION = 0.25f;
+        private AbstractWieldable wieldable;
+
+        public WieldablePulseEffect(AbstractWieldable wieldable) {
+            this.wieldable = wieldable;
+        }
+
+        public void update() {
+            duration += Gdx.graphics.getDeltaTime();
+            wieldable.animScale = 1f + (float)Math.sin(duration / DURATION * Math.PI) * EXPANSION;
+            if (duration >= DURATION) {
+                isDone = true;
+                wieldable.animScale = 1f;
+            }
+        }
+
+        public void render(SpriteBatch sb) {}
+        public void dispose() {}
+    }
 }

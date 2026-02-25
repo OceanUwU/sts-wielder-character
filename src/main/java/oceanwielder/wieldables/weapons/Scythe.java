@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -23,12 +24,14 @@ public class Scythe extends AbstractWeapon {
     }
 
     public void use(AbstractCard c, AbstractMonster m) {
-        applyToSelfTop(new AegisPower(adp(), secondary));
+        att(new GainBlockAction(adp(), secondary));
+        //applyToSelfTop(new AegisPower(adp(), secondary));
         super.use(c, m);
     }
 
     public void useOnAll(AbstractCard c) {
-        applyToSelfTop(new AegisPower(adp(), secondary));
+        att(new GainBlockAction(adp(), secondary));
+        //applyToSelfTop(new AegisPower(adp(), secondary));
         super.useOnAll(c);
     }
 

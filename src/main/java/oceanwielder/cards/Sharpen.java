@@ -14,8 +14,7 @@ public class Sharpen extends AbstractWielderCard {
 
     public Sharpen() {
         super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        setMagic(1);
-        setCostUpgrade(-1);
+        setMagic(1, +1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -16,7 +16,7 @@ public class Strike extends AbstractWielderCard {
     public Strike() {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         setHits(1);
-        setMagic(0, +2);
+        setMagic(0, +3);
         tags.add(CardTags.STRIKE);
         tags.add(CardTags.STARTER_STRIKE);
     }

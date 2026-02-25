@@ -22,17 +22,17 @@ public class PunchCard extends AbstractWielderRelic {
     }
 
     @Override
-    public void onHit(AbstractCard c, AbstractMonster m, boolean fromRealCard, HitAction action) {
+    public void onHit(AbstractCard c, AbstractMonster m, boolean notARepeat, HitAction action) {
         tick();
     }
 
     @Override
-    public void onHitAll(AbstractCard c, boolean fromRealCard, HitAllAction action) {
+    public void onHitAll(AbstractCard c, boolean notARepeat, HitAllAction action) {
         tick();
     }
 
     @Override
-    public void onGuard(AbstractCard c, AbstractMonster m, boolean fromRealCard, GuardAction action) {
+    public void onGuard(AbstractCard c, AbstractMonster m, boolean notARepeat, GuardAction action) {
         tick();
     }
 

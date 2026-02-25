@@ -1,10 +1,10 @@
 package oceanwielder.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
+import oceanwielder.powers.AegisPower;
 import oceanwielder.powers.LambdaPower;
 
 import static oceanwielder.WielderMod.makeID;
@@ -23,7 +23,7 @@ public class ProfitMargin extends AbstractWielderCard {
             @Override
             public void onSpendTix(ArrayList<AbstractCard> drawn) {
                 flash();
-                att(new GainBlockAction(p, amount));
+                applyToSelfTop(new AegisPower(p, amount));
             }
         
             @Override public void updateDescription() {
