@@ -36,7 +36,8 @@ public class Hologram extends AbstractShield {
     }
 
     public void dequipEffect() {
-        att(new GainTixAction(dequipPower));
+        if (dequipPower > 0)
+            att(new GainTixAction(dequipPower));
     }
 
     @Override
