@@ -13,7 +13,7 @@ public class CloseUpShop extends AbstractWielderCard {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         setGuards(1);
         setMagic(1);
-        setSecondMagic(0, +2);
+        setSecondMagic(0, +3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -4,7 +4,7 @@
     <groupId>UnimportantInfo</groupId>
 
     <artifactId>oceanwielder</artifactId>
-    <version>0.1.6</version>
+    <version>1.0.0</version>
     <name>Wielder (The)</name>
     <description>A character mod with no direct damage or block numbers.</description>
 

@@ -1,7 +1,11 @@
 {
+  "steamPublishedID": "3673540141",
   "title": "",
   "description": "",
   "visibility": "public",
   "changeNote": "",
-  "tags": ["Character", "English"]
+  "tags": [
+    "Character",
+    "English"
+  ]
 }

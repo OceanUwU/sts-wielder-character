@@ -47,6 +47,8 @@ public abstract class AbstractWeapon extends AbstractWieldable {
         super.applyPowers(c);
         if (c == null) c = getSim();
         int base = c.baseDamage;
+        if (c.baseDamage < 0)
+            c.baseDamage = 0;
         c.baseDamage = basePrimary;
         c.applyPowers();
         c.baseDamage = base;
@@ -71,6 +73,8 @@ public abstract class AbstractWeapon extends AbstractWieldable {
     public int calculateDamage(AbstractCard c, AbstractMonster m) {
         if (c == null) c = getSim();
         int base = c.baseDamage;
+        if (c.baseDamage < 0)
+            c.baseDamage = 0;
         c.baseDamage += basePrimary;
         c.calculateCardDamage(m);
         c.baseDamage = base;

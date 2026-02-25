@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
-import oceanwielder.powers.AegisPower;
 
 import static oceanwielder.WielderMod.makeID;
 import static oceanwielder.util.Wiz.*;
@@ -20,7 +19,7 @@ public class Scythe extends AbstractWeapon {
     public static String ID = makeID("Scythe");
 
     public Scythe() {
-        super(ID, 5, 2, 1, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        super(ID, 5, 3, 1, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     public void use(AbstractCard c, AbstractMonster m) {

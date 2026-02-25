@@ -27,6 +27,8 @@ public class Hologram extends AbstractShield {
         super.applyPowers(c);
         if (c == null) c = sim;
         int base = c.baseBlock;
+        if (c.baseBlock < 0)
+            c.baseBlock = 0;
         c.baseBlock += baseSecondary;
         c.applyPowers();
         c.baseBlock = base;

@@ -12,7 +12,7 @@ public class Bulwark extends AbstractWielderCard {
 
     public Bulwark() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        setGuards(0, 1);
+        setGuards(0, +1);
     }
 
     public void applyPowers() {

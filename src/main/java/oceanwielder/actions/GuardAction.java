@@ -31,10 +31,9 @@ public class GuardAction extends AbstractGameAction {
 
     public void update() {
         isDone = true;
-        if (card != null) {
-            if (adp().hasPower(Overextend.ID) || adp().hasPower(Bide.ID))
-                return;
-        }
+        if (amount <= 0) return;
+        if (card != null && (adp().hasPower(Overextend.ID) || adp().hasPower(Bide.ID)))
+            return;
         do {
             boolean real = notARepeat && additionalNonReal <= 0;
             if (additionalNonReal > 0) additionalNonReal--;

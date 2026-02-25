@@ -1,3 +1,10 @@
+[h1]v1.0.0[/h1]
+- Soul Scan: Scythe Block 2 -> 3
+- Close Up Shop+: Aegis 2 -> 3
+- Fixed Bulwark and other similar cards sometimes hitting/guarding twice when they should have hit/guarded 0 times
+- Fixed Bulwark and other similar cards sometimes giving you 1 less block or dealing 1 less damage than it should
+- Fixed Bulwark and other similar cards sometimes not consuming Vigor/Aegis
+
 # v0.1.6
 - Fixed: Defend+ no longer consumes its own aegis immediately, giving no benefit
 - Fixed: Whirligig, Ruby, and Seal of Approval now remove Aegis when they trigger

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import oceanwielder.cards.AbstractWielderCard;
 import oceanwielder.cards.Perpetuity;
 
 import static oceanwielder.WielderMod.makeID;
@@ -31,7 +32,7 @@ public class AegisPower extends AbstractWielderPower {
     }
   
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.baseBlock >= 0) {
+        if (!(card instanceof AbstractWielderCard) && card.baseBlock >= 0) {
             flash();
             if (owner.hasPower(Perpetuity.ID)) {
                 atb(new ReducePowerAction(owner, owner, Perpetuity.ID, 1));
@@ -43,8 +44,7 @@ public class AegisPower extends AbstractWielderPower {
 
     @Override
     public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard) {
-        System.out.println(c);
-        if (c != null || !fromCard) return;
+        if (!fromCard) return;
         flash();
         if (owner.hasPower(Perpetuity.ID)) {
             atb(new ReducePowerAction(owner, owner, Perpetuity.ID, 1));

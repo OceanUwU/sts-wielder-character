@@ -357,11 +357,11 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     protected void hitAll() {
-        atb(hitAllAction(hits));
+        hitAll(hits);
     }
 
     protected void hitAllTop() {
-        att(hitAllAction(hits));
+        hitAllTop(hits);
     }
 
     protected void hitAll(int amt) {
@@ -377,11 +377,11 @@ public abstract class AbstractWielderCard extends CustomCard {
     }
 
     protected void guard() {
-        atb(guardAction(guards));
+        guard(guards);
     }
 
     protected void guardTop() {
-        att(guardAction(guards));
+        guardTop(guards);
     }
 
     protected void guard(int amt) {

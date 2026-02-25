@@ -28,6 +28,7 @@ public class HitAllAction extends AbstractGameAction {
 
     public void update() {
         isDone = true;
+        if (amount <= 0) return;
         if (card != null) {
             if (adp().hasPower(Overextend.ID))
                 return;

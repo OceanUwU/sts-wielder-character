@@ -1,14 +1,11 @@
 package oceanwielder.wieldables.shields;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.red.Defend_Red;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import oceanwielder.powers.GuardUpPower;
 import oceanwielder.util.Wiz;
 import oceanwielder.wieldables.AbstractWieldable;
@@ -44,6 +41,8 @@ public abstract class AbstractShield extends AbstractWieldable {
         }
         super.applyPowers(c);
         int base = c.baseBlock;
+        if (c.baseBlock < 0)
+            c.baseBlock = 0;
         c.baseBlock += basePrimary;
         c.applyPowers();
         c.baseBlock = base;
