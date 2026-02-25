@@ -1,12 +1,12 @@
 package oceanwielder.powers;
 
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import oceanwielder.cards.Perpetuity;
 
 import static oceanwielder.WielderMod.makeID;
@@ -37,7 +37,19 @@ public class AegisPower extends AbstractWielderPower {
                 atb(new ReducePowerAction(owner, owner, Perpetuity.ID, 1));
                 return;
             }
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+            addToBot(new ReducePowerAction(owner, owner, this, amount));
         } 
+    }
+
+    @Override
+    public void onGuard(AbstractCard c, AbstractMonster m, boolean fromCard) {
+        System.out.println(c);
+        if (c != null || !fromCard) return;
+        flash();
+        if (owner.hasPower(Perpetuity.ID)) {
+            atb(new ReducePowerAction(owner, owner, Perpetuity.ID, 1));
+            return;
+        }
+        addToBot(new ReducePowerAction(owner, owner, this, amount));
     }
 }

@@ -1,5 +1,10 @@
+# v0.1.6
+- Fixed: Defend+ no longer consumes its own aegis immediately, giving no benefit
+- Fixed: Whirligig, Ruby, and Seal of Approval now remove Aegis when they trigger
+
 # v0.1.5
 - Fixed: Diverge no longer gives you 2 guards by base
+- Hologram can no longer give you 0 block per turn
 
 # v0.1.4
 - Take Aim: Reworked. cost 0 -> 3

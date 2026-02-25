@@ -23,7 +23,7 @@
     ]
   },
   "${ModID}:GuardUp": {
-    "NAME": "Hit Up",
+    "NAME": "Guard Up",
     "DESCRIPTIONS": [
       "This turn, #yHits deal damage #b",
       " additional time.",
