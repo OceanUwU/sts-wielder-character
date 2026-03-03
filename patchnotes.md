@@ -1,3 +1,6 @@
+[h1]v1.0.1[/h1]
+- Eternal Dance can no longer be obtained from random card generation mid-combat
+
 [h1]v1.0.0[/h1]
 - Soul Scan: Scythe Block 2 -> 3
 - Close Up Shop+: Aegis 2 -> 3

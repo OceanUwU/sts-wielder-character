@@ -17,6 +17,7 @@ public class EternalDance extends AbstractWielderCard {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         setMagic(5, +3);
         setSecondMagic(1);
+        tags.add(CardTags.HEALING);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
